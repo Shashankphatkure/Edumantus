@@ -9,35 +9,35 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-indigo-600 via-blue-600 to-blue-700 text-white overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI3NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cmVjdCBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMDUiIHdpZHRoPSIxNDQwIiBoZWlnaHQ9Ijc2MCIvPjxwYXRoIGQ9Ik03MjAgMGw3MjAgNzYwSDBMNzIwIDB6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')] opacity-10"></div>
-          <div className="container mx-auto px-6 py-24 relative">
-            <div className="grid md:grid-cols-2 gap-16 items-center">
-              <div className="space-y-8 animate-fade-in-up">
+          <div className="container mx-auto px-4 sm:px-6 py-12 sm:py-16 md:py-24 relative">
+            <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
+              <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center md:text-left">
                 <span className="px-4 py-2 bg-white/10 rounded-full text-sm font-medium inline-block backdrop-blur-sm">
                   #1 Mental Health Platform in India
                 </span>
-                <h1 className="text-4xl md:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
                   Your Path to Mental Wellness Begins Here
                 </h1>
-                <p className="text-xl text-blue-100 leading-relaxed">
+                <p className="text-lg sm:text-xl text-blue-100 leading-relaxed">
                   Connect with India's top mental health professionals for personalized
                   consultation and guidance, all from the comfort of your home.
                 </p>
-                <div className="flex gap-4 flex-col sm:flex-row">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
                   <Link 
                     href="/book-consultation"
-                    className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center"
+                    className="bg-white text-blue-600 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl text-center w-full sm:w-auto"
                   >
                     Book Consultation
                   </Link>
                   <Link
                     href="/our-experts"
-                    className="border-2 border-white/30 backdrop-blur-sm px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 text-center"
+                    className="border-2 border-white/30 backdrop-blur-sm px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300 transform hover:scale-105 text-center w-full sm:w-auto"
                   >
                     Meet Our Experts
                   </Link>
                 </div>
               </div>
-              <div className="relative h-[500px] w-full animate-fade-in">
+              <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full animate-fade-in mt-8 md:mt-0">
                 <Image
                   src="https://picsum.photos/seed/hero/1000/1000"
                   alt="Online Consultation"
@@ -53,16 +53,16 @@ export default function Home() {
 
         {/* Stats Section */}
         <section className="py-12 -mt-16 relative z-10">
-          <div className="container mx-auto px-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
                 { number: '10,000+', label: 'Happy Clients' },
                 { number: '500+', label: 'Expert Therapists' },
                 { number: '4.9/5', label: 'Client Rating' },
                 { number: '24/7', label: 'Support Available' },
               ].map((stat) => (
-                <div key={stat.label} className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow duration-300">
-                  <h3 className="text-3xl font-bold text-blue-600 mb-2">{stat.number}</h3>
+                <div key={stat.label} className="bg-white rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-shadow duration-300 text-center">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-blue-600 mb-2">{stat.number}</h3>
                   <p className="text-gray-600">{stat.label}</p>
                 </div>
               ))}
@@ -71,17 +71,17 @@ export default function Home() {
         </section>
 
         {/* Specialties Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                 Our Specialties
               </h2>
               <p className="text-gray-600 text-lg">
                 Expert guidance for every aspect of your mental well-being
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   title: 'Depression & Anxiety',
@@ -101,7 +101,7 @@ export default function Home() {
               ].map((specialty) => (
                 <div key={specialty.title} 
                   className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
-                  <div className="relative h-56">
+                  <div className="relative h-48 sm:h-56">
                     <Image
                       src={specialty.image}
                       alt={specialty.title}
@@ -109,9 +109,9 @@ export default function Home() {
                       className="object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <h3 className="absolute bottom-4 left-4 text-2xl font-bold text-white">{specialty.title}</h3>
+                    <h3 className="absolute bottom-4 left-4 text-xl sm:text-2xl font-bold text-white">{specialty.title}</h3>
                   </div>
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <p className="text-gray-600 leading-relaxed">
                       {specialty.description}
                     </p>
@@ -126,17 +126,17 @@ export default function Home() {
         </section>
 
         {/* How It Works */}
-        <section className="py-20 bg-gradient-to-b from-blue-50 to-white">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                 How It Works
               </h2>
               <p className="text-gray-600 text-lg">
                 Simple steps to start your healing journey
               </p>
             </div>
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
               {[
                 {
                   step: 'Choose Your Expert',
@@ -160,12 +160,12 @@ export default function Home() {
                 }
               ].map((item, index) => (
                 <div key={item.step} className="text-center group">
-                  <div className="relative mb-8">
-                    <div className="w-20 h-20 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-4 transform group-hover:rotate-6 transition-transform duration-300">
+                  <div className="relative mb-6 sm:mb-8">
+                    <div className="w-16 h-16 sm:w-20 sm:h-20 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-2xl sm:text-3xl font-bold mx-auto mb-4 transform group-hover:rotate-6 transition-transform duration-300">
                       {item.icon}
                     </div>
                   </div>
-                  <h3 className="text-xl font-semibold mb-4">{item.step}</h3>
+                  <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{item.step}</h3>
                   <p className="text-gray-600">{item.description}</p>
                 </div>
               ))}
@@ -174,17 +174,17 @@ export default function Home() {
         </section>
 
         {/* Featured Experts */}
-        <section className="py-20">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                 Our Featured Experts
               </h2>
               <p className="text-gray-600 text-lg">
                 Experienced professionals dedicated to your well-being
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   name: 'Dr. Sharma',
@@ -207,7 +207,7 @@ export default function Home() {
               ].map((expert) => (
                 <div key={expert.name} 
                   className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="relative h-80">
+                  <div className="relative h-64 sm:h-80">
                     <Image
                       src={expert.image}
                       alt={expert.name}
@@ -215,8 +215,8 @@ export default function Home() {
                       className="object-cover group-hover:scale-105 transition-transform duration-500"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl font-bold mb-2">{expert.name}</h3>
+                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                      <h3 className="text-xl sm:text-2xl font-bold mb-2">{expert.name}</h3>
                       <p className="text-gray-200 mb-4">{expert.role} • 15+ Years Experience</p>
                       <div className="flex gap-2 flex-wrap">
                         {expert.specialties.map((specialty) => (
@@ -227,7 +227,7 @@ export default function Home() {
                       </div>
                     </div>
                   </div>
-                  <div className="p-6">
+                  <div className="p-4 sm:p-6">
                     <Link
                       href="/book-consultation"
                       className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
@@ -242,17 +242,17 @@ export default function Home() {
         </section>
 
         {/* Testimonials */}
-        <section className="py-20 bg-gradient-to-b from-gray-50 to-white">
-          <div className="container mx-auto px-6">
-            <div className="text-center max-w-3xl mx-auto mb-16">
-              <h2 className="text-4xl font-bold mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
                 What Our Clients Say
               </h2>
               <p className="text-gray-600 text-lg">
                 Real stories from real people who transformed their lives
               </p>
             </div>
-            <div className="grid md:grid-cols-3 gap-8">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   name: 'Priya Singh',
@@ -274,9 +274,9 @@ export default function Home() {
                 }
               ].map((testimonial, index) => (
                 <div key={testimonial.name} 
-                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                  className="bg-white p-6 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
                   <div className="flex items-center mb-6">
-                    <div className="relative w-16 h-16 mr-4">
+                    <div className="relative w-12 h-12 sm:w-16 sm:h-16 mr-4">
                       <Image
                         src={`https://picsum.photos/seed/testimonial${index + 1}/200/200`}
                         alt={testimonial.name}
@@ -285,7 +285,7 @@ export default function Home() {
                       />
                     </div>
                     <div>
-                      <h4 className="text-xl font-semibold">{testimonial.name}</h4>
+                      <h4 className="text-lg sm:text-xl font-semibold">{testimonial.name}</h4>
                       <p className="text-gray-600">{testimonial.location}, India</p>
                       <div className="flex items-center mt-1">
                         {[...Array(testimonial.rating)].map((_, i) => (
@@ -302,21 +302,29 @@ export default function Home() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white relative overflow-hidden">
+        <section className="py-16 sm:py-20 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 text-white relative overflow-hidden">
           <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQ0MCIgaGVpZ2h0PSI3NjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0ibm9uZSIgZmlsbC1ydWxlPSJldmVub2RkIj48cmVjdCBmaWxsPSIjMDAwIiBvcGFjaXR5PSIuMDUiIHdpZHRoPSIxNDQwIiBoZWlnaHQ9Ijc2MCIvPjxwYXRoIGQ9Ik03MjAgMGw3MjAgNzYwSDBMNzIwIDB6IiBmaWxsPSIjZmZmIiBvcGFjaXR5PSIuMDUiLz48L2c+PC9zdmc+')] opacity-10"></div>
-          <div className="container mx-auto px-6 text-center relative">
+          <div className="container mx-auto px-4 sm:px-6 text-center relative">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-4xl md:text-5xl font-bold mb-8">Ready to Start Your Journey?</h2>
-              <p className="text-xl text-blue-100 mb-12 leading-relaxed">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">Ready to Start Your Journey?</h2>
+              <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 leading-relaxed">
                 Take the first step towards better mental health today. 
                 Our experts are here to support you every step of the way.
               </p>
-              <Link
-                href="/book-consultation"
-                className="inline-block bg-white text-blue-600 px-12 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
-              >
-                Book Your First Consultation
-              </Link>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Link
+                  href="/book-consultation"
+                  className="bg-white text-blue-600 px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+                >
+                  Book Your First Consultation
+                </Link>
+                <Link
+                  href="/contact"
+                  className="border-2 border-white text-white px-8 py-3 sm:py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
+                >
+                  Contact Us
+                </Link>
+              </div>
             </div>
           </div>
         </section>
