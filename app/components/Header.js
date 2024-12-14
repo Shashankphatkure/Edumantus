@@ -14,6 +14,7 @@ export default function Header() {
     { name: 'Our Experts', href: '/our-experts' },
     { name: 'Services', href: '/services' },
     { name: 'Pricing', href: '/pricing' },
+    { name: 'Compare', href: '/compare' },
     { name: 'About Us', href: '/about' },
     { name: 'Contact', href: '/contact' },
   ];
