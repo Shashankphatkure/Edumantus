@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import PageTransition from "./components/PageTransition";
@@ -70,6 +72,61 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Benefits Section - NEW */}
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-white to-blue-50">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Benefits of Online Counseling
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Experience the advantages of professional mental health care from the comfort of your home
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[
+                {
+                  title: 'Convenience & Accessibility',
+                  description: 'Access therapy from anywhere, anytime. No commute, no waiting rooms.',
+                  icon: '🏠'
+                },
+                {
+                  title: 'Complete Privacy',
+                  description: 'Confidential sessions in your personal space with end-to-end encryption.',
+                  icon: '🔒'
+                },
+                {
+                  title: 'Affordable Care',
+                  description: 'Cost-effective solutions with flexible payment options and insurance coverage.',
+                  icon: '💰'
+                },
+                {
+                  title: 'Choice of Experts',
+                  description: 'Select from a wide range of qualified therapists based on your specific needs.',
+                  icon: '👥'
+                },
+                {
+                  title: 'Flexible Scheduling',
+                  description: 'Book sessions at times that suit your schedule, including evenings and weekends.',
+                  icon: '📅'
+                },
+                {
+                  title: 'Consistent Support',
+                  description: 'Regular follow-ups and 24/7 chat support for continuous care.',
+                  icon: '🤝'
+                }
+              ].map((benefit) => (
+                <div key={benefit.title} 
+                  className="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                  <div className="text-4xl mb-4">{benefit.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3">{benefit.title}</h3>
+                  <p className="text-gray-600">{benefit.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Specialties Section */}
         <section className="py-16 sm:py-20">
           <div className="container mx-auto px-4 sm:px-6">
@@ -125,6 +182,64 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Why Choose Us Section - NEW */}
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Why Choose Edumantus?
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Leading the way in online mental health care with our unique advantages
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  title: 'Verified Professionals',
+                  description: 'All our therapists are thoroughly vetted with minimum 8 years of experience',
+                  icon: '✓'
+                },
+                {
+                  title: 'Personalized Matching',
+                  description: 'AI-powered algorithm to match you with the most suitable therapist',
+                  icon: '✓'
+                },
+                {
+                  title: 'Multi-lingual Sessions',
+                  description: 'Counseling available in Hindi, English, and other regional languages',
+                  icon: '✓'
+                },
+                {
+                  title: 'Secure Platform',
+                  description: 'HIPAA compliant platform with complete data privacy',
+                  icon: '✓'
+                },
+                {
+                  title: 'Flexible Plans',
+                  description: 'Choose from various subscription plans that fit your needs',
+                  icon: '✓'
+                },
+                {
+                  title: 'Quality Assurance',
+                  description: 'Regular quality checks and client feedback monitoring',
+                  icon: '✓'
+                }
+              ].map((feature) => (
+                <div key={feature.title} className="flex items-start space-x-4">
+                  <div className="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center text-green-600 font-bold flex-shrink-0">
+                    {feature.icon}
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+                    <p className="text-gray-600">{feature.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* How It Works */}
         <section className="py-16 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
           <div className="container mx-auto px-4 sm:px-6">
@@ -167,6 +282,56 @@ export default function Home() {
                   </div>
                   <h3 className="text-lg sm:text-xl font-semibold mb-3 sm:mb-4">{item.step}</h3>
                   <p className="text-gray-600">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Mental Health Resources Section - NEW */}
+        <section className="py-16 sm:py-20">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Mental Health Resources
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Free resources to help you understand and improve your mental well-being
+              </p>
+            </div>
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+              {[
+                {
+                  title: 'Self-Assessment Tools',
+                  description: 'Take our mental health assessments to understand your well-being better',
+                  icon: '📋'
+                },
+                {
+                  title: 'Educational Articles',
+                  description: 'Expert-written articles on various mental health topics',
+                  icon: '📚'
+                },
+                {
+                  title: 'Meditation Guides',
+                  description: 'Free guided meditation and mindfulness exercises',
+                  icon: '🧘‍♀️'
+                },
+                {
+                  title: 'Support Groups',
+                  description: 'Join our moderated online support communities',
+                  icon: '👥'
+                }
+              ].map((resource) => (
+                <div key={resource.title} 
+                  className="bg-gradient-to-br from-blue-50 to-indigo-50 p-6 rounded-2xl hover:shadow-lg transition-all duration-300 text-center group">
+                  <div className="text-4xl mb-4 transform group-hover:scale-110 transition-transform duration-300">
+                    {resource.icon}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-3">{resource.title}</h3>
+                  <p className="text-gray-600 mb-4">{resource.description}</p>
+                  <Link href="/resources" className="text-blue-600 font-medium hover:text-blue-700">
+                    Learn More →
+                  </Link>
                 </div>
               ))}
             </div>
@@ -241,6 +406,62 @@ export default function Home() {
           </div>
         </section>
 
+        {/* Client Success Stories - NEW */}
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-blue-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Client Success Stories
+              </h2>
+              <p className="text-gray-600 text-lg">
+                Real transformation stories from our clients
+              </p>
+            </div>
+            <div className="grid md:grid-cols-2 gap-8">
+              {[
+                {
+                  name: 'Amit Kumar',
+                  age: '32',
+                  issue: 'Anxiety & Work Stress',
+                  story: "After 6 months of therapy, I've learned to manage my anxiety and improve my work-life balance. The techniques I learned have been life-changing.",
+                  improvement: '85% reduction in anxiety symptoms'
+                },
+                {
+                  name: 'Neha Sharma',
+                  age: '28',
+                  issue: 'Depression',
+                  story: "The personalized approach and constant support helped me overcome my depression. I'm now more confident and optimistic about life.",
+                  improvement: '90% improvement in mood'
+                }
+              ].map((story, index) => (
+                <div key={story.name} 
+                  className="bg-white p-8 rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300">
+                  <div className="flex items-center mb-6">
+                    <div className="relative w-16 h-16 mr-4">
+                      <Image
+                        src={`https://picsum.photos/seed/success${index}/200/200`}
+                        alt={story.name}
+                        fill
+                        className="rounded-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-semibold">{story.name}, {story.age}</h3>
+                      <p className="text-gray-600">{story.issue}</p>
+                    </div>
+                  </div>
+                  <blockquote className="text-gray-600 mb-4 italic">
+                    "{story.story}"
+                  </blockquote>
+                  <div className="bg-green-50 text-green-700 px-4 py-2 rounded-lg font-medium">
+                    {story.improvement}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Testimonials */}
         <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
           <div className="container mx-auto px-4 sm:px-6">
@@ -263,7 +484,7 @@ export default function Home() {
                 {
                   name: 'Rahul Verma',
                   location: 'Mumbai',
-                  testimonial: 'Professional and caring approach. The online sessions were very convenient and effective. Ive seen remarkable improvement.',
+                  testimonial: "Professional and caring approach. The online sessions were very convenient and effective. I've seen remarkable improvement.",
                   rating: 5
                 },
                 {
@@ -297,6 +518,34 @@ export default function Home() {
                   <p className="text-gray-600 leading-relaxed">"{testimonial.testimonial}"</p>
                 </div>
               ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Insurance Coverage Section - NEW */}
+        <section className="py-16 sm:py-20 bg-gradient-to-b from-gray-50 to-white">
+          <div className="container mx-auto px-4 sm:px-6">
+            <div className="text-center max-w-3xl mx-auto mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
+                Insurance Coverage
+              </h2>
+              <p className="text-gray-600 text-lg mb-8">
+                We work with major insurance providers to make mental healthcare accessible
+              </p>
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
+                {[1, 2, 3, 4].map((index) => (
+                  <div key={index} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+                    <div className="relative h-12">
+                      <Image
+                        src={`https://picsum.photos/seed/insurance${index}/200/100`}
+                        alt={`Insurance Provider ${index}`}
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </section>
