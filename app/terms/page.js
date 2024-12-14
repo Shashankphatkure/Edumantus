@@ -6,11 +6,11 @@ export default function Terms() {
   const sections = [
     {
       title: "1. Acceptance of Terms",
-      content: `By accessing and using MindfulCare's website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.`
+      content: `By accessing and using Edumantus's website and services, you acknowledge that you have read, understood, and agree to be bound by these Terms of Service ("Terms"). If you do not agree to these Terms, please do not use our services.`
     },
     {
       title: "2. Services Description",
-      content: `MindfulCare provides online mental health consultation services connecting users with licensed mental health professionals. Our services include but are not limited to:
+      content: `Edumantus provides online mental health consultation services connecting users with licensed mental health professionals. Our services include but are not limited to:
 • Video consultations
 • Chat-based therapy
 • Resource materials
@@ -99,7 +99,7 @@ Users may terminate their account at any time.`
     {
       title: "12. Contact Information",
       content: `For questions about these Terms:
-• Email: legal@mindfulcare.in
+• Email: legal@Edumantus.in
 • Phone: 1800-123-4567
 • Address: Mindful Tower, Bandra West, Mumbai - 400050`
     }
@@ -161,7 +161,7 @@ Users may terminate their account at any time.`
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:legal@mindfulcare.in"
+                  href="mailto:legal@Edumantus.in"
                   className="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300"
                 >
                   Contact Legal Team

@@ -83,7 +83,7 @@ export default function Footer() {
                 <span className="text-2xl font-bold text-white">M</span>
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-                MindfulCare
+              Edumantus
               </span>
             </Link>
             <p className="mt-4 text-gray-600 leading-relaxed">
@@ -166,7 +166,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} MindfulCare. All rights reserved.
+              © {new Date().getFullYear()} Edumantus. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-6">
               <Link

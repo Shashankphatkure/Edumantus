@@ -39,21 +39,21 @@ export default function Contact() {
       city: 'Mumbai',
       address: 'Mindful Tower, Bandra West, Mumbai - 400050',
       phone: '+91 22 1234 5678',
-      email: 'mumbai@mindfulcare.in',
+      email: 'mumbai@Edumantus.in',
       image: 'https://picsum.photos/seed/mumbai/800/600'
     },
     {
       city: 'Delhi',
       address: 'Green Park Extension, New Delhi - 110016',
       phone: '+91 11 1234 5678',
-      email: 'delhi@mindfulcare.in',
+      email: 'delhi@Edumantus.in',
       image: 'https://picsum.photos/seed/delhi/800/600'
     },
     {
       city: 'Bangalore',
       address: 'Indiranagar, Bangalore - 560038',
       phone: '+91 80 1234 5678',
-      email: 'bangalore@mindfulcare.in',
+      email: 'bangalore@Edumantus.in',
       image: 'https://picsum.photos/seed/bangalore/800/600'
     }
   ];
@@ -88,7 +88,7 @@ export default function Contact() {
               {
                 icon: '✉️',
                 title: 'Email Us',
-                content: 'support@mindfulcare.in',
+                content: 'support@Edumantus.in',
                 description: 'Well respond within 24 hours'
               },
               {

@@ -6,7 +6,7 @@ import Footer from './components/Footer';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata = {
-  title: 'MindfulCare - Professional Mental Health Consultation',
+  title: 'Edumantus - Professional Mental Health Consultation',
   description: 'Connect with India\'s top mental health professionals for personalized consultation and guidance.',
 };
 

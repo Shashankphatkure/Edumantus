@@ -60,7 +60,7 @@ export default function About() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About MindfulCare
+              About Edumantus
             </h1>
             <p className="text-xl text-blue-100 mb-8">
               Transforming mental health care in India through professional expertise,
@@ -91,7 +91,7 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
             <div className="prose prose-lg mx-auto text-gray-600">
               <p className="mb-4">
-                Founded in 2008, MindfulCare began with a simple mission: to make quality mental health care accessible to everyone in India. What started as a small clinic in Mumbai has grown into one of India's leading online mental health platforms.
+                Founded in 2008, Edumantus began with a simple mission: to make quality mental health care accessible to everyone in India. What started as a small clinic in Mumbai has grown into one of India's leading online mental health platforms.
               </p>
               <p className="mb-4">
                 Our journey has been driven by the belief that everyone deserves access to professional mental health support. By combining traditional therapeutic approaches with modern technology, we've created a platform that brings expert care right to your home.
