@@ -164,8 +164,6 @@ export default function Home() {
                     <div className="w-20 h-20 bg-blue-600 text-white rounded-2xl flex items-center justify-center text-3xl font-bold mx-auto mb-4 transform group-hover:rotate-6 transition-transform duration-300">
                       {item.icon}
                     </div>
-                    <div className="absolute top-1/2 right-0 h-0.5 bg-blue-200 transform -translate-y-1/2 hidden md:block" 
-                      style={{ width: index === 3 ? '0' : '80%', right: index === 3 ? '0' : '-40%' }}></div>
                   </div>
                   <h3 className="text-xl font-semibold mb-4">{item.step}</h3>
                   <p className="text-gray-600">{item.description}</p>
