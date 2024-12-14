@@ -530,15 +530,20 @@ export default function Home() {
                 Insurance Coverage
               </h2>
               <p className="text-gray-600 text-lg mb-8">
-                We work with major insurance providers to make mental healthcare accessible
+                We work with major insurance providers to make mental healthcare accessible and affordable
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center">
-                {[1, 2, 3, 4].map((index) => (
-                  <div key={index} className="bg-white p-4 rounded-xl shadow-md hover:shadow-lg transition-all duration-300">
+              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center mb-8">
+                {[
+                  {name: 'Star Health', logo: 'starhealth'},
+                  {name: 'HDFC ERGO', logo: 'hdfc'}, 
+                  {name: 'Bajaj Allianz', logo: 'bajaj'},
+                  {name: 'ICICI Lombard', logo: 'icici'}
+                ].map((provider) => (
+                  <div key={provider.name} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-12">
                       <Image
-                        src={`https://picsum.photos/seed/insurance${index}/200/100`}
-                        alt={`Insurance Provider ${index}`}
+                        src={`https://picsum.photos/seed/${provider.logo}/200/100`}
+                        alt={provider.name}
                         fill
                         className="object-contain"
                       />
@@ -546,6 +551,7 @@ export default function Home() {
                   </div>
                 ))}
               </div>
+              
             </div>
           </div>
         </section>
