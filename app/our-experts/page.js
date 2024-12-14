@@ -156,23 +156,25 @@ export default function OurExperts() {
                 className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
               >
                 <div className="relative h-80">
-                  <Image
-                    src={expert.image}
-                    alt={expert.name}
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                  <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                    <h3 className="text-2xl font-bold mb-1">{expert.name}</h3>
-                    <p className="text-gray-200 mb-2">{expert.role} • {expert.experience}</p>
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="text-yellow-400">★</span>
-                      <span>{expert.rating}</span>
-                      <span className="text-gray-300">•</span>
-                      <span>{expert.totalConsultations}+ consultations</span>
+                  <Link href={`/our-experts/${expert.id}`}>
+                    <Image
+                      src={expert.image}
+                      alt={expert.name}
+                      fill
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-2xl font-bold mb-1">{expert.name}</h3>
+                      <p className="text-gray-200 mb-2">{expert.role} • {expert.experience}</p>
+                      <div className="flex items-center gap-2 mb-2">
+                        <span className="text-yellow-400">★</span>
+                        <span>{expert.rating}</span>
+                        <span className="text-gray-300">•</span>
+                        <span>{expert.totalConsultations}+ consultations</span>
+                      </div>
                     </div>
-                  </div>
+                  </Link>
                 </div>
                 <div className="p-6 space-y-4">
                   <div>
