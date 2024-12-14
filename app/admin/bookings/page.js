@@ -4,12 +4,15 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import PageTransition from '../../components/PageTransition';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function AdminBookings() {
   const [selectedStatus, setSelectedStatus] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
   const [sortBy, setSortBy] = useState('date');
   const [sortOrder, setSortOrder] = useState('desc');
+  const [selectedBooking, setSelectedBooking] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Mock booking data - in a real app, this would come from your backend
   const bookings = [
@@ -245,7 +248,13 @@ export default function AdminBookings() {
                           View Summary
                         </button>
                       )}
-                      <button className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300">
+                      <button 
+                        onClick={() => {
+                          setSelectedBooking(booking);
+                          setIsModalOpen(true);
+                        }}
+                        className="px-4 py-2 border border-gray-200 rounded-lg hover:bg-gray-50 transition-colors duration-300"
+                      >
                         View Details
                       </button>
                     </div>
@@ -261,6 +270,126 @@ export default function AdminBookings() {
             </div>
           )}
         </div>
+
+        {/* Details Modal */}
+        <AnimatePresence>
+          {isModalOpen && selectedBooking && (
+            <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.2 }}
+                className="bg-white rounded-2xl shadow-xl w-full max-w-2xl mx-4 overflow-hidden"
+              >
+                {/* Modal Header */}
+                <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-4 flex items-center justify-between">
+                  <h2 className="text-xl font-semibold">Booking Details</h2>
+                  <button
+                    onClick={() => setIsModalOpen(false)}
+                    className="text-white/80 hover:text-white transition-colors"
+                  >
+                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+
+                {/* Modal Content */}
+                <div className="p-6">
+                  {/* Booking ID and Status */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div>
+                      <p className="text-sm text-gray-600">Booking ID</p>
+                      <p className="text-lg font-semibold">{selectedBooking.id}</p>
+                    </div>
+                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${statusColors[selectedBooking.status]}`}>
+                      {selectedBooking.status.charAt(0).toUpperCase() + selectedBooking.status.slice(1)}
+                    </span>
+                  </div>
+
+                  {/* Expert Details */}
+                  <div className="flex items-center mb-6 pb-6 border-b">
+                    <div className="relative w-16 h-16 rounded-full overflow-hidden mr-4">
+                      <Image
+                        src={selectedBooking.expertImage}
+                        alt={selectedBooking.expertName}
+                        fill
+                        className="object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-lg">{selectedBooking.expertName}</h3>
+                      <p className="text-gray-600">Expert</p>
+                    </div>
+                  </div>
+
+                  {/* Patient Details */}
+                  <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b">
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Patient Name</p>
+                      <p className="font-medium">{selectedBooking.patientName}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Contact</p>
+                      <p className="font-medium">{selectedBooking.patientPhone}</p>
+                      <p className="font-medium">{selectedBooking.patientEmail}</p>
+                    </div>
+                  </div>
+
+                  {/* Consultation Details */}
+                  <div className="grid grid-cols-2 gap-6 mb-6 pb-6 border-b">
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Date & Time</p>
+                      <p className="font-medium">
+                        {new Date(selectedBooking.date).toLocaleDateString('en-IN', {
+                          weekday: 'long',
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric'
+                        })}
+                      </p>
+                      <p className="font-medium">{selectedBooking.time}</p>
+                    </div>
+                    <div>
+                      <p className="text-sm text-gray-600 mb-1">Consultation Type</p>
+                      <p className="font-medium">{selectedBooking.type}</p>
+                      <p className="font-semibold text-blue-600 mt-1">{selectedBooking.amount}</p>
+                    </div>
+                  </div>
+
+                  {/* Notes */}
+                  <div>
+                    <p className="text-sm text-gray-600 mb-2">Notes</p>
+                    <p className="text-gray-800 bg-gray-50 p-3 rounded-lg">{selectedBooking.notes}</p>
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="mt-8 flex flex-wrap gap-3">
+                    {selectedBooking.status === 'upcoming' && (
+                      <>
+                        <button className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                          Start Session
+                        </button>
+                        <button className="flex-1 px-4 py-2 bg-yellow-500 text-white rounded-lg hover:bg-yellow-600 transition-colors duration-300">
+                          Reschedule
+                        </button>
+                        <button className="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-300">
+                          Cancel
+                        </button>
+                      </>
+                    )}
+                    {selectedBooking.status === 'completed' && (
+                      <button className="flex-1 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-300">
+                        Download Summary
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+          )}
+        </AnimatePresence>
       </div>
     </PageTransition>
   );
