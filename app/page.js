@@ -3,8 +3,88 @@
 import Image from "next/image";
 import Link from "next/link";
 import PageTransition from "./components/PageTransition";
+import { useState, useEffect } from 'react';
 
 export default function Home() {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const services = [
+    {
+      title: 'Clinical Issues',
+      image: 'https://picsum.photos/seed/clinical/400/300',
+      description: 'Expert support for anxiety, depression, OCD, and other mental health conditions.',
+      link: '/services/clinical-issues'
+    },
+    {
+      title: 'Relationship Issues',
+      image: 'https://picsum.photos/seed/relationship/400/300',
+      description: 'Professional guidance for all types of relationships and interpersonal dynamics.',
+      link: '/services/relationship-issues'
+    },
+    {
+      title: 'Children and Adolescent Issues',
+      image: 'https://picsum.photos/seed/youth/400/300',
+      description: 'Specialized care for young individuals facing developmental and emotional challenges.',
+      link: '/services/children-and-adolescent-issues'
+    },
+    {
+      title: 'Women Centric Issues',
+      image: 'https://picsum.photos/seed/women/400/300',
+      description: 'Dedicated support for womens mental health and life challenges.',
+      link: '/services/women-centric-issues'
+    },
+    {
+      title: 'Life Style Issues',
+      image: 'https://picsum.photos/seed/lifestyle/400/300',
+      description: 'Guidance for maintaining balance and well-being in your daily life.',
+      link: '/services/life-style-issues'
+    },
+    {
+      title: 'Self-Improvement',
+      image: 'https://picsum.photos/seed/improvement/400/300',
+      description: 'Programs to enhance personal growth, confidence, and self-awareness.',
+      link: '/services/self-improvement'
+    },
+    {
+      title: 'Workplace Issues',
+      image: 'https://picsum.photos/seed/workplace/400/300',
+      description: 'Support for career development and workplace challenges.',
+      link: '/services/workplace-issues'
+    },
+    {
+      title: 'Higher Education and Coaching',
+      image: 'https://picsum.photos/seed/education/400/300',
+      description: 'Specialized guidance for academic excellence and career advancement.',
+      link: '/services/higher-education-and-coaching'
+    }
+  ];
+
+  useEffect(() => {
+    let interval;
+    if (isAutoPlaying) {
+      interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % services.length);
+      }, 5000); // Change slide every 5 seconds
+    }
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, services.length]);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % services.length);
+    setIsAutoPlaying(false);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + services.length) % services.length);
+    setIsAutoPlaying(false);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
+
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
@@ -138,79 +218,85 @@ export default function Home() {
                 Expert guidance for every aspect of your mental well-being
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-              {[
-                {
-                  title: 'Clinical Issues',
-                  image: 'https://picsum.photos/seed/clinical/400/300',
-                  description: 'Expert support for anxiety, depression, OCD, and other mental health conditions.',
-                  link: '/services/clinical-issues'
-                },
-                {
-                  title: 'Relationship Issues',
-                  image: 'https://picsum.photos/seed/relationship/400/300',
-                  description: 'Professional guidance for all types of relationships and interpersonal dynamics.',
-                  link: '/services/relationship-issues'
-                },
-                {
-                  title: 'Children and Adolescent Issues',
-                  image: 'https://picsum.photos/seed/youth/400/300',
-                  description: 'Specialized care for young individuals facing developmental and emotional challenges.',
-                  link: '/services/children-and-adolescent-issues'
-                },
-                {
-                  title: 'Women Centric Issues',
-                  image: 'https://picsum.photos/seed/women/400/300',
-                  description: 'Dedicated support for womens mental health and life challenges.',
-                  link: '/services/women-centric-issues'
-                },
-                {
-                  title: 'Life Style Issues',
-                  image: 'https://picsum.photos/seed/lifestyle/400/300',
-                  description: 'Guidance for maintaining balance and well-being in your daily life.',
-                  link: '/services/life-style-issues'
-                },
-                {
-                  title: 'Self-Improvement',
-                  image: 'https://picsum.photos/seed/improvement/400/300',
-                  description: 'Programs to enhance personal growth, confidence, and self-awareness.',
-                  link: '/services/self-improvement'
-                },
-                {
-                  title: 'Workplace Issues',
-                  image: 'https://picsum.photos/seed/workplace/400/300',
-                  description: 'Support for career development and workplace challenges.',
-                  link: '/services/workplace-issues'
-                },
-                {
-                  title: 'Higher Education and Coaching',
-                  image: 'https://picsum.photos/seed/education/400/300',
-                  description: 'Specialized guidance for academic excellence and career advancement.',
-                  link: '/services/higher-education-and-coaching'
-                }
-              ].map((specialty) => (
-                <div key={specialty.title} 
-                  className="group bg-white rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden transform hover:-translate-y-1">
-                  <div className="relative h-48 sm:h-56">
-                    <Image
-                      src={specialty.image}
-                      alt={specialty.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <h3 className="absolute bottom-4 left-4 text-xl sm:text-2xl font-bold text-white">{specialty.title}</h3>
-                  </div>
-                  <div className="p-4 sm:p-6">
-                    <p className="text-gray-600 leading-relaxed">
-                      {specialty.description}
-                    </p>
-                    <Link href={specialty.link} className="inline-block mt-4 text-blue-600 font-semibold hover:text-blue-700">
-                      Learn More →
-                    </Link>
-                  </div>
+            
+            {/* Carousel Container */}
+            <div className="relative max-w-7xl mx-auto px-8">
+              {/* Carousel */}
+              <div className="relative overflow-hidden rounded-3xl">
+                <div 
+                  className="flex transition-transform duration-500 ease-out"
+                  style={{ transform: `translateX(-${currentSlide * (100/3)}%)` }}
+                >
+                  {services.map((service, index) => (
+                    <div
+                      key={index}
+                      className="w-1/3 flex-shrink-0 p-3"
+                    >
+                      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden h-full group transform hover:-translate-y-1">
+                        <div className="relative h-52">
+                          <Image
+                            src={service.image}
+                            alt={service.title}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                          <h3 className="absolute bottom-4 left-4 text-xl font-bold text-white group-hover:translate-x-1 transition-transform duration-300">
+                            {service.title}
+                          </h3>
+                        </div>
+                        <div className="p-5">
+                          <p className="text-gray-600 text-sm mb-5 line-clamp-3">
+                            {service.description}
+                          </p>
+                          <Link
+                            href={service.link}
+                            className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-all duration-300 group-hover:translate-x-1"
+                          >
+                            Learn More 
+                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                            </svg>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Navigation Buttons */}
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-4 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
+                </svg>
+              </button>
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-4 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
+                </svg>
+              </button>
+
+              {/* Dots Navigation */}
+              <div className="flex justify-center mt-8 space-x-2">
+                {services.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide(index)}
+                    className={`h-2 rounded-full transition-all duration-300 ${
+                      currentSlide === index 
+                        ? 'w-8 bg-blue-600' 
+                        : 'w-2 bg-blue-200 hover:bg-blue-300'
+                    }`}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </section>
