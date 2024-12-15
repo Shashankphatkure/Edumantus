@@ -13,52 +13,100 @@ export default function Search({ isOpen, onClose }) {
   // Mock search data - in a real app, this would come from your backend
   const searchData = [
     {
-      title: "Depression & Anxiety",
+      title: "Clinical Issues",
       type: "Service",
-      url: "/services#depression-anxiety",
-      description: "Expert treatment for depression and anxiety disorders."
+      url: "/services/clinical-issues",
+      description: "Expert support for anxiety, depression, OCD, and other mental health conditions."
+    },
+    {
+      title: "Relationship Issues",
+      type: "Service",
+      url: "/services/relationship-issues",
+      description: "Professional guidance for all types of relationships and interpersonal dynamics."
+    },
+    {
+      title: "Children and Adolescent Issues",
+      type: "Service",
+      url: "/services/children-and-adolescent-issues",
+      description: "Specialized care for young individuals facing developmental and emotional challenges."
+    },
+    {
+      title: "Women Centric Issues",
+      type: "Service",
+      url: "/services/women-centric-issues",
+      description: "Dedicated support for women's mental health and life challenges."
+    },
+    {
+      title: "Life Style Issues",
+      type: "Service",
+      url: "/services/life-style-issues",
+      description: "Guidance for maintaining balance and well-being in your daily life."
+    },
+    {
+      title: "Self-Improvement",
+      type: "Service",
+      url: "/services/self-improvement",
+      description: "Programs to enhance personal growth, confidence, and self-awareness."
+    },
+    {
+      title: "Workplace Issues",
+      type: "Service",
+      url: "/services/workplace-issues",
+      description: "Support for career development and workplace challenges."
+    },
+    {
+      title: "Higher Education and Coaching",
+      type: "Service",
+      url: "/services/higher-education-and-coaching",
+      description: "Specialized guidance for academic excellence and career advancement."
     },
     {
       title: "Dr. Sharma",
       type: "Expert",
       url: "/our-experts#dr-sharma",
-      description: "Senior Psychiatrist with 15+ years of experience."
+      description: "Clinical Psychologist • 15+ years experience • Anxiety, Depression, PTSD"
     },
     {
-      title: "Online Consultation",
-      type: "Service",
+      title: "Dr. Patel",
+      type: "Expert",
+      url: "/our-experts#dr-patel",
+      description: "Psychiatrist • 15+ years experience • Bipolar Disorder, Schizophrenia, OCD"
+    },
+    {
+      title: "Dr. Gupta",
+      type: "Expert",
+      url: "/our-experts#dr-gupta",
+      description: "Relationship Counselor • 15+ years experience • Couples Therapy, Family Counseling"
+    },
+    {
+      title: "Book Consultation",
+      type: "Action",
       url: "/book-consultation",
-      description: "Book online mental health consultations."
-    },
-    {
-      title: "Relationship Counseling",
-      type: "Service",
-      url: "/services#relationship",
-      description: "Professional counseling for couples and relationships."
-    },
-    {
-      title: "Career Opportunities",
-      type: "Page",
-      url: "/careers",
-      description: "Join our team of mental health professionals."
+      description: "Schedule your online consultation with our mental health experts."
     },
     {
       title: "About Us",
       type: "Page",
       url: "/about",
-      description: "Learn about our mission and values."
+      description: "Learn about our mission and commitment to mental health care."
     },
     {
-      title: "Privacy Policy",
+      title: "Contact Us",
       type: "Page",
-      url: "/privacy",
-      description: "Our commitment to your privacy."
+      url: "/contact",
+      description: "Get in touch with our support team for any queries."
     },
     {
-      title: "Terms of Service",
+      title: "Resources",
       type: "Page",
-      url: "/terms",
-      description: "Terms and conditions for using our services."
+      url: "/resources",
+      description: "Free mental health resources, articles, and self-assessment tools."
+    },
+    {
+      title: "Insurance Coverage",
+      type: "Page",
+      url: "/insurance",
+      description: "Information about insurance providers and coverage details."
     }
   ];
 
@@ -204,7 +252,13 @@ export default function Search({ isOpen, onClose }) {
                 Quick Links
               </div>
               <div className="flex flex-wrap gap-2">
-                {['Book Consultation', 'Our Experts', 'Services', 'About Us'].map((link) => (
+                {[
+                  'Book Consultation',
+                  'Our Experts',
+                  'Services',
+                  'Resources',
+                  'Contact'
+                ].map((link) => (
                   <button
                     key={link}
                     onClick={() => handleResultClick('/' + link.toLowerCase().replace(' ', '-'))}
