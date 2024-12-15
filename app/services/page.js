@@ -7,10 +7,10 @@ export default function Services() {
     {
       title: "Clinical Issues",
       description: "Expert support for anxiety, depression, OCD, and other mental health conditions.",
-      image: "https://picsum.photos/seed/clinical/800/600",
+      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Expert clinical assessment",
-        "Evidence-based treatment",
+        "Evidence-based treatment", 
         "Personalized care plans",
         "Regular progress monitoring"
       ],
@@ -21,11 +21,11 @@ export default function Services() {
     {
       title: "Relationship Issues",
       description: "Professional guidance for all types of relationships and interpersonal dynamics.",
-      image: "https://picsum.photos/seed/relationship/800/600",
+      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Relationship assessment",
         "Communication improvement",
-        "Conflict resolution",
+        "Conflict resolution", 
         "Trust building"
       ],
       price: "₹2,000",
@@ -35,7 +35,7 @@ export default function Services() {
     {
       title: "Children and Adolescent Issues",
       description: "Specialized support for young individuals facing developmental and emotional challenges.",
-      image: "https://picsum.photos/seed/youth/800/600",
+      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Age-appropriate counseling",
         "Behavioral management",
@@ -49,10 +49,10 @@ export default function Services() {
     {
       title: "Women Centric Issues",
       description: "Dedicated support for women's mental health and life challenges.",
-      image: "https://picsum.photos/seed/women/800/600",
+      image: "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Gender-sensitive approach",
-        "Life transition support",
+        "Life transition support", 
         "Personal empowerment",
         "Work-life balance"
       ],
@@ -63,7 +63,7 @@ export default function Services() {
     {
       title: "Life Style Issues",
       description: "Guidance for maintaining balance and well-being in your daily life.",
-      image: "https://picsum.photos/seed/lifestyle/800/600",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Stress management",
         "Health optimization",
@@ -77,7 +77,7 @@ export default function Services() {
     {
       title: "Self-Improvement",
       description: "Programs to enhance personal growth, confidence, and self-awareness.",
-      image: "https://picsum.photos/seed/improvement/800/600",
+      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Goal setting",
         "Confidence building",
@@ -91,7 +91,7 @@ export default function Services() {
     {
       title: "Workplace Issues",
       description: "Support for career development and workplace challenges.",
-      image: "https://picsum.photos/seed/workplace/800/600",
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Career guidance",
         "Leadership development",
@@ -105,7 +105,7 @@ export default function Services() {
     {
       title: "Higher Education and Coaching",
       description: "Specialized guidance for academic excellence and career advancement.",
-      image: "https://picsum.photos/seed/education/800/600",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
       features: [
         "Academic counseling",
         "Career planning",
