@@ -5,82 +5,116 @@ import PageTransition from '../components/PageTransition';
 export default function Services() {
   const services = [
     {
-      title: "Individual Therapy",
-      description: "One-on-one sessions with expert therapists to address personal challenges and promote mental wellness.",
-      image: "https://picsum.photos/seed/therapy/800/600",
+      title: "Clinical Issues",
+      description: "Expert support for anxiety, depression, OCD, and other mental health conditions.",
+      image: "https://picsum.photos/seed/clinical/800/600",
       features: [
-        "Personalized treatment plans",
-        "Flexible scheduling options",
-        "Complete privacy and confidentiality",
-        "Expert guidance and support"
+        "Expert clinical assessment",
+        "Evidence-based treatment",
+        "Personalized care plans",
+        "Regular progress monitoring"
       ],
-      price: "₹1,500",
-      duration: "60 minutes"
+      price: "₹2,000",
+      duration: "60 minutes",
+      link: "/services/clinical-issues"
     },
     {
-      title: "Couples Counseling",
-      description: "Professional guidance for couples looking to strengthen their relationship or navigate challenges.",
-      image: "https://picsum.photos/seed/couples/800/600",
+      title: "Relationship Issues",
+      description: "Professional guidance for all types of relationships and interpersonal dynamics.",
+      image: "https://picsum.photos/seed/relationship/800/600",
       features: [
         "Relationship assessment",
         "Communication improvement",
-        "Conflict resolution techniques",
-        "Joint goal setting"
+        "Conflict resolution",
+        "Trust building"
       ],
       price: "₹2,000",
-      duration: "90 minutes"
+      duration: "90 minutes",
+      link: "/services/relationship-issues"
     },
     {
-      title: "Family Therapy",
-      description: "Comprehensive family counseling to improve dynamics and resolve conflicts within the family unit.",
-      image: "https://picsum.photos/seed/family/800/600",
+      title: "Children and Adolescent Issues",
+      description: "Specialized support for young individuals facing developmental and emotional challenges.",
+      image: "https://picsum.photos/seed/youth/800/600",
       features: [
-        "Family dynamic assessment",
-        "Parenting guidance",
-        "Conflict resolution",
-        "Improved communication"
-      ],
-      price: "₹2,500",
-      duration: "90 minutes"
-    },
-    {
-      title: "Child Psychology",
-      description: "Specialized care for children dealing with behavioral, emotional, or developmental challenges.",
-      image: "https://picsum.photos/seed/child/800/600",
-      features: [
-        "Age-appropriate therapy",
-        "Developmental assessment",
-        "Parental guidance",
-        "Educational support"
+        "Age-appropriate counseling",
+        "Behavioral management",
+        "Academic support",
+        "Parent consultation"
       ],
       price: "₹1,800",
-      duration: "45 minutes"
+      duration: "45 minutes",
+      link: "/services/children-and-adolescent-issues"
     },
     {
-      title: "Psychiatric Consultation",
-      description: "Professional psychiatric evaluation and treatment for mental health conditions.",
-      image: "https://picsum.photos/seed/psychiatric/800/600",
+      title: "Women Centric Issues",
+      description: "Dedicated support for women's mental health and life challenges.",
+      image: "https://picsum.photos/seed/women/800/600",
       features: [
-        "Comprehensive evaluation",
-        "Medication management",
-        "Treatment planning",
-        "Regular follow-ups"
+        "Gender-sensitive approach",
+        "Life transition support",
+        "Personal empowerment",
+        "Work-life balance"
       ],
-      price: "₹2,500",
-      duration: "60 minutes"
+      price: "₹1,800",
+      duration: "60 minutes",
+      link: "/services/women-centric-issues"
     },
     {
-      title: "Group Therapy",
-      description: "Supportive group sessions focusing on shared experiences and mutual growth.",
-      image: "https://picsum.photos/seed/group/800/600",
+      title: "Life Style Issues",
+      description: "Guidance for maintaining balance and well-being in your daily life.",
+      image: "https://picsum.photos/seed/lifestyle/800/600",
       features: [
-        "Peer support",
-        "Shared learning",
-        "Coping strategies",
-        "Community building"
+        "Stress management",
+        "Health optimization",
+        "Time management",
+        "Habit formation"
       ],
-      price: "₹1,000",
-      duration: "90 minutes"
+      price: "₹1,500",
+      duration: "60 minutes",
+      link: "/services/life-style-issues"
+    },
+    {
+      title: "Self-Improvement",
+      description: "Programs to enhance personal growth, confidence, and self-awareness.",
+      image: "https://picsum.photos/seed/improvement/800/600",
+      features: [
+        "Goal setting",
+        "Confidence building",
+        "Personal development",
+        "Skill enhancement"
+      ],
+      price: "₹1,500",
+      duration: "60 minutes",
+      link: "/services/self-improvement"
+    },
+    {
+      title: "Workplace Issues",
+      description: "Support for career development and workplace challenges.",
+      image: "https://picsum.photos/seed/workplace/800/600",
+      features: [
+        "Career guidance",
+        "Leadership development",
+        "Stress management",
+        "Work relationships"
+      ],
+      price: "₹2,000",
+      duration: "60 minutes",
+      link: "/services/workplace-issues"
+    },
+    {
+      title: "Higher Education and Coaching",
+      description: "Specialized guidance for academic excellence and career advancement.",
+      image: "https://picsum.photos/seed/education/800/600",
+      features: [
+        "Academic counseling",
+        "Career planning",
+        "Test preparation",
+        "Admission guidance"
+      ],
+      price: "₹1,800",
+      duration: "60 minutes",
+      link: "/services/higher-education-and-coaching"
     }
   ];
 
@@ -111,18 +145,20 @@ export default function Services() {
                   key={index}
                   className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 flex flex-col"
                 >
-                  <div className="relative h-48">
-                    <Image
-                      src={service.image}
-                      alt={service.title}
-                      fill
-                      className="object-cover"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                    <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white">
-                      {service.title}
-                    </h3>
-                  </div>
+                  <Link href={service.link} className="block">
+                    <div className="relative h-48">
+                      <Image
+                        src={service.image}
+                        alt={service.title}
+                        fill
+                        className="object-cover"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                      <h3 className="absolute bottom-4 left-6 text-2xl font-bold text-white">
+                        {service.title}
+                      </h3>
+                    </div>
+                  </Link>
                   <div className="p-6 flex-grow flex flex-col">
                     <p className="text-gray-600 mb-6">
                       {service.description}
@@ -153,10 +189,10 @@ export default function Services() {
                       </div>
                       <div className="mt-6">
                         <Link
-                          href="/book-consultation"
+                          href={service.link}
                           className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300"
                         >
-                          Book Consultation
+                          Learn More
                         </Link>
                       </div>
                     </div>

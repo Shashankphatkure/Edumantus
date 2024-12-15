@@ -141,19 +141,52 @@ export default function Home() {
             <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
-                  title: 'Depression & Anxiety',
-                  image: 'https://picsum.photos/seed/anxiety/400/300',
-                  description: 'Professional support to help you overcome depression and anxiety, restoring peace to your life.'
+                  title: 'Clinical Issues',
+                  image: 'https://picsum.photos/seed/clinical/400/300',
+                  description: 'Expert support for anxiety, depression, OCD, and other mental health conditions.',
+                  link: '/services/clinical-issues'
                 },
                 {
-                  title: 'Relationship Counseling',
+                  title: 'Relationship Issues',
                   image: 'https://picsum.photos/seed/relationship/400/300',
-                  description: 'Build stronger, healthier relationships with expert guidance and proven techniques.'
+                  description: 'Professional guidance for all types of relationships and interpersonal dynamics.',
+                  link: '/services/relationship-issues'
                 },
                 {
-                  title: 'Career Guidance',
-                  image: 'https://picsum.photos/seed/career/400/300',
-                  description: 'Navigate your career path with confidence through professional counseling and support.'
+                  title: 'Children and Adolescent Issues',
+                  image: 'https://picsum.photos/seed/youth/400/300',
+                  description: 'Specialized care for young individuals facing developmental and emotional challenges.',
+                  link: '/services/children-and-adolescent-issues'
+                },
+                {
+                  title: 'Women Centric Issues',
+                  image: 'https://picsum.photos/seed/women/400/300',
+                  description: 'Dedicated support for womens mental health and life challenges.',
+                  link: '/services/women-centric-issues'
+                },
+                {
+                  title: 'Life Style Issues',
+                  image: 'https://picsum.photos/seed/lifestyle/400/300',
+                  description: 'Guidance for maintaining balance and well-being in your daily life.',
+                  link: '/services/life-style-issues'
+                },
+                {
+                  title: 'Self-Improvement',
+                  image: 'https://picsum.photos/seed/improvement/400/300',
+                  description: 'Programs to enhance personal growth, confidence, and self-awareness.',
+                  link: '/services/self-improvement'
+                },
+                {
+                  title: 'Workplace Issues',
+                  image: 'https://picsum.photos/seed/workplace/400/300',
+                  description: 'Support for career development and workplace challenges.',
+                  link: '/services/workplace-issues'
+                },
+                {
+                  title: 'Higher Education and Coaching',
+                  image: 'https://picsum.photos/seed/education/400/300',
+                  description: 'Specialized guidance for academic excellence and career advancement.',
+                  link: '/services/higher-education-and-coaching'
                 }
               ].map((specialty) => (
                 <div key={specialty.title} 
@@ -172,7 +205,7 @@ export default function Home() {
                     <p className="text-gray-600 leading-relaxed">
                       {specialty.description}
                     </p>
-                    <Link href="/services" className="inline-block mt-4 text-blue-600 font-semibold hover:text-blue-700">
+                    <Link href={specialty.link} className="inline-block mt-4 text-blue-600 font-semibold hover:text-blue-700">
                       Learn More →
                     </Link>
                   </div>
