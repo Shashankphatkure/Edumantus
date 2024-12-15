@@ -11,52 +11,52 @@ export default function Home() {
 
   const services = [
     {
-      title: 'Clinical Issues',
-      image: 'https://picsum.photos/seed/clinical/400/300',
-      description: 'Expert support for anxiety, depression, OCD, and other mental health conditions.',
-      link: '/services/clinical-issues'
+      title: "Clinical Issues",
+      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Expert support for anxiety, depression, OCD, and other mental health conditions.",
+      link: "/services/clinical-issues"
     },
     {
-      title: 'Relationship Issues',
-      image: 'https://picsum.photos/seed/relationship/400/300',
-      description: 'Professional guidance for all types of relationships and interpersonal dynamics.',
-      link: '/services/relationship-issues'
+      title: "Relationship Issues", 
+      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Professional guidance for all types of relationships and interpersonal dynamics.",
+      link: "/services/relationship-issues"
     },
     {
-      title: 'Children and Adolescent Issues',
-      image: 'https://picsum.photos/seed/youth/400/300',
-      description: 'Specialized care for young individuals facing developmental and emotional challenges.',
-      link: '/services/children-and-adolescent-issues'
+      title: "Children and Adolescent Issues",
+      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Specialized support for young individuals facing developmental and emotional challenges.",
+      link: "/services/children-and-adolescent-issues"
     },
     {
-      title: 'Women Centric Issues',
-      image: 'https://picsum.photos/seed/women/400/300',
-      description: 'Dedicated support for womens mental health and life challenges.',
-      link: '/services/women-centric-issues'
+      title: "Women Centric Issues",
+      image: "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Dedicated support for women's mental health and life challenges.",
+      link: "/services/women-centric-issues"
     },
     {
-      title: 'Life Style Issues',
-      image: 'https://picsum.photos/seed/lifestyle/400/300',
-      description: 'Guidance for maintaining balance and well-being in your daily life.',
-      link: '/services/life-style-issues'
+      title: "Life Style Issues",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Guidance for maintaining balance and well-being in your daily life.",
+      link: "/services/life-style-issues"
     },
     {
-      title: 'Self-Improvement',
-      image: 'https://picsum.photos/seed/improvement/400/300',
-      description: 'Programs to enhance personal growth, confidence, and self-awareness.',
-      link: '/services/self-improvement'
+      title: "Self-Improvement",
+      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Programs to enhance personal growth, confidence, and self-awareness.",
+      link: "/services/self-improvement"
     },
     {
-      title: 'Workplace Issues',
-      image: 'https://picsum.photos/seed/workplace/400/300',
-      description: 'Support for career development and workplace challenges.',
-      link: '/services/workplace-issues'
+      title: "Workplace Issues",
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Support for career development and workplace challenges.",
+      link: "/services/workplace-issues"
     },
     {
-      title: 'Higher Education and Coaching',
-      image: 'https://picsum.photos/seed/education/400/300',
-      description: 'Specialized guidance for academic excellence and career advancement.',
-      link: '/services/higher-education-and-coaching'
+      title: "Higher Education and Coaching",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      description: "Specialized guidance for academic excellence and career advancement.",
+      link: "/services/higher-education-and-coaching"
     }
   ];
 
@@ -651,12 +651,14 @@ export default function Home() {
               <p className="text-gray-600 text-lg mb-8">
                 We work with major insurance providers to make mental healthcare accessible and affordable
               </p>
-              <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 items-center justify-center mb-8">
+              <div className="grid grid-cols-2 sm:grid-cols-6  gap-6 items-center justify-center mb-8">
                 {[
                   {name: 'Star Health', logo: 'starhealth'},
                   {name: 'HDFC ERGO', logo: 'hdfc'}, 
                   {name: 'Bajaj Allianz', logo: 'bajaj'},
-                  {name: 'ICICI Lombard', logo: 'icici'}
+                  {name: 'ICICI Lombard', logo: 'icici'},
+                  {name: 'Max Bupa', logo: 'maxbupa'},
+                  {name: 'Aditya Birla Health', logo: 'adityabirla'},
                 ].map((provider) => (
                   <div key={provider.name} className="bg-white p-6 rounded-xl shadow-md hover:shadow-lg transition-all duration-300 transform hover:-translate-y-1">
                     <div className="relative h-12">
