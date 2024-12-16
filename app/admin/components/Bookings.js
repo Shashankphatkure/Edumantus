@@ -16,17 +16,43 @@ export default function Bookings() {
     const fetchBookings = async () => {
         try {
             setLoading(true);
-            const { data, error } = await supabase
+            let { data: bookingsData, error: bookingsError } = await supabase
                 .from('bookings')
-                .select(`
-                    *,
-                    users:user_id (first_name, last_name, email),
-                    experts:expert_id (name)
-                `)
+                .select('*')
                 .order('booking_date', { ascending: false });
 
-            if (error) throw error;
-            setBookings(data);
+            if (bookingsError) throw bookingsError;
+
+            // Fetch user and expert details for each booking
+            const bookingsWithDetails = await Promise.all(
+                bookingsData.map(async (booking) => {
+                    // Fetch user details
+                    const { data: userData, error: userError } = await supabase
+                        .from('users')
+                        .select('first_name, last_name, email')
+                        .eq('id', booking.user_id)
+                        .single();
+
+                    if (userError) throw userError;
+
+                    // Fetch expert details
+                    const { data: expertData, error: expertError } = await supabase
+                        .from('experts')
+                        .select('name')
+                        .eq('id', booking.expert_id)
+                        .single();
+
+                    if (expertError) throw expertError;
+
+                    return {
+                        ...booking,
+                        users: userData,
+                        experts: expertData
+                    };
+                })
+            );
+
+            setBookings(bookingsWithDetails);
         } catch (error) {
             console.error('Error fetching bookings:', error);
         } finally {
