@@ -7,6 +7,8 @@ export default function Bookings() {
     const [bookings, setBookings] = useState([]);
     const [loading, setLoading] = useState(true);
     const [statusFilter, setStatusFilter] = useState('all');
+    const [selectedBooking, setSelectedBooking] = useState(null);
+    const [showModal, setShowModal] = useState(false);
     const supabase = createClientComponentClient();
 
     useEffect(() => {
@@ -94,6 +96,11 @@ export default function Bookings() {
     const filteredBookings = statusFilter === 'all' 
         ? bookings 
         : bookings.filter(booking => booking.status === statusFilter);
+
+    const handleViewDetails = (booking) => {
+        setSelectedBooking(booking);
+        setShowModal(true);
+    };
 
     return (
         <div className="bg-white rounded-xl shadow-sm p-6">
@@ -186,7 +193,10 @@ export default function Bookings() {
                                             <option value="completed">Completed</option>
                                             <option value="cancelled">Cancelled</option>
                                         </select>
-                                        <button className="text-blue-600 hover:text-blue-900">
+                                        <button 
+                                            onClick={() => handleViewDetails(booking)}
+                                            className="text-blue-600 hover:text-blue-900"
+                                        >
                                             View Details
                                         </button>
                                     </td>
@@ -194,6 +204,110 @@ export default function Bookings() {
                             ))}
                         </tbody>
                     </table>
+                </div>
+            )}
+
+            {showModal && selectedBooking && (
+                <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white p-6 rounded-lg max-w-2xl w-full mx-4">
+                        <div className="flex justify-between items-center mb-4">
+                            <h3 className="text-lg font-semibold">Booking Details</h3>
+                            <button 
+                                onClick={() => setShowModal(false)}
+                                className="text-gray-500 hover:text-gray-700"
+                            >
+                                ✕
+                            </button>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-4">
+                            <div>
+                                <p className="text-gray-600">Booking ID</p>
+                                <p className="font-medium">#{selectedBooking.id}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">Status</p>
+                                <span className={`px-2 py-1 rounded-full text-xs capitalize ${getStatusColor(selectedBooking.status)}`}>
+                                    {selectedBooking.status}
+                                </span>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">User</p>
+                                <p className="font-medium">
+                                    {selectedBooking.users?.first_name} {selectedBooking.users?.last_name}
+                                </p>
+                                <p className="text-sm text-gray-500">{selectedBooking.users?.email}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">Expert</p>
+                                <p className="font-medium">{selectedBooking.experts?.name}</p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">Date & Time</p>
+                                <p className="font-medium">
+                                    {new Date(selectedBooking.booking_date).toLocaleDateString()} {selectedBooking.booking_time}
+                                </p>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">Payment Status</p>
+                                <span className={`px-2 py-1 rounded-full text-xs capitalize ${
+                                    selectedBooking.payment_status === 'paid' 
+                                        ? 'bg-green-100 text-green-800' 
+                                        : 'bg-yellow-100 text-yellow-800'
+                                }`}>
+                                    {selectedBooking.payment_status}
+                                </span>
+                            </div>
+                            <div>
+                                <p className="text-gray-600">Amount</p>
+                                <p className="font-medium">₹{selectedBooking.amount}</p>
+                            </div>
+                            {selectedBooking.meeting_link && (
+                                <div className="col-span-2">
+                                    <p className="text-gray-600">Meeting Link</p>
+                                    <a 
+                                        href={selectedBooking.meeting_link}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="text-blue-600 hover:text-blue-800"
+                                    >
+                                        {selectedBooking.meeting_link}
+                                    </a>
+                                </div>
+                            )}
+                            {selectedBooking.notes && (
+                                <div className="col-span-2">
+                                    <p className="text-gray-600">Notes</p>
+                                    <p className="font-medium">{selectedBooking.notes}</p>
+                                </div>
+                            )}
+                        </div>
+
+                        <div className="mt-6 flex justify-end space-x-3">
+                            <button
+                                onClick={() => setShowModal(false)}
+                                className="px-4 py-2 border rounded-lg hover:bg-gray-50"
+                            >
+                                Close
+                            </button>
+                            <select
+                                className="px-4 py-2 border rounded-lg"
+                                value={selectedBooking.status}
+                                onChange={(e) => {
+                                    handleStatusChange(selectedBooking.id, e.target.value);
+                                    setSelectedBooking({
+                                        ...selectedBooking,
+                                        status: e.target.value
+                                    });
+                                }}
+                            >
+                                <option value="pending">Pending</option>
+                                <option value="confirmed">Confirmed</option>
+                                <option value="completed">Completed</option>
+                                <option value="cancelled">Cancelled</option>
+                            </select>
+                        </div>
+                    </div>
                 </div>
             )}
         </div>
