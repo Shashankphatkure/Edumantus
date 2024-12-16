@@ -4,10 +4,14 @@ import Image from "next/image";
 import Link from "next/link";
 import PageTransition from "./components/PageTransition";
 import { useState, useEffect } from 'react';
+import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [featuredExperts, setFeaturedExperts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const supabase = createClientComponentClient();
 
   const services = [
     {
@@ -83,6 +87,28 @@ export default function Home() {
   const goToSlide = (index) => {
     setCurrentSlide(index);
     setIsAutoPlaying(false);
+  };
+
+  useEffect(() => {
+    fetchFeaturedExperts();
+  }, []);
+
+  const fetchFeaturedExperts = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('experts')
+        .select('*')
+        .eq('status', 'active')
+        .order('rating', { ascending: false })
+        .limit(3);
+
+      if (error) throw error;
+      setFeaturedExperts(data);
+    } catch (error) {
+      console.error('Error fetching experts:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -468,59 +494,66 @@ export default function Home() {
                 Experienced professionals dedicated to your well-being
               </p>
             </div>
-            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-              {[
-                {
-                  name: 'Dr. Sharma',
-                  role: 'Clinical Psychologist',
-                  image: 'https://picsum.photos/seed/expert1/400/500',
-                  specialties: ['Anxiety', 'Depression', 'PTSD']
-                },
-                {
-                  name: 'Dr. Patel',
-                  role: 'Psychiatrist',
-                  image: 'https://picsum.photos/seed/expert2/400/500',
-                  specialties: ['Bipolar Disorder', 'Schizophrenia', 'OCD']
-                },
-                {
-                  name: 'Dr. Gupta',
-                  role: 'Relationship Counselor',
-                  image: 'https://picsum.photos/seed/expert3/400/500',
-                  specialties: ['Couples Therapy', 'Family Counseling', 'Marriage']
-                }
-              ].map((expert) => (
-                <div key={expert.name} 
-                  className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                  <div className="relative h-64 sm:h-80">
-                    <Image
-                      src={expert.image}
-                      alt={expert.name}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                    <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
-                      <h3 className="text-xl sm:text-2xl font-bold mb-2">{expert.name}</h3>
-                      <p className="text-gray-200 mb-4">{expert.role} • 15+ Years Experience</p>
-                      <div className="flex gap-2 flex-wrap">
-                        {expert.specialties.map((specialty) => (
-                          <span key={specialty} className="px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                            {specialty}
-                          </span>
-                        ))}
-                      </div>
+            
+            {loading ? (
+              // Loading state
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                {[1, 2, 3].map((i) => (
+                  <div key={i} className="bg-white rounded-2xl overflow-hidden shadow-lg animate-pulse">
+                    <div className="h-64 sm:h-80 bg-gray-200"></div>
+                    <div className="p-4 sm:p-6">
+                      <div className="h-4 bg-gray-200 rounded w-3/4 mb-4"></div>
+                      <div className="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                      <div className="h-10 bg-gray-200 rounded"></div>
                     </div>
                   </div>
-                  <div className="p-4 sm:p-6">
-                    <Link
-                      href="/book-consultation"
-                      className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
-                    >
-                      Book Consultation
-                    </Link>
+                ))}
+              </div>
+            ) : (
+              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
+                {featuredExperts.map((expert) => (
+                  <div key={expert.id} 
+                    className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                    <div className="relative h-64 sm:h-80">
+                      <Image
+                        src={expert.image}
+                        alt={expert.name}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                        <h3 className="text-xl sm:text-2xl font-bold mb-2">{expert.name}</h3>
+                        <p className="text-gray-200 mb-4">{expert.role} • {expert.experience}</p>
+                        <div className="flex gap-2 flex-wrap">
+                          {expert.specialties.map((specialty) => (
+                            <span key={specialty} className="px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm">
+                              {specialty}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                    <div className="p-4 sm:p-6">
+                      <Link
+                        href={`/book-consultation?expert=${expert.id}`}
+                        className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                      >
+                        Book Consultation
+                      </Link>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            )}
+            
+            <div className="text-center mt-8 sm:mt-12">
+              <Link
+                href="/our-experts"
+                className="inline-block bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 border border-blue-100"
+              >
+                View All Experts
+              </Link>
             </div>
           </div>
         </section>

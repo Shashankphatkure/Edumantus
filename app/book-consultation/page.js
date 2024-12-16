@@ -366,10 +366,10 @@ export default function BookConsultation() {
       <div className="min-h-screen bg-gray-50 py-12">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto mb-12">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8">Book a Consultation</h1>
+            <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Book a Consultation</h1>
             
             <div className="relative">
-              <div className="flex justify-between items-center mb-8">
+              <div className="flex justify-between items-center mb-8 relative z-10">
                 <div className="flex-1">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
                     step >= 1 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
