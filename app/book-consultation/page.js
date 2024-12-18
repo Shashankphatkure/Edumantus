@@ -1,13 +1,13 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, Suspense } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from 'next/navigation';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import PageTransition from "../components/PageTransition";
 
-export default function BookConsultation() {
+function BookConsultationContent() {
   const [step, setStep] = useState(1);
   const [selectedExpert, setSelectedExpert] = useState(null);
   const [selectedDate, setSelectedDate] = useState("");
@@ -362,68 +362,76 @@ export default function BookConsultation() {
   };
 
   return (
-    <PageTransition>
-      <div className="min-h-screen bg-gray-50 py-12">
-        <div className="container mx-auto px-6">
-          <div className="max-w-4xl mx-auto mb-12">
-            <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Book a Consultation</h1>
-            
-            <div className="relative">
-              <div className="flex justify-between items-center mb-8 relative z-10">
-                <div className="flex-1">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
-                    step >= 1 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-                  }`}>
-                    1
-                  </div>
-                  <p className={`text-center mt-2 text-sm ${
-                    step >= 1 ? "text-blue-600 font-medium" : "text-gray-500"
-                  }`}>
-                    Select Expert
-                  </p>
+    <div className="min-h-screen bg-gray-50 py-12">
+      <div className="container mx-auto px-6">
+        <div className="max-w-4xl mx-auto mb-12">
+          <h1 className="text-3xl font-bold text-gray-900 mb-8 text-center">Book a Consultation</h1>
+          
+          <div className="relative">
+            <div className="flex justify-between items-center mb-8 relative z-10">
+              <div className="flex-1">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
+                  step >= 1 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
+                }`}>
+                  1
                 </div>
-
-                <div className="flex-1">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
-                    step >= 2 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-                  }`}>
-                    2
-                  </div>
-                  <p className={`text-center mt-2 text-sm ${
-                    step >= 2 ? "text-blue-600 font-medium" : "text-gray-500"
-                  }`}>
-                    Choose Time
-                  </p>
-                </div>
-
-                <div className="flex-1">
-                  <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
-                    step >= 3 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
-                  }`}>
-                    3
-                  </div>
-                  <p className={`text-center mt-2 text-sm ${
-                    step >= 3 ? "text-blue-600 font-medium" : "text-gray-500"
-                  }`}>
-                    Payment
-                  </p>
-                </div>
+                <p className={`text-center mt-2 text-sm ${
+                  step >= 1 ? "text-blue-600 font-medium" : "text-gray-500"
+                }`}>
+                  Select Expert
+                </p>
               </div>
 
-              <div className="absolute top-5 left-0 right-0 flex items-center justify-between z-0">
-                <div className={`flex-1 h-[2px] ${
-                  step > 1 ? "bg-blue-600" : "bg-gray-200"
-                }`}></div>
-                <div className={`flex-1 h-[2px] ${
-                  step > 2 ? "bg-blue-600" : "bg-gray-200"
-                }`}></div>
+              <div className="flex-1">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
+                  step >= 2 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
+                }`}>
+                  2
+                </div>
+                <p className={`text-center mt-2 text-sm ${
+                  step >= 2 ? "text-blue-600 font-medium" : "text-gray-500"
+                }`}>
+                  Choose Time
+                </p>
+              </div>
+
+              <div className="flex-1">
+                <div className={`w-10 h-10 rounded-full flex items-center justify-center mx-auto ${
+                  step >= 3 ? "bg-blue-600 text-white" : "bg-gray-200 text-gray-600"
+                }`}>
+                  3
+                </div>
+                <p className={`text-center mt-2 text-sm ${
+                  step >= 3 ? "text-blue-600 font-medium" : "text-gray-500"
+                }`}>
+                  Payment
+                </p>
               </div>
             </div>
-          </div>
 
-          {renderStep()}
+            <div className="absolute top-5 left-0 right-0 flex items-center justify-between z-0">
+              <div className={`flex-1 h-[2px] ${
+                step > 1 ? "bg-blue-600" : "bg-gray-200"
+              }`}></div>
+              <div className={`flex-1 h-[2px] ${
+                step > 2 ? "bg-blue-600" : "bg-gray-200"
+              }`}></div>
+            </div>
+          </div>
         </div>
+
+        {renderStep()}
       </div>
+    </div>
+  );
+}
+
+export default function BookConsultation() {
+  return (
+    <PageTransition>
+      <Suspense fallback={<div>Loading...</div>}>
+        <BookConsultationContent />
+      </Suspense>
     </PageTransition>
   );
 } 
