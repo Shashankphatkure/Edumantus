@@ -147,7 +147,7 @@ export default function Home() {
               </div>
               <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full animate-fade-in mt-8 md:mt-0">
                 <Image
-                  src="https://picsum.photos/seed/hero/1000/1000"
+                  src="/hero.png"
                   alt="Online Consultation"
                   fill
                   className="rounded-2xl shadow-2xl object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
@@ -576,14 +576,16 @@ export default function Home() {
                   age: '32',
                   issue: 'Anxiety & Work Stress',
                   story: "After 6 months of therapy, I've learned to manage my anxiety and improve my work-life balance. The techniques I learned have been life-changing.",
-                  improvement: '85% reduction in anxiety symptoms'
+                  improvement: '85% reduction in anxiety symptoms',
+                  imageUrl: 'https://img.freepik.com/free-photo/close-up-portrait-young-indian-man-with-beard-white-shirt-isolated-standing-smiling_155003-23823.jpg'
                 },
                 {
                   name: 'Neha Sharma',
                   age: '28',
                   issue: 'Depression',
                   story: "The personalized approach and constant support helped me overcome my depression. I'm now more confident and optimistic about life.",
-                  improvement: '90% improvement in mood'
+                  improvement: '90% improvement in mood',
+                  imageUrl: 'https://image.tensorartassets.com/cdn-cgi/image/anim=true,plain=false,w=2048,f=jpeg,q=85/posts/images/681519462272215395/0b258e2f-9663-4b36-a1ae-29a9fcdff46c.jpg'
                 }
               ].map((story, index) => (
                 <div key={story.name} 
@@ -591,7 +593,7 @@ export default function Home() {
                   <div className="flex items-center mb-6">
                     <div className="relative w-16 h-16 mr-4">
                       <Image
-                        src={`https://picsum.photos/seed/success${index}/200/200`}
+                        src={story.imageUrl}
                         alt={story.name}
                         fill
                         className="rounded-full object-cover"
@@ -631,19 +633,22 @@ export default function Home() {
                   name: 'Priya Singh',
                   location: 'Delhi',
                   testimonial: 'The consultation experience was excellent. Dr. Sharma helped me understand my challenges better and provided practical solutions.',
-                  rating: 5
+                  rating: 5,
+                  imageUrl: 'https://img.freepik.com/free-photo/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair_285396-896.jpg'
                 },
                 {
                   name: 'Rahul Verma',
                   location: 'Mumbai',
                   testimonial: "Professional and caring approach. The online sessions were very convenient and effective. I've seen remarkable improvement.",
-                  rating: 5
+                  rating: 5,
+                  imageUrl: 'https://img.freepik.com/free-photo/young-bearded-man-with-striped-shirt_273609-5677.jpg'
                 },
                 {
                   name: 'Anjali Desai',
                   location: 'Bangalore',
                   testimonial: 'Found the perfect counselor for my needs. The booking process was simple and straightforward. Highly recommended!',
-                  rating: 5
+                  rating: 5,
+                  imageUrl: 'https://image.cdn2.seaart.me/2024-01-16/cmjfgo5e878c73fn4a6g/17c99f27bfaa0775a576c18da720682d3cca1978_high.webp'
                 }
               ].map((testimonial, index) => (
                 <div key={testimonial.name} 
@@ -651,7 +656,7 @@ export default function Home() {
                   <div className="flex items-center mb-6">
                     <div className="relative w-12 h-12 sm:w-16 sm:h-16 mr-4">
                       <Image
-                        src={`https://picsum.photos/seed/testimonial${index + 1}/200/200`}
+                        src={testimonial.imageUrl}
                         alt={testimonial.name}
                         fill
                         className="rounded-full object-cover"

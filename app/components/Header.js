@@ -1,13 +1,35 @@
 "use client";
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import Search from './Search';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [user, setUser] = useState(null);
+  const supabase = createClientComponentClient();
+
+  useEffect(() => {
+    const getUser = async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      setUser(user);
+    };
+    getUser();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+      setUser(session?.user);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [supabase]);
+
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    setIsMobileMenuOpen(false);
+  };
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -68,6 +90,42 @@ export default function Header() {
                   />
                 </svg>
               </button>
+              {user ? (
+                <>
+                  <Link
+                    href="/dashboard"
+                    className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300"
+                  >
+                    Dashboard
+                  </Link>
+                  <button
+                    onClick={handleLogout}
+                    className="p-2 hover:bg-gray-100 rounded-lg transition-colors duration-200 group"
+                    aria-label="Logout"
+                  >
+                    <svg 
+                      className="w-6 h-6 text-gray-600 group-hover:text-blue-600"
+                      fill="none" 
+                      stroke="currentColor" 
+                      viewBox="0 0 24 24"
+                    >
+                      <path 
+                        strokeLinecap="round" 
+                        strokeLinejoin="round" 
+                        strokeWidth={2} 
+                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                      />
+                    </svg>
+                  </button>
+                </>
+              ) : (
+                <Link
+                  href="/login"
+                  className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300"
+                >
+                  Login
+                </Link>
+              )}
               <Link
                 href="/book-consultation"
                 className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
@@ -141,6 +199,44 @@ export default function Header() {
                     {item.name}
                   </Link>
                 ))}
+                {user ? (
+                  <>
+                    <Link
+                      href="/dashboard"
+                      className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300"
+                      onClick={() => setIsMobileMenuOpen(false)}
+                    >
+                      Dashboard
+                    </Link>
+                    <button
+                      onClick={handleLogout}
+                      className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300"
+                    >
+                      <svg 
+                        className="w-6 h-6"
+                        fill="none" 
+                        stroke="currentColor" 
+                        viewBox="0 0 24 24"
+                      >
+                        <path 
+                          strokeLinecap="round" 
+                          strokeLinejoin="round" 
+                          strokeWidth={2} 
+                          d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                        />
+                      </svg>
+                      <span>Logout</span>
+                    </button>
+                  </>
+                ) : (
+                  <Link
+                    href="/login"
+                    className="text-gray-600 hover:text-blue-600 font-medium transition-colors duration-300"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    Login
+                  </Link>
+                )}
                 <Link
                   href="/book-consultation"
                   className="bg-blue-600 text-white px-6 py-2.5 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 text-center"

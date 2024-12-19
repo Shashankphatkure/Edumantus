@@ -2,33 +2,15 @@
 
 import { useState } from 'react';
 import PageTransition from '../components/PageTransition';
-import Overview from './components/Overview';
 import Experts from './components/Experts';
 import Users from './components/Users';
 import Bookings from './components/Bookings';
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState('overview');
-
-  const stats = {
-    totalBookings: 156,
-    totalExperts: 24,
-    totalUsers: 892,
-    totalRevenue: "₹2,45,000",
-    activeUsers: 45,
-    pendingApprovals: 12
-  };
-
-  const recentActivities = [
-    { id: 1, type: 'New Expert Registration', name: 'Dr. Sharma', time: '2 hours ago' },
-    { id: 2, type: 'New Booking', name: 'Rahul Kumar', time: '3 hours ago' },
-    { id: 3, type: 'Expert Approval', name: 'Dr. Patel', time: '5 hours ago' },
-  ];
+  const [activeTab, setActiveTab] = useState('bookings');
 
   const renderContent = () => {
     switch(activeTab) {
-      case 'overview':
-        return <Overview stats={stats} recentActivities={recentActivities} />;
       case 'experts':
         return <Experts />;
       case 'users':
@@ -36,14 +18,13 @@ export default function AdminDashboard() {
       case 'bookings':
         return <Bookings />;
       default:
-        return <Overview stats={stats} recentActivities={recentActivities} />;
+        return <Bookings />;
     }
   };
 
   return (
     <PageTransition>
       <div className="min-h-screen bg-gray-50">
-        {/* Admin Navigation */}
         <nav className="bg-white shadow-sm">
           <div className="container mx-auto px-4">
             <div className="flex items-center justify-between h-16">
@@ -51,10 +32,10 @@ export default function AdminDashboard() {
                 <h1 className="text-xl font-bold text-gray-900">Admin Dashboard</h1>
                 <div className="hidden md:flex space-x-4">
                   <button 
-                    onClick={() => setActiveTab('overview')}
-                    className={`px-3 py-2 rounded-md ${activeTab === 'overview' ? 'bg-blue-50 text-blue-600' : 'text-gray-600'}`}
+                    onClick={() => setActiveTab('bookings')}
+                    className={`px-3 py-2 rounded-md ${activeTab === 'bookings' ? 'bg-blue-50 text-blue-600' : 'text-gray-600'}`}
                   >
-                    Overview
+                    Bookings
                   </button>
                   <button 
                     onClick={() => setActiveTab('experts')}
@@ -68,20 +49,12 @@ export default function AdminDashboard() {
                   >
                     Users
                   </button>
-                  <button 
-                    onClick={() => setActiveTab('bookings')}
-                    className={`px-3 py-2 rounded-md ${activeTab === 'bookings' ? 'bg-blue-50 text-blue-600' : 'text-gray-600'}`}
-                  >
-                    Bookings
-                  </button>
                 </div>
               </div>
-              
             </div>
           </div>
         </nav>
 
-        {/* Main Content */}
         <main className="container mx-auto px-4 py-8">
           {renderContent()}
         </main>
