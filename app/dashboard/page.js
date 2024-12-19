@@ -14,25 +14,50 @@ export default function Dashboard() {
   const supabase = createClientComponentClient();
 
   useEffect(() => {
-    checkUser();
-  }, []);
+    const initializeAuth = async () => {
+      // Get the session first
+      const { data: { session }, error: sessionError } = await supabase.auth.getSession();
+      if (sessionError) {
+        console.error('Session error:', sessionError);
+        return;
+      }
 
-  const checkUser = async () => {
-    try {
-      const { data: { user }, error } = await supabase.auth.getUser();
-      if (error) throw error;
-      if (!user) {
+      if (!session) {
         window.location.href = '/login?redirect=/dashboard';
         return;
       }
-      setUser(user);
-      await Promise.all([fetchUserDetails(user.id), fetchBookings(user.id)]);
-    } catch (error) {
-      console.error('Error:', error);
-    } finally {
+
+      // Set up auth state change listener
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        async (_event, session) => {
+          if (!session) {
+            window.location.href = '/login?redirect=/dashboard';
+            return;
+          }
+          setUser(session.user);
+          await Promise.all([
+            fetchUserDetails(session.user.id),
+            fetchBookings(session.user.id)
+          ]);
+        }
+      );
+
+      // Initial fetch if session exists
+      setUser(session.user);
+      await Promise.all([
+        fetchUserDetails(session.user.id),
+        fetchBookings(session.user.id)
+      ]);
       setLoading(false);
-    }
-  };
+
+      // Cleanup subscription on unmount
+      return () => {
+        subscription.unsubscribe();
+      };
+    };
+
+    initializeAuth();
+  }, []);
 
   const fetchUserDetails = async (userId) => {
     try {
@@ -136,7 +161,7 @@ export default function Dashboard() {
               </div>
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-                  Welcome, {userDetails?.first_name} {userDetails?.last_name}
+                  Welcome, {userDetails?.name}
                 </h1>
                 <p className="text-gray-600">{userDetails?.email}</p>
               </div>
