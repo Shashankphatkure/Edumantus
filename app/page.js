@@ -12,6 +12,7 @@ export default function Home() {
   const [featuredExperts, setFeaturedExperts] = useState([]);
   const [loading, setLoading] = useState(true);
   const supabase = createClientComponentClient();
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 768);
 
   const services = [
     {
@@ -74,19 +75,34 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [isAutoPlaying, services.length]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
+  // Modify the slide calculation to handle mobile
   const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % services.length);
+    const totalSlides = windowWidth >= 768 ? Math.ceil(services.length / 3) : services.length;
+    setCurrentSlide((prev) => (prev + 1) % totalSlides);
     setIsAutoPlaying(false);
   };
 
   const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + services.length) % services.length);
+    const totalSlides = windowWidth >= 768 ? Math.ceil(services.length / 3) : services.length;
+    setCurrentSlide((prev) => (prev - 1 + totalSlides) % totalSlides);
     setIsAutoPlaying(false);
   };
 
   const goToSlide = (index) => {
-    setCurrentSlide(index);
-    setIsAutoPlaying(false);
+    const totalSlides = windowWidth >= 768 ? Math.ceil(services.length / 3) : services.length;
+    if (index < totalSlides) {
+      setCurrentSlide(index);
+      setIsAutoPlaying(false);
+    }
   };
 
   useEffect(() => {
@@ -245,84 +261,41 @@ export default function Home() {
               </p>
             </div>
             
-            {/* Carousel Container */}
-            <div className="relative max-w-7xl mx-auto px-8">
-              {/* Carousel */}
-              <div className="relative overflow-hidden rounded-3xl">
-                <div 
-                  className="flex transition-transform duration-500 ease-out"
-                  style={{ transform: `translateX(-${currentSlide * (100/3)}%)` }}
+            {/* Grid Layout */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden group transform hover:-translate-y-1"
                 >
-                  {services.map((service, index) => (
-                    <div
-                      key={index}
-                      className="w-1/3 flex-shrink-0 p-3"
+                  <div className="relative h-48 sm:h-52">
+                    <Image
+                      src={service.image}
+                      alt={service.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
+                    <h3 className="absolute bottom-4 left-4 text-lg sm:text-xl font-bold text-white group-hover:translate-x-1 transition-transform duration-300">
+                      {service.title}
+                    </h3>
+                  </div>
+                  <div className="p-4 sm:p-5">
+                    <p className="text-gray-600 text-sm mb-4 sm:mb-5 line-clamp-3">
+                      {service.description}
+                    </p>
+                    <Link
+                      href={service.link}
+                      className="inline-flex items-center bg-blue-600 text-white px-3 sm:px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-all duration-300 group-hover:translate-x-1"
                     >
-                      <div className="bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden h-full group transform hover:-translate-y-1">
-                        <div className="relative h-52">
-                          <Image
-                            src={service.image}
-                            alt={service.title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-                          <h3 className="absolute bottom-4 left-4 text-xl font-bold text-white group-hover:translate-x-1 transition-transform duration-300">
-                            {service.title}
-                          </h3>
-                        </div>
-                        <div className="p-5">
-                          <p className="text-gray-600 text-sm mb-5 line-clamp-3">
-                            {service.description}
-                          </p>
-                          <Link
-                            href={service.link}
-                            className="inline-flex items-center bg-blue-600 text-white px-4 py-2 rounded-xl text-sm font-semibold hover:bg-blue-700 transition-all duration-300 group-hover:translate-x-1"
-                          >
-                            Learn More 
-                            <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
+                      Learn More 
+                      <svg className="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                      </svg>
+                    </Link>
+                  </div>
                 </div>
-              </div>
-
-              {/* Navigation Buttons */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-4 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-blue-600 p-4 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-
-              {/* Dots Navigation */}
-              <div className="flex justify-center mt-8 space-x-2">
-                {services.map((_, index) => (
-                  <button
-                    key={index}
-                    onClick={() => goToSlide(index)}
-                    className={`h-2 rounded-full transition-all duration-300 ${
-                      currentSlide === index 
-                        ? 'w-8 bg-blue-600' 
-                        : 'w-2 bg-blue-200 hover:bg-blue-300'
-                    }`}
-                  />
-                ))}
-              </div>
+              ))}
             </div>
           </div>
         </section>

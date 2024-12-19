@@ -126,41 +126,7 @@ export default function Press() {
           </div>
         </section>
 
-        {/* News Coverage */}
-        <section className="py-20 bg-white">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto">
-              <h2 className="text-3xl font-bold mb-12 text-center">In The News</h2>
-              <div className="grid md:grid-cols-3 gap-8">
-                {newsCoverage.map((news, index) => (
-                  <a
-                    key={index}
-                    href={news.link}
-                    className="group bg-gray-50 rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300"
-                  >
-                    <div className="relative h-48">
-                      <Image
-                        src={news.image}
-                        alt={news.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-6">
-                      <div className="flex items-center justify-between mb-2">
-                        <span className="text-blue-600 font-medium">{news.source}</span>
-                        <span className="text-sm text-gray-500">{news.date}</span>
-                      </div>
-                      <h3 className="font-bold group-hover:text-blue-600 transition-colors duration-300">
-                        {news.title}
-                      </h3>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Media Resources */}
         <section id="resources" className="py-20">
