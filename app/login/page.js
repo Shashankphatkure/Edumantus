@@ -46,19 +46,7 @@ export default function Login() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Welcome Back
-              </h1>
-              <p className="text-xl text-blue-100">
-                Sign in to access your personalized mental health journey
-              </p>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Login Form Section */}
         <section className="py-12">

@@ -136,6 +136,11 @@ export default function Dashboard() {
     });
   };
 
+  const handleLogout = async () => {
+    await supabase.auth.signOut();
+    window.location.href = '/login';
+  };
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -150,21 +155,19 @@ export default function Dashboard() {
         <div className="container mx-auto px-4 sm:px-6">
           {/* User Profile Section */}
           <div className="bg-white rounded-2xl p-6 sm:p-8 shadow-lg mb-8">
-            <div className="flex items-center gap-6">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24">
-                <Image
-                  src={userDetails?.avatar_url || `https://ui-avatars.com/api/?name=${userDetails?.first_name}+${userDetails?.last_name}`}
-                  alt="Profile"
-                  fill
-                  className="rounded-full object-cover"
-                />
-              </div>
+            <div className="flex items-center justify-between">
               <div>
                 <h1 className="text-2xl sm:text-3xl font-bold mb-2">
-                  Welcome, {userDetails?.name}
+                  Welcome, {userDetails?.first_name}
                 </h1>
                 <p className="text-gray-600">{userDetails?.email}</p>
               </div>
+              <button
+                onClick={handleLogout}
+                className="bg-gray-100 hover:bg-gray-200 text-gray-800 px-4 py-2 rounded-lg transition-all duration-300"
+              >
+                Logout
+              </button>
             </div>
           </div>
 

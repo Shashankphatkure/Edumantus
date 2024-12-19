@@ -8,7 +8,7 @@ import PageTransition from "../components/PageTransition";
 export default function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [name, setName] = useState("");
+  const [firstName, setFirstName] = useState("");
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const router = useRouter();
@@ -20,12 +20,23 @@ export default function Signup() {
     setError(null);
 
     try {
+      // First check if user already exists
+      const { data: existingUser } = await supabase
+        .from('users')
+        .select()
+        .eq('email', email)
+        .single();
+
+      if (existingUser) {
+        throw new Error('An account with this email already exists');
+      }
+
       const { error: signUpError, data: authData } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: {
-            full_name: name,
+            first_name: firstName,
           },
         },
       });
@@ -33,6 +44,19 @@ export default function Signup() {
       if (signUpError) throw signUpError;
 
       if (authData.user) {
+        // Instead of insert, use upsert to handle potential duplicates
+        const { error: profileError } = await supabase
+          .from('users')
+          .upsert([
+            {
+              id: authData.user.id,
+              email: email,
+              first_name: firstName,
+            }
+          ], { onConflict: 'id' });
+
+        if (profileError) throw profileError;
+        
         router.push('/dashboard');
       }
     } catch (error) {
@@ -45,19 +69,7 @@ export default function Signup() {
   return (
     <PageTransition>
       <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-        {/* Hero Section */}
-        <section className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-20">
-          <div className="container mx-auto px-6">
-            <div className="max-w-4xl mx-auto text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Create Your Account
-              </h1>
-              <p className="text-xl text-blue-100">
-                Start your personalized mental health journey today
-              </p>
-            </div>
-          </div>
-        </section>
+    
 
         {/* Signup Form Section */}
         <section className="py-12">
@@ -87,18 +99,18 @@ export default function Signup() {
 
                 <form onSubmit={handleSignUp} className="space-y-6">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
+                    <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
                       Full Name
                     </label>
                     <input
-                      id="name"
-                      name="name"
+                      id="firstName"
+                      name="firstName"
                       type="text"
                       required
                       className="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
-                      placeholder="Enter your full name"
-                      value={name}
-                      onChange={(e) => setName(e.target.value)}
+                      placeholder="Enter your first name"
+                      value={firstName}
+                      onChange={(e) => setFirstName(e.target.value)}
                       disabled={isLoading}
                     />
                   </div>
