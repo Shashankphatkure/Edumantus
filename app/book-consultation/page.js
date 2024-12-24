@@ -156,16 +156,19 @@ function BookConsultationContent() {
                   >
                     <div className="relative h-64">
                       <Image
-                        src={expert.image}
+                        src={expert.image || '/images/default-avatar.png'}
                         alt={expert.name}
                         fill
                         className="object-cover"
+                        onError={(e) => {
+                          e.target.src = '/images/default-avatar.png';
+                        }}
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
                       <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
                         <h3 className="text-xl font-bold mb-1">{expert.name}</h3>
                         <p className="text-gray-200 text-sm mb-2">
-                          {expert.role} • {expert.experience}
+                           {expert.experience}
                         </p>
                         <div className="flex items-center gap-2 mb-2">
                           <span className="text-yellow-400">★</span>
@@ -288,10 +291,13 @@ function BookConsultationContent() {
               <div className="flex items-center gap-4 pb-6 border-b">
                 <div className="relative w-20 h-20">
                   <Image
-                    src={selectedExpert.image}
+                    src={selectedExpert.image || '/images/default-avatar.png'}
                     alt={selectedExpert.name}
                     fill
                     className="object-cover rounded-xl"
+                    onError={(e) => {
+                      e.target.src = '/images/default-avatar.png';
+                    }}
                   />
                 </div>
                 <div>
