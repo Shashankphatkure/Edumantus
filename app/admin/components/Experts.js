@@ -20,6 +20,8 @@ export default function Experts() {
     const [showModal, setShowModal] = useState(false);
     const [loading, setLoading] = useState(true);
     const supabase = createClientComponentClient();
+    const [isEditing, setIsEditing] = useState(false);
+    const [editingExpertId, setEditingExpertId] = useState(null);
 
     useEffect(() => {
         fetchExperts();
@@ -121,6 +123,58 @@ export default function Experts() {
         }
     };
 
+    const handleEditExpert = async () => {
+        try {
+            const { data, error } = await supabase
+                .from('experts')
+                .update({
+                    ...newExpert,
+                    specialties: typeof newExpert.specialties === 'string' 
+                        ? newExpert.specialties.split(',').map(s => s.trim())
+                        : newExpert.specialties,
+                    languages: typeof newExpert.languages === 'string'
+                        ? newExpert.languages.split(',').map(l => l.trim())
+                        : newExpert.languages
+                })
+                .eq('id', editingExpertId)
+                .select();
+
+            if (error) throw error;
+
+            setExperts(experts.map(expert => 
+                expert.id === editingExpertId ? data[0] : expert
+            ));
+            setShowModal(false);
+            setIsEditing(false);
+            setEditingExpertId(null);
+            setNewExpert({
+                name: '',
+                role: '',
+                image: '',
+                specialties: [],
+                experience: '',
+                education: '',
+                languages: [],
+                price: 0,
+                about: '',
+                status: 'pending'
+            });
+        } catch (error) {
+            console.error('Error updating expert:', error);
+        }
+    };
+
+    const handleEditClick = (expert) => {
+        setIsEditing(true);
+        setEditingExpertId(expert.id);
+        setNewExpert({
+            ...expert,
+            specialties: Array.isArray(expert.specialties) ? expert.specialties.join(', ') : expert.specialties,
+            languages: Array.isArray(expert.languages) ? expert.languages.join(', ') : expert.languages
+        });
+        setShowModal(true);
+    };
+
     if (loading) {
         return <div className="text-center py-4">Loading experts...</div>;
     }
@@ -141,7 +195,9 @@ export default function Experts() {
             {showModal && (
                 <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white p-6 rounded-lg w-[600px] max-h-[80vh] overflow-y-auto">
-                        <h3 className="text-lg font-semibold mb-4">Add New Expert</h3>
+                        <h3 className="text-lg font-semibold mb-4">
+                            {isEditing ? 'Edit Expert' : 'Add New Expert'}
+                        </h3>
                         <div className="space-y-4">
                             <input
                                 type="text"
@@ -216,15 +272,31 @@ export default function Experts() {
                         <div className="flex justify-end gap-2 mt-4">
                             <button 
                                 className="bg-gray-200 px-4 py-2 rounded hover:bg-gray-300"
-                                onClick={() => setShowModal(false)}
+                                onClick={() => {
+                                    setShowModal(false);
+                                    setIsEditing(false);
+                                    setEditingExpertId(null);
+                                    setNewExpert({
+                                        name: '',
+                                        role: '',
+                                        image: '',
+                                        specialties: [],
+                                        experience: '',
+                                        education: '',
+                                        languages: [],
+                                        price: 0,
+                                        about: '',
+                                        status: 'pending'
+                                    });
+                                }}
                             >
                                 Cancel
                             </button>
                             <button 
                                 className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-                                onClick={handleAddExpert}
+                                onClick={isEditing ? handleEditExpert : handleAddExpert}
                             >
-                                Add Expert
+                                {isEditing ? 'Save Changes' : 'Add Expert'}
                             </button>
                         </div>
                     </div>
@@ -286,8 +358,11 @@ export default function Experts() {
                                 </td>
                                 <td className="px-6 py-4 whitespace-nowrap">{expert.rating}</td>
                                 <td className="px-6 py-4 whitespace-nowrap">
-                                    <button className="text-blue-600 hover:text-blue-900 mr-3">
-                                        View Details
+                                    <button 
+                                        className="text-blue-600 hover:text-blue-900 mr-3"
+                                        onClick={() => handleEditClick(expert)}
+                                    >
+                                        Edit
                                     </button>
                                     <button 
                                         className="text-red-600 hover:text-red-900"
