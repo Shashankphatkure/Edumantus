@@ -128,17 +128,24 @@ export default function Pricing() {
         </section>
 
         {/* Pricing Cards Section */}
-        <section className="py-16 px-4">
+        <section className="py-8 px-4">
           <div className="container mx-auto">
             {billingCycle === 'students' && (
               <>
                 {/* Career Consultation */}
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4">Price For School/College Students</h2>
-                  <div className="bg-white rounded-lg shadow-lg p-6 mb-8">
-                    <h3 className="text-xl font-semibold">Career Consultation</h3>
-                    <p className="text-2xl font-bold text-blue-600 mt-2">₹800</p>
-                    <p className="text-gray-600">(inclusive all taxes) Per Student / Per Session</p>
+                  <h2 className="text-3xl font-bold mb-4">Student Pricing</h2>
+                  <div className="bg-white rounded-lg shadow-lg p-8 mb-8 transform hover:scale-105 transition-transform duration-300">
+                    <div className="flex flex-col items-center">
+                      <span className="text-blue-600 text-sm font-semibold uppercase tracking-wide mb-2">Basic Package</span>
+                      <h3 className="text-2xl font-bold mb-2">Career Consultation</h3>
+                      <div className="flex items-baseline mt-2 mb-4">
+                        <span className="text-4xl font-extrabold text-blue-600">₹800</span>
+                        <span className="text-gray-500 ml-2">/session</span>
+                      </div>
+                      <p className="text-gray-600 text-sm">All taxes included</p>
+                      <p className="text-gray-600 text-sm">One-on-one guidance</p>
+                    </div>
                   </div>
                 </div>
 
