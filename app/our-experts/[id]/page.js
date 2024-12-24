@@ -175,7 +175,7 @@ export default function ExpertProfile() {
                     <p className="font-medium">{expert.experience}</p>
                   </div>
                   <div>
-                    <p className="text-gray-600">Education</p>
+                    <p className="text-gray-600">Area of Expertise</p>
                     <p className="font-medium">{expert.education}</p>
                   </div>
                   <div>
