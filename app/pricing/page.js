@@ -201,7 +201,7 @@ export default function Pricing() {
                 </div>
 
                 {/* Free Initial Offerings */}
-                <div className="bg-blue-50 rounded-lg p-6 mb-16">
+                <div className="bg-blue-50 rounded-lg p-6 mb-2">
                   <h2 className="text-2xl font-bold mb-4 text-center">Free Initial Offerings</h2>
                   <div className="space-y-4">
                     <p className="flex items-center">
@@ -275,7 +275,7 @@ export default function Pricing() {
                 </div>
 
                 {/* Professional Pay-Per-Service Options */}
-                <div className="mb-16">
+                <div className="mb-2">
                   <h2 className="text-3xl font-bold mb-8 text-center">Pay-Per-Service Options</h2>
                   <div className="bg-white rounded-lg shadow-lg p-6">
                     <div className="grid md:grid-cols-2 gap-4">
