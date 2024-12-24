@@ -2,71 +2,71 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageTransition from '../../components/PageTransition';
 
-export default function RelationshipIssues() {
+export default function PsychometricAssessment() {
   const serviceDetails = {
-    title: "Relationship Issues",
-    description: "Professional guidance for all types of relationships and interpersonal dynamics.",
-    image: "https://picsum.photos/seed/relationship/1200/600",
+    title: "Psychometric Assessment",
+    description: "Comprehensive career testing and personality assessment to identify your strengths and ideal career paths.",
+    image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2",
     benefits: [
-      "Improved communication skills",
-      "Conflict resolution techniques",
-      "Trust building exercises",
-      "Emotional bonding strategies",
-      "Better understanding of relationship patterns",
-      "Healthy boundary setting"
+      "Career Aptitude Testing",
+      "Personality Assessment",
+      "Detailed Reports",
+      "Expert Analysis",
+      "Personalized Insights",
+      "Career Path Recommendations"
     ],
     conditions: [
       {
-        name: "Couples Counseling",
-        description: "Support for couples facing challenges in their relationship or seeking to strengthen their bond."
+        name: "Career Aptitude Testing",
+        description: "Scientific assessment of your abilities, interests, and potential to identify suitable career paths."
       },
       {
-        name: "Family Dynamics",
-        description: "Help with resolving family conflicts and improving family relationships."
+        name: "Personality Assessment",
+        description: "In-depth analysis of your personality traits, work style, and behavioral preferences."
       },
       {
-        name: "Marriage Issues",
-        description: "Guidance for married couples dealing with various challenges in their relationship."
+        name: "Comprehensive Reports",
+        description: "Detailed reports with actionable insights and personalized career recommendations."
       },
       {
-        name: "Interpersonal Relationships",
-        description: "Support for improving relationships with friends, colleagues, and family members."
+        name: "Expert Consultation",
+        description: "One-on-one consultation to interpret results and develop action plans."
       }
     ],
     approach: [
       {
         title: "Assessment",
-        description: "Understanding relationship dynamics and patterns"
+        description: "Complete comprehensive psychometric tests"
       },
       {
-        title: "Goal Setting",
-        description: "Establishing clear objectives for relationship improvement"
+        title: "Analysis",
+        description: "Expert evaluation of test results"
       },
       {
-        title: "Skill Building",
-        description: "Learning and practicing effective relationship skills"
+        title: "Reporting",
+        description: "Detailed insights and recommendations"
       },
       {
-        title: "Implementation",
-        description: "Applying new skills and strategies in daily life"
+        title: "Consultation",
+        description: "Personal guidance and action planning"
       }
     ],
     faqs: [
       {
-        question: "Do both partners need to attend sessions?",
-        answer: "While it's ideal for both partners to participate, individual sessions can also be beneficial."
+        question: "What types of tests are included?",
+        answer: "Our assessment battery includes career aptitude, personality, interest inventory, and work style assessments."
       },
       {
-        question: "How long does relationship counseling take?",
-        answer: "The duration varies, but most couples see improvement within 8-12 sessions."
+        question: "How long does the assessment take?",
+        answer: "The complete assessment takes approximately 90 minutes, followed by a consultation session."
       },
       {
-        question: "Can online counseling work for relationship issues?",
-        answer: "Yes, online counseling has proven effective for relationship issues, offering convenience and comfort."
+        question: "Are the tests scientifically validated?",
+        answer: "Yes, all our assessments are internationally recognized and scientifically validated tools."
       },
       {
-        question: "What if my partner is reluctant to attend?",
-        answer: "We can start with individual sessions and work towards including your partner when they're ready."
+        question: "What do I get after the assessment?",
+        answer: "You receive a comprehensive report, personalized career recommendations, and a one-on-one consultation session."
       }
     ]
   };
@@ -96,14 +96,14 @@ export default function RelationshipIssues() {
                   href="/book-consultation"
                   className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 inline-block"
                 >
-                  Book Consultation
+                  Book Assessment
                 </Link>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Benefits Section */}
+        {/* Key Benefits */}
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Key Benefits</h2>
@@ -124,7 +124,7 @@ export default function RelationshipIssues() {
           </div>
         </section>
 
-        {/* Conditions We Treat */}
+        {/* Areas We Address */}
         <section className="py-20 bg-gradient-to-b from-white to-gray-50">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Areas We Address</h2>
@@ -177,16 +177,16 @@ export default function RelationshipIssues() {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">Ready to Improve Your Relationships?</h2>
+            <h2 className="text-3xl font-bold mb-8">Ready to Discover Your True Potential?</h2>
             <p className="text-xl text-blue-100 mb-8">
-              Take the first step towards better relationships today.
+              Take the first step towards understanding yourself better and finding your ideal career path.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/book-consultation"
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
               >
-                Book Your Consultation
+                Book Your Assessment
               </Link>
               <Link
                 href="/contact"
@@ -200,4 +200,4 @@ export default function RelationshipIssues() {
       </div>
     </PageTransition>
   );
-} 
+}

@@ -2,71 +2,71 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageTransition from '../../components/PageTransition';
 
-export default function ChildrenAndAdolescentIssues() {
+export default function Pathfinders() {
   const serviceDetails = {
-    title: "Children and Adolescent Issues",
-    description: "Specialized support for young individuals facing developmental, behavioral, and emotional challenges.",
-    image: "https://picsum.photos/seed/youth/1200/600",
+    title: "Pathfinders (8th-12th Grade)",
+    description: "Comprehensive career guidance and counseling services for school students to make informed decisions about their academic and professional future.",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
     benefits: [
-      "Age-appropriate counseling techniques",
-      "Academic performance support",
-      "Behavioral management strategies",
-      "Social skills development",
-      "Parent-child relationship enhancement",
-      "Emotional regulation skills"
+      "Stream Selection Guidance (8th-10th)",
+      "Career Counseling (11th-12th)",
+      "Psychological Support",
+      "Scientific Assessment Tools",
+      "Personalized Action Plans",
+      "Parent Consultation Sessions"
     ],
     conditions: [
       {
-        name: "Behavioral Issues",
-        description: "Support for managing challenging behaviors, ADHD, and conduct-related concerns."
+        name: "Stream Selection Guidance",
+        description: "Expert guidance for students in classes 8th-10th to make informed decisions about their future study streams using scientific assessment tools."
       },
       {
-        name: "Academic Challenges",
-        description: "Help with learning difficulties, study skills, and academic stress management."
+        name: "Career Counseling",
+        description: "Comprehensive career guidance for 11th-12th students, helping them explore and identify suitable career options based on their interests and aptitude."
       },
       {
-        name: "Emotional Well-being",
-        description: "Support for anxiety, depression, and mood-related issues in young individuals."
+        name: "Psychological Support",
+        description: "Professional counseling to help students manage academic stress, anxiety, and other emotional challenges."
       },
       {
-        name: "Social Development",
-        description: "Guidance for improving peer relationships, social skills, and self-confidence."
+        name: "Academic Planning",
+        description: "Strategic academic planning and guidance for optimal performance and goal achievement."
       }
     ],
     approach: [
       {
-        title: "Initial Assessment",
-        description: "Understanding the child's unique needs and challenges"
+        title: "Assessment",
+        description: "Scientific evaluation of interests, aptitude, and potential"
       },
       {
-        title: "Parent Consultation",
-        description: "Involving parents in the treatment process"
+        title: "Analysis",
+        description: "In-depth analysis of assessment results"
       },
       {
-        title: "Tailored Intervention",
-        description: "Implementing age-appropriate therapeutic techniques"
+        title: "Guidance",
+        description: "Personalized counseling and recommendations"
       },
       {
-        title: "Progress Review",
-        description: "Regular monitoring and adjustment of treatment plans"
+        title: "Action Plan",
+        description: "Detailed roadmap for academic and career success"
       }
     ],
     faqs: [
       {
-        question: "At what age can children start counseling?",
-        answer: "We provide services for children as young as 4 years old, with age-appropriate approaches for each developmental stage."
+        question: "How do you assess student potential?",
+        answer: "We use scientifically validated assessment tools to evaluate interests, aptitude, and personality traits."
       },
       {
-        question: "How are parents involved in the process?",
-        answer: "Parents are essential partners in the therapeutic process, with regular updates and guidance sessions."
+        question: "Do parents need to be involved?",
+        answer: "Yes, we encourage parent participation in the counseling process to ensure comprehensive support."
       },
       {
-        question: "How long do sessions typically last?",
-        answer: "Sessions are typically 45 minutes, adjusted based on the child's age and attention span."
+        question: "How long is the counseling process?",
+        answer: "The basic program includes 3-4 sessions spread over 2-3 weeks, with follow-up support as needed."
       },
       {
-        question: "Do you work with schools?",
-        answer: "Yes, we collaborate with schools when appropriate and with parent permission to ensure comprehensive support."
+        question: "What if my child is unsure about their interests?",
+        answer: "Our assessment tools and counseling process helps students discover and clarify their interests and strengths."
       }
     ]
   };
@@ -103,7 +103,8 @@ export default function ChildrenAndAdolescentIssues() {
           </div>
         </section>
 
-        {/* Benefits Section */}
+        
+
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Key Benefits</h2>
@@ -200,4 +201,4 @@ export default function ChildrenAndAdolescentIssues() {
       </div>
     </PageTransition>
   );
-} 
+}

@@ -2,71 +2,71 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageTransition from '../../components/PageTransition';
 
-export default function LifeStyleIssues() {
+export default function ThriveZone() {
   const serviceDetails = {
-    title: "Life Style Issues",
-    description: "Guidance for maintaining balance and well-being in your daily life through holistic lifestyle management.",
-    image: "https://picsum.photos/seed/lifestyle/1200/600",
+    title: "The Thrive Zone (Working Professionals)",
+    description: "Expert career counseling for working professionals seeking growth, transition, or career restart opportunities.",
+    image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
     benefits: [
-      "Personalized lifestyle assessment",
-      "Stress management techniques",
-      "Work-life balance strategies",
-      "Healthy habit formation",
-      "Time management skills",
-      "Wellness goal setting"
+      "Career Advancement Strategy",
+      "Transition Planning",
+      "Professional Development",
+      "Industry Analysis",
+      "Leadership Development",
+      "Work-Life Balance"
     ],
     conditions: [
       {
-        name: "Stress Management",
-        description: "Learn effective techniques to manage daily stress and prevent burnout in personal and professional life."
+        name: "Career Growth",
+        description: "Strategic guidance for career advancement, leadership development, and professional growth opportunities."
       },
       {
-        name: "Sleep Issues",
-        description: "Address sleep-related concerns and develop healthy sleep patterns for better rest and recovery."
+        name: "Career Transition",
+        description: "Expert support for career changes, industry switches, and role transitions with minimal disruption."
       },
       {
-        name: "Health & Wellness",
-        description: "Comprehensive approach to physical and mental well-being through lifestyle modifications."
+        name: "Skill Enhancement",
+        description: "Identification and development of critical skills needed for career progression and market competitiveness."
       },
       {
-        name: "Life Balance",
-        description: "Strategies for managing multiple responsibilities while maintaining personal well-being."
+        name: "Professional Branding",
+        description: "Personal branding strategies, networking guidance, and professional presence enhancement."
       }
     ],
     approach: [
       {
-        title: "Lifestyle Analysis",
-        description: "Comprehensive assessment of current lifestyle patterns"
+        title: "Assessment",
+        description: "Evaluate current position and career aspirations"
       },
       {
-        title: "Goal Setting",
-        description: "Establishing realistic and achievable lifestyle goals"
+        title: "Strategy",
+        description: "Develop tailored career advancement plan"
       },
       {
-        title: "Strategy Development",
-        description: "Creating personalized action plans for change"
+        title: "Execution",
+        description: "Implement strategic career moves"
       },
       {
-        title: "Implementation Support",
-        description: "Ongoing guidance for sustainable lifestyle changes"
+        title: "Growth",
+        description: "Monitor progress and adjust strategies"
       }
     ],
     faqs: [
       {
-        question: "How long does it take to see results?",
-        answer: "While some changes can be noticed within weeks, sustainable lifestyle changes typically take 2-3 months to become habits."
+        question: "How do you help with career transitions?",
+        answer: "We provide comprehensive support including skills assessment, market analysis, and strategic planning to ensure smooth career transitions."
       },
       {
-        question: "Do you provide dietary guidance?",
-        answer: "We offer general wellness advice and can refer you to registered dietitians for specific dietary plans."
+        question: "What if I'm returning after a career break?",
+        answer: "We offer specialized guidance for professionals returning to work, including skill updates, confidence building, and market re-entry strategies."
       },
       {
-        question: "Can you help with work-life balance?",
-        answer: "Yes, we provide strategies and tools to help you achieve better balance between work and personal life."
+        question: "Do you provide industry-specific guidance?",
+        answer: "Yes, our counselors have extensive knowledge of various industries and provide targeted advice based on your sector of interest."
       },
       {
-        question: "How often are the sessions?",
-        answer: "Sessions are typically weekly or bi-weekly, adjusted based on your needs and progress."
+        question: "How long does the counseling process take?",
+        answer: "The duration varies based on your goals, typically ranging from 2-3 months for comprehensive career development support."
       }
     ]
   };
@@ -103,7 +103,31 @@ export default function LifeStyleIssues() {
           </div>
         </section>
 
-        {/* Benefits Section */}
+        {/* CTA Section */}
+        <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-8">Ready to Advance Your Career?</h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Take the first step towards your professional growth today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/book-consultation"
+                className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
+              >
+                Book Your Consultation
+              </Link>
+              <Link
+                href="/contact"
+                className="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* Key Benefits */}
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Key Benefits</h2>
@@ -173,31 +197,7 @@ export default function LifeStyleIssues() {
             </div>
           </div>
         </section>
-
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">Ready to Transform Your Lifestyle?</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Take the first step towards a more balanced and fulfilling life.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/book-consultation"
-                className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
-              >
-                Book Your Consultation
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </section>
       </div>
     </PageTransition>
   );
-} 
+}

@@ -5,116 +5,88 @@ import PageTransition from '../components/PageTransition';
 export default function Services() {
   const services = [
     {
-      title: "Clinical Issues",
-      description: "Expert support for anxiety, depression, OCD, and other mental health conditions.",
-      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      title: "Pathfinders (8th-12th Grade)",
+      description: "Comprehensive career guidance and counseling services for school students to make informed decisions about their academic and professional future.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
       features: [
-        "Expert clinical assessment",
-        "Evidence-based treatment", 
-        "Personalized care plans",
-        "Regular progress monitoring"
+        "Stream Selection Guidance (8th-10th)",
+        "Career Counseling (11th-12th)",
+        "Psychological Support",
+        "Scientific Assessment Tools"
       ],
       price: "₹2,000",
       duration: "60 minutes",
-      link: "/services/clinical-issues"
+      link: "/services/pathfinders"
     },
     {
-      title: "Relationship Issues",
-      description: "Professional guidance for all types of relationships and interpersonal dynamics.",
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      title: "The Trailblazers (College Students)",
+      description: "Specialized career guidance for college students to navigate opportunities and make informed decisions about their professional future.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
       features: [
-        "Relationship assessment",
-        "Communication improvement",
-        "Conflict resolution", 
-        "Trust building"
+        "Career Path Planning",
+        "Skills Assessment",
+        "Industry Insights",
+        "Academic Guidance"
       ],
       price: "₹2,000",
+      duration: "60 minutes",
+      link: "/services/trailblazers"
+    },
+    {
+      title: "The Thrive Zone (Working Professionals)",
+      description: "Expert career counseling for working professionals seeking growth, transition, or career restart opportunities.",
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
+      features: [
+        "Career Advancement Strategy",
+        "Transition Planning",
+        "Professional Development",
+        "Industry Analysis"
+      ],
+      price: "₹2,500",
+      duration: "60 minutes",
+      link: "/services/thrive-zone"
+    },
+    {
+      title: "Psychometric Assessment",
+      description: "Comprehensive career testing and personality assessment to identify your strengths and ideal career paths.",
+      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2",
+      features: [
+        "Career Aptitude Testing",
+        "Personality Assessment",
+        "Detailed Reports",
+        "Expert Analysis"
+      ],
+      price: "₹3,000",
       duration: "90 minutes",
-      link: "/services/relationship-issues"
+      link: "/services/psychometric-assessment"
     },
     {
-      title: "Children and Adolescent Issues",
-      description: "Specialized support for young individuals facing developmental and emotional challenges.",
-      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      title: "Admission Assistance",
+      description: "Expert guidance for college admissions, course selection, and application processes.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
       features: [
-        "Age-appropriate counseling",
-        "Behavioral management",
-        "Academic support",
-        "Parent consultation"
-      ],
-      price: "₹1,800",
-      duration: "45 minutes",
-      link: "/services/children-and-adolescent-issues"
-    },
-    {
-      title: "Women Centric Issues",
-      description: "Dedicated support for women's mental health and life challenges.",
-      image: "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      features: [
-        "Gender-sensitive approach",
-        "Life transition support", 
-        "Personal empowerment",
-        "Work-life balance"
-      ],
-      price: "₹1,800",
-      duration: "60 minutes",
-      link: "/services/women-centric-issues"
-    },
-    {
-      title: "Life Style Issues",
-      description: "Guidance for maintaining balance and well-being in your daily life.",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      features: [
-        "Stress management",
-        "Health optimization",
-        "Time management",
-        "Habit formation"
-      ],
-      price: "₹1,500",
-      duration: "60 minutes",
-      link: "/services/life-style-issues"
-    },
-    {
-      title: "Self-Improvement",
-      description: "Programs to enhance personal growth, confidence, and self-awareness.",
-      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      features: [
-        "Goal setting",
-        "Confidence building",
-        "Personal development",
-        "Skill enhancement"
-      ],
-      price: "₹1,500",
-      duration: "60 minutes",
-      link: "/services/self-improvement"
-    },
-    {
-      title: "Workplace Issues",
-      description: "Support for career development and workplace challenges.",
-      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      features: [
-        "Career guidance",
-        "Leadership development",
-        "Stress management",
-        "Work relationships"
+        "College Selection",
+        "Application Support",
+        "Document Review",
+        "Interview Preparation"
       ],
       price: "₹2,000",
       duration: "60 minutes",
-      link: "/services/workplace-issues"
+      link: "/services/admission-assistance"
     },
     {
-      title: "Higher Education and Coaching",
-      description: "Specialized guidance for academic excellence and career advancement.",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
+      title: "Professional Development",
+      description: "Comprehensive services for career enhancement including resume writing and interview preparation.",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
       features: [
-        "Academic counseling",
-        "Career planning",
-        "Test preparation",
-        "Admission guidance"
+        "Resume Writing",
+        "Interview Skills",
+        "Personal Branding",
+        "Communication Skills"
       ],
       price: "₹1,800",
       duration: "60 minutes",
-      link: "/services/higher-education-and-coaching"
+      link: "/services/professional-development"
     }
   ];
 
@@ -126,11 +98,10 @@ export default function Services() {
           <div className="container mx-auto px-6">
             <div className="max-w-4xl mx-auto text-center">
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Our Mental Health Services
+                Career Guidance & Counseling Services
               </h1>
               <p className="text-xl text-blue-100 mb-8">
-                Comprehensive mental health care services tailored to your needs. 
-                Choose from our range of professional therapeutic services.
+                Expert career guidance and counseling services for students and professionals at every stage of their journey.
               </p>
             </div>
           </div>

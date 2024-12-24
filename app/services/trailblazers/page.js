@@ -2,71 +2,71 @@ import Image from 'next/image';
 import Link from 'next/link';
 import PageTransition from '../../components/PageTransition';
 
-export default function HigherEducationAndCoaching() {
+export default function Trailblazers() {
   const serviceDetails = {
-    title: "Higher Education and Coaching",
-    description: "Specialized guidance for students and professionals seeking academic excellence and career advancement.",
-    image: "https://picsum.photos/seed/education/1200/600",
+    title: "The Trailblazers (College Students)",
+    description: "Specialized career guidance for college students to navigate opportunities and make informed decisions about their professional future.",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
     benefits: [
-      "Personalized academic planning",
-      "Career path guidance",
-      "Study skill enhancement",
-      "Test preparation strategies",
-      "College admission support",
-      "Professional development coaching"
+      "Career Path Planning",
+      "Skills Assessment",
+      "Industry Insights",
+      "Academic Guidance",
+      "Internship Support",
+      "Professional Development"
     ],
     conditions: [
       {
+        name: "Career Exploration",
+        description: "In-depth exploration of career paths aligned with your academic background, interests, and market demands."
+      },
+      {
         name: "Academic Excellence",
-        description: "Strategies and support for achieving academic goals and maintaining high performance."
+        description: "Strategic guidance for academic success, course selection, and specialization choices."
       },
       {
-        name: "Career Planning",
-        description: "Guidance in choosing and preparing for career paths aligned with academic interests."
+        name: "Skill Development",
+        description: "Identification and development of key skills required for your chosen career path."
       },
       {
-        name: "College Admissions",
-        description: "Support throughout the college application process, from selection to acceptance."
-      },
-      {
-        name: "Professional Development",
-        description: "Coaching for career advancement and professional skill enhancement."
+        name: "Industry Preparation",
+        description: "Insights into industry trends, job market analysis, and preparation for professional roles."
       }
     ],
     approach: [
       {
         title: "Assessment",
-        description: "Understanding academic goals and career aspirations"
+        description: "Evaluate interests, skills, and career aspirations"
+      },
+      {
+        title: "Research",
+        description: "Industry analysis and career path exploration"
       },
       {
         title: "Planning",
-        description: "Developing customized academic and career roadmaps"
+        description: "Develop personalized career roadmap"
       },
       {
-        title: "Skill Building",
-        description: "Enhancing academic and professional capabilities"
-      },
-      {
-        title: "Ongoing Support",
-        description: "Regular guidance and progress monitoring"
+        title: "Implementation",
+        description: "Execute plan with ongoing guidance and support"
       }
     ],
     faqs: [
       {
-        question: "What age groups do you work with?",
-        answer: "We work with high school students, college students, and professionals seeking further education or career advancement."
+        question: "When should I start career planning?",
+        answer: "It's best to start early in your college journey, ideally in your first or second year, to make informed decisions about specializations and internships."
       },
       {
-        question: "Do you help with specific subjects?",
-        answer: "Yes, we provide subject-specific tutoring and study strategies across various academic disciplines."
+        question: "How do you help with internships?",
+        answer: "We provide guidance on finding relevant internships, application preparation, and developing skills needed for successful placements."
       },
       {
-        question: "Can you help with college applications?",
-        answer: "Yes, we offer comprehensive support for college applications, including essays, interviews, and portfolio preparation."
+        question: "Can you help with course selection?",
+        answer: "Yes, we help you choose courses and specializations that align with your career goals and industry requirements."
       },
       {
-        question: "Do you provide career counseling?",
-        answer: "Yes, we offer career counseling to help align educational choices with career goals and opportunities."
+        question: "Do you provide placement support?",
+        answer: "We offer comprehensive placement preparation including resume building, interview skills, and job search strategies."
       }
     ]
   };
@@ -103,7 +103,6 @@ export default function HigherEducationAndCoaching() {
           </div>
         </section>
 
-        {/* Benefits Section */}
         <section className="py-20">
           <div className="container mx-auto px-6">
             <h2 className="text-3xl font-bold text-center mb-12">Key Benefits</h2>
@@ -177,9 +176,9 @@ export default function HigherEducationAndCoaching() {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">Ready to Advance Your Education?</h2>
+            <h2 className="text-3xl font-bold mb-8">Ready to Support Your Child's Growth?</h2>
             <p className="text-xl text-blue-100 mb-8">
-              Take the first step towards academic excellence and career success.
+              Take the first step towards your child's well-being today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -200,4 +199,4 @@ export default function HigherEducationAndCoaching() {
       </div>
     </PageTransition>
   );
-} 
+}
