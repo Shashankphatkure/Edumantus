@@ -3,32 +3,32 @@ import Link from 'next/link';
 
 export default function About() {
   const stats = [
-    { number: '10,000+', label: 'Clients Helped' },
-    { number: '500+', label: 'Expert Therapists' },
-    { number: '15+', label: 'Years Experience' },
-    { number: '4.9/5', label: 'Client Satisfaction' },
+    { number: '75,000+', label: 'Students & Professionals Guided' },
+    { number: '20+', label: 'Years Experience' },
+    { number: '98%', label: 'Client Satisfaction' },
+    { number: '2M+', label: 'AI Rules' },
   ];
 
   const values = [
     {
-      title: 'Empathy First',
-      description: 'We believe in understanding and sharing the feelings of our clients, creating a safe and supportive environment.',
-      icon: '❤️'
+      title: 'Expert Team',
+      description: 'Our coaches include industry-specific specialists and seasoned professionals who bring deep expertise to guide students and working professionals.',
+      icon: '👥'
     },
     {
-      title: 'Professional Excellence',
-      description: 'Our team consists of highly qualified professionals committed to delivering the best mental health care.',
+      title: 'Psychometric Excellence',
+      description: 'We leverage psychometric assessments and career mapping using Two Millions powerful AI Rules and advanced personalized learning techniques.',
       icon: '🎯'
     },
     {
-      title: 'Confidentiality',
-      description: 'We maintain the highest standards of privacy and confidentiality in all our client interactions.',
-      icon: '🔒'
+      title: 'Empathic Guidance',
+      description: 'We deeply value and respect individuals feelings and inner aspirations, ensuring tailored support that aligns with personal goals.',
+      icon: '❤️'
     },
     {
-      title: 'Accessibility',
-      description: 'Making mental health care accessible to everyone through our online platform and flexible scheduling.',
-      icon: '🌐'
+      title: 'Comprehensive Solutions',
+      description: 'From academic choices to career transitions, we provide end-to-end counseling services for every stage of your journey.',
+      icon: '🌟'
     },
   ];
 
@@ -53,6 +53,24 @@ export default function About() {
     }
   ];
 
+  const achievements = [
+    {
+      title: 'Proven Results',
+      description: 'With years of proven experience, we have successfully guided over 75,000 students and professionals toward greater clarity, confidence, and long-term success. Our approach, utilizing highly reliable psychometric assessments and advanced counseling tools, has achieved an impressive 98% satisfaction rate.',
+      icon: '📈'
+    },
+    {
+      title: 'Integrity and Trust',
+      description: 'We remain committed to an individuals long-term success and well-being, providing honest guidance even when it may be challenging to hear, building trust through transparency and truthfulness.',
+      icon: '🤝'
+    },
+    {
+      title: 'Authenticity',
+      description: 'As a highly trusted career counseling brand, we are globally recognized and proud members of the International Association of Applied Psychology (IAAP) and the Asia Pacific Career Development Association (APCDA).',
+      icon: '🏆'
+    }
+  ];
+
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
@@ -60,11 +78,10 @@ export default function About() {
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              About Edumantus
+              Empowering Careers for 20 Years
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              Transforming mental health care in India through professional expertise,
-              compassion, and innovative technology.
+              Guiding students, graduates, and professionals in their career journeys through expert counseling and comprehensive support.
             </p>
           </div>
         </div>
@@ -88,18 +105,35 @@ export default function About() {
       <section className="py-20">
         <div className="container mx-auto px-6">
           <div className="max-w-3xl mx-auto">
-            <h2 className="text-3xl font-bold mb-6 text-center">Our Story</h2>
+            <h2 className="text-3xl font-bold mb-6 text-center">About Us</h2>
             <div className="prose prose-lg mx-auto text-gray-600">
               <p className="mb-4">
-                Founded in 2008, Edumantus began with a simple mission: to make quality mental health care accessible to everyone in India. What started as a small clinic in Mumbai has grown into one of India's leading online mental health platforms.
+                For over 20 years, we have been dedicated to guiding students, graduates, and professionals in their career journeys. Our team is composed of experts from diverse fields, including Psychology, Career Assessment and Profiling, Career Planning and Strategy, Academic Counseling, Study Abroad and Scholarship Counseling, and many more specialized areas.
               </p>
               <p className="mb-4">
-                Our journey has been driven by the belief that everyone deserves access to professional mental health support. By combining traditional therapeutic approaches with modern technology, we've created a platform that brings expert care right to your home.
+                We are deeply passionate about helping you build a fulfilling career, leveraging both our expertise and the science of career management. Our commitment lies in supporting your short-term achievements and long-term aspirations.
               </p>
               <p>
-                Today, we're proud to have helped thousands of individuals across India achieve better mental health and wellness. Our team of experienced professionals continues to grow, bringing diverse expertise and perspectives to our practice.
+                By helping you choose the right subjects and career paths, we aim to ensure your happiness and professional success. Our approach focuses on holistic career development and coaching, addressing every aspect of your journey rather than offering fragmented solutions.
               </p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Vision & Mission Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-6">
+          <div className="max-w-3xl mx-auto">
+            <h2 className="text-3xl font-bold mb-8 text-center">Our Vision</h2>
+            <p className="text-gray-600 text-center mb-12">
+              To be the leading catalyst for transformative career journeys, inspiring students and professionals to achieve their highest potential and create meaningful impacts in their chosen fields.
+            </p>
+            
+            <h2 className="text-3xl font-bold mb-8 text-center">Our Mission</h2>
+            <p className="text-gray-600 text-center">
+              To empower students and professionals by providing personalized, end-to-end career guidance and support, helping them navigate academic and professional decisions with confidence. Through a blend of scientific methodologies and empathetic mentoring, we aim to foster growth, unlock potential, and guide individuals toward fulfilling and successful careers.
+            </p>
           </div>
         </div>
       </section>
@@ -116,6 +150,23 @@ export default function About() {
                 </div>
                 <h3 className="text-xl font-semibold mb-4">{value.title}</h3>
                 <p className="text-gray-600">{value.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Prove Results Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-3 gap-8">
+            {achievements.map((achievement) => (
+              <div key={achievement.title} className="text-center">
+                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center text-3xl mx-auto mb-4">
+                  {achievement.icon}
+                </div>
+                <h3 className="text-xl font-semibold mb-4">{achievement.title}</h3>
+                <p className="text-gray-600">{achievement.description}</p>
               </div>
             ))}
           </div>
