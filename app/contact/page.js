@@ -36,25 +36,11 @@ export default function Contact() {
 
   const locations = [
     {
-      city: 'Mumbai',
-      address: 'Mindful Tower, Bandra West, Mumbai - 400050',
-      phone: '+91 22 1234 5678',
-      email: 'mumbai@Edumantus.in',
-      image: 'https://picsum.photos/seed/mumbai/800/600'
-    },
-    {
       city: 'Delhi',
-      address: 'Green Park Extension, New Delhi - 110016',
-      phone: '+91 11 1234 5678',
-      email: 'delhi@Edumantus.in',
+      address: 'Mantu Crafts (OPC) Pvt. Ltd., B1/A5, First Floor, Mohan Cooperative Industrial Area, New Delhi - 110044',
+      phone: '+91-9267910906',
+      email: 'Info@edmantus.com',
       image: 'https://picsum.photos/seed/delhi/800/600'
-    },
-    {
-      city: 'Bangalore',
-      address: 'Indiranagar, Bangalore - 560038',
-      phone: '+91 80 1234 5678',
-      email: 'bangalore@Edumantus.in',
-      image: 'https://picsum.photos/seed/bangalore/800/600'
     }
   ];
 
@@ -82,13 +68,13 @@ export default function Contact() {
               {
                 icon: '📞',
                 title: 'Call Us',
-                content: 'Toll Free: 1800 123 4567',
+                content: '+91-9267910906',
                 description: 'Available 24/7 for emergency support'
               },
               {
                 icon: '✉️',
                 title: 'Email Us',
-                content: 'support@Edumantus.in',
+                content: 'Info@edmantus.com',
                 description: 'Well respond within 24 hours'
               },
               {
@@ -235,7 +221,7 @@ export default function Contact() {
         <div className="container mx-auto px-6">
           <div className="bg-white rounded-2xl overflow-hidden shadow-lg">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d241317.11609823277!2d72.74109995!3d19.08219865!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c6306644edc1%3A0x5da4ed8f8d648c69!2sMumbai%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1635835670281!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3504.9607831865636!2d77.2973324!3d28.5092563!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce7ea642fcfc9%3A0xaa4d12b765032085!2sOnward%20Workspaces%20Mohan%20Cooperative!5e0!3m2!1sen!2sin!4v1635835670281!5m2!1sen!2sin"
               width="100%"
               height="450"
               style={{ border: 0 }}
