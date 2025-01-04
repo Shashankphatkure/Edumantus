@@ -48,12 +48,14 @@ export default function Header() {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-10 h-10 rounded-lg bg-blue-600 flex items-center justify-center">
-                <span className="text-2xl font-bold text-white">E</span>
-              </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
-              Edumantus
-              </span>
+              <Image
+                src="/logo.png"
+                alt="Edumantus Logo"
+                width={40}
+                height={40}
+                className=""
+              />
+              
             </Link>
 
             {/* Desktop Navigation */}
