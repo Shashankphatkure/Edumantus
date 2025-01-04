@@ -163,7 +163,7 @@ export default function Home() {
               </div>
               <div className="relative h-[300px] sm:h-[400px] md:h-[500px] w-full animate-fade-in mt-8 md:mt-0">
                 <Image
-                  src="/hero.png"
+                  src="/6671.jpg"
                   alt="Online Consultation"
                   fill
                   className="rounded-2xl shadow-2xl object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
