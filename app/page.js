@@ -137,13 +137,13 @@ export default function Home() {
             <div className="grid md:grid-cols-2 gap-8 md:gap-16 items-center">
               <div className="space-y-6 sm:space-y-8 animate-fade-in-up text-center md:text-left">
                 <span className="px-4 py-2 bg-white/10 rounded-full text-sm font-medium inline-block backdrop-blur-sm">
-                  #1 Mental Health Platform in India
+                  #1 Career counselling Platform in India
                 </span>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
-                  Your Path to Mental Wellness Begins Here
+                <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-blue-100">
+                Empower Your Career Journey for Greater Success
                 </h1>
                 <p className="text-lg sm:text-xl text-blue-100 leading-relaxed">
-                  Connect with India's top mental health professionals for personalized
+                  Connect with India's top career counselling for personalized
                   consultation and guidance, all from the comfort of your home.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
