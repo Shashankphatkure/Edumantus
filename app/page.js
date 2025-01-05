@@ -18,7 +18,7 @@ export default function Home() {
     {
       title: "Clinical Issues",
       image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Expert support for anxiety, depression, OCD, and other mental health conditions.",
+      description: "Expert support for anxiety, depression, OCD, and other personal challenges.",
       link: "/services/clinical-issues"
     },
     {
@@ -181,7 +181,7 @@ export default function Home() {
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
                 { number: '10,000+', label: 'Happy Clients' },
-                { number: '500+', label: 'Expert Therapists' },
+                { number: '500+', label: 'Expert Counsellors' },
                 { number: '4.9/5', label: 'Client Rating' },
                 { number: '24/7', label: 'Support Available' },
               ].map((stat) => (
@@ -199,17 +199,17 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                Benefits of Online Counseling
+                Benefits of Online Career Counselling
               </h2>
               <p className="text-gray-600 text-lg">
-                Experience the advantages of professional mental health care from the comfort of your home
+                Experience the advantages of professional career guidance from the comfort of your home
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
               {[
                 {
                   title: 'Convenience & Accessibility',
-                  description: 'Access therapy from anywhere, anytime. No commute, no waiting rooms.',
+                  description: 'Access career guidance from anywhere, anytime. No commute, no waiting rooms.',
                   icon: '🏠'
                 },
                 {
@@ -308,7 +308,7 @@ export default function Home() {
                 Why Choose Edumantus?
               </h2>
               <p className="text-gray-600 text-lg">
-                Leading the way in online mental health care with our unique advantages
+                Leading the way in online career counselling with our unique advantages
               </p>
             </div>
             <div className="grid md:grid-cols-2 gap-8">
@@ -411,32 +411,32 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                Mental Health Resources
+                Career Development Resources
               </h2>
               <p className="text-gray-600 text-lg">
-                Free resources to help you understand and improve your mental well-being
+                Free resources to help you understand and improve your career prospects
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
                 {
                   title: 'Self-Assessment Tools',
-                  description: 'Take our mental health assessments to understand your well-being better',
+                  description: 'Take our career aptitude tests to understand your strengths better',
                   icon: '📋'
                 },
                 {
                   title: 'Educational Articles',
-                  description: 'Expert-written articles on various mental health topics',
+                  description: 'Expert-written articles on various career topics',
                   icon: '📚'
                 },
                 {
-                  title: 'Meditation Guides',
-                  description: 'Free guided meditation and mindfulness exercises',
-                  icon: '🧘‍♀️'
+                  title: 'Career Guides',
+                  description: 'Free guided career planning and development resources',
+                  icon: '🎯'
                 },
                 {
                   title: 'Support Groups',
-                  description: 'Join our moderated online support communities',
+                  description: 'Join our moderated online career communities',
                   icon: '👥'
                 }
               ].map((resource) => (
@@ -464,7 +464,7 @@ export default function Home() {
                 Our Featured Experts
               </h2>
               <p className="text-gray-600 text-lg">
-                Experienced professionals dedicated to your well-being
+                Experienced professionals dedicated to your career development
               </p>
             </div>
             
@@ -547,17 +547,17 @@ export default function Home() {
                 {
                   name: 'Amit Kumar',
                   age: '32',
-                  issue: 'Anxiety & Work Stress',
-                  story: "After 6 months of therapy, I've learned to manage my anxiety and improve my work-life balance. The techniques I learned have been life-changing.",
-                  improvement: '85% reduction in anxiety symptoms',
+                  issue: 'Career Transition',
+                  story: "After 6 months of counselling, I've successfully transitioned to a new career path. The guidance I received has been life-changing.",
+                  improvement: '85% satisfaction with new career path',
                   imageUrl: 'https://img.freepik.com/free-photo/close-up-portrait-young-indian-man-with-beard-white-shirt-isolated-standing-smiling_155003-23823.jpg'
                 },
                 {
                   name: 'Neha Sharma',
                   age: '28',
-                  issue: 'Depression',
-                  story: "The personalized approach and constant support helped me overcome my depression. I'm now more confident and optimistic about life.",
-                  improvement: '90% improvement in mood',
+                  issue: 'Career Development',
+                  story: "The personalized approach and constant support helped me advance in my career. I'm now more confident and optimistic about my future.",
+                  improvement: '90% improvement in career prospects',
                   imageUrl: 'https://image.tensorartassets.com/cdn-cgi/image/anim=true,plain=false,w=2048,f=jpeg,q=85/posts/images/681519462272215395/0b258e2f-9663-4b36-a1ae-29a9fcdff46c.jpg'
                 }
               ].map((story, index) => (
@@ -660,7 +660,7 @@ export default function Home() {
                 Insurance Coverage
               </h2>
               <p className="text-gray-600 text-lg mb-8">
-                We work with major insurance providers to make mental healthcare accessible and affordable
+                We work with major insurance providers to make career counselling accessible and affordable
               </p>
               <div className="grid grid-cols-2 sm:grid-cols-6  gap-6 items-center justify-center mb-8">
                 {[
@@ -695,7 +695,7 @@ export default function Home() {
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">Ready to Start Your Journey?</h2>
               <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 leading-relaxed">
-                Take the first step towards better mental health today. 
+                Take the first step towards better career prospects today. 
                 Our experts are here to support you every step of the way.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
