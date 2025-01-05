@@ -16,52 +16,40 @@ export default function Home() {
 
   const services = [
     {
-      title: "Clinical Issues",
-      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Expert support for anxiety, depression, OCD, and other personal challenges.",
-      link: "/services/clinical-issues"
+      title: "Pathfinders (8th-12th Grade)",
+      description: "Comprehensive career guidance and counseling services for school students to make informed decisions about their academic and professional future.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
+      link: "/services/pathfinders"
     },
     {
-      title: "Relationship Issues", 
-      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Professional guidance for all types of relationships and interpersonal dynamics.",
-      link: "/services/relationship-issues"
+      title: "The Trailblazers (College Students)",
+      description: "Specialized career guidance for college students to navigate opportunities and make informed decisions about their professional future.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
+      link: "/services/trailblazers"
     },
     {
-      title: "Children and Adolescent Issues",
-      image: "https://images.unsplash.com/photo-1503454537195-1dcabb73ffb9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Specialized support for young individuals facing developmental and emotional challenges.",
-      link: "/services/children-and-adolescent-issues"
+      title: "The Thrive Zone (Working Professionals)",
+      description: "Expert career counseling for working professionals seeking growth, transition, or career restart opportunities.",
+      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc",
+      link: "/services/thrive-zone"
     },
     {
-      title: "Women Centric Issues",
-      image: "https://images.unsplash.com/photo-1571844307880-751c6d86f3f3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Dedicated support for women's mental health and life challenges.",
-      link: "/services/women-centric-issues"
+      title: "Psychometric Assessment",
+      description: "Comprehensive career testing and personality assessment to identify your strengths and ideal career paths.",
+      image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2",
+      link: "/services/psychometric-assessment"
     },
     {
-      title: "Life Style Issues",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Guidance for maintaining balance and well-being in your daily life.",
-      link: "/services/life-style-issues"
+      title: "Admission Assistance",
+      description: "Expert guidance for college admissions, course selection, and application processes.",
+      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644",
+      link: "/services/admission-assistance"
     },
     {
-      title: "Self-Improvement",
-      image: "https://images.unsplash.com/photo-1519834785169-98be25ec3f84?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Programs to enhance personal growth, confidence, and self-awareness.",
-      link: "/services/self-improvement"
-    },
-    {
-      title: "Workplace Issues",
-      image: "https://images.unsplash.com/photo-1497032628192-86f99bcd76bc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Support for career development and workplace challenges.",
-      link: "/services/workplace-issues"
-    },
-    {
-      title: "Higher Education and Coaching",
-      image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&h=600",
-      description: "Specialized guidance for academic excellence and career advancement.",
-      link: "/services/higher-education-and-coaching"
+      title: "Professional Development",
+      description: "Comprehensive services for career enhancement including resume writing and interview preparation.",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
+      link: "/services/professional-development"
     }
   ];
 
