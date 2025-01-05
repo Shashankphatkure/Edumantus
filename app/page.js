@@ -471,40 +471,85 @@ export default function Home() {
                 ))}
               </div>
             ) : (
-              <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
-                {featuredExperts.map((expert) => (
-                  <div key={expert.id} 
-                    className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-                    <div className="relative h-64 sm:h-80">
-                      <Image
-                        src={expert.image}
-                        alt={expert.name}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
-                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
-                        <h3 className="text-xl sm:text-2xl font-bold mb-2">{expert.name}</h3>
-                        <p className="text-gray-200 mb-4">{expert.role} • {expert.experience}</p>
-                        <div className="flex gap-2 flex-wrap">
-                          {expert.specialties.map((specialty) => (
-                            <span key={specialty} className="px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm">
-                              {specialty}
-                            </span>
-                          ))}
+              <div className="relative">
+                {/* Slider Container */}
+                <div className="overflow-hidden">
+                  <div 
+                    className="flex transition-transform duration-500 ease-in-out"
+                    style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+                  >
+                    {featuredExperts.map((expert) => (
+                      <div key={expert.id} 
+                        className="w-full flex-shrink-0 px-4"
+                      >
+                        <div className="group bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                          <div className="relative h-64 sm:h-80">
+                            <Image
+                              src={expert.image}
+                              alt={expert.name}
+                              fill
+                              className="object-cover group-hover:scale-105 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent"></div>
+                            <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 text-white">
+                              <h3 className="text-xl sm:text-2xl font-bold mb-2">{expert.name}</h3>
+                              <p className="text-gray-200 mb-4">{expert.role} • {expert.experience}</p>
+                              <div className="flex gap-2 flex-wrap">
+                                {expert.specialties.map((specialty) => (
+                                  <span key={specialty} className="px-3 py-1 bg-white/20 rounded-full text-sm backdrop-blur-sm">
+                                    {specialty}
+                                  </span>
+                                ))}
+                              </div>
+                            </div>
+                          </div>
+                          <div className="p-4 sm:p-6">
+                            <Link
+                              href={`/book-consultation?expert=${expert.id}`}
+                              className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
+                            >
+                              Book Consultation
+                            </Link>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="p-4 sm:p-6">
-                      <Link
-                        href={`/book-consultation?expert=${expert.id}`}
-                        className="block text-center bg-blue-600 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 transform hover:scale-105 shadow-md hover:shadow-lg"
-                      >
-                        Book Consultation
-                      </Link>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Navigation Buttons */}
+                <button
+                  onClick={prevSlide}
+                  className="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transform -translate-x-1/2 backdrop-blur-sm"
+                  aria-label="Previous slide"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 19l-7-7 7-7" />
+                  </svg>
+                </button>
+                <button
+                  onClick={nextSlide}
+                  className="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 hover:bg-white text-blue-600 p-3 rounded-full shadow-lg transform translate-x-1/2 backdrop-blur-sm"
+                  aria-label="Next slide"
+                >
+                  <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7" />
+                  </svg>
+                </button>
+
+                {/* Dots Navigation */}
+                <div className="flex justify-center mt-6 gap-2">
+                  {featuredExperts.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => goToSlide(index)}
+                      className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                        currentSlide === index ? 'bg-blue-600 w-6' : 'bg-blue-200'
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
               </div>
             )}
             
