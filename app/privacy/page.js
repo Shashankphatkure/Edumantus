@@ -4,7 +4,7 @@ export default function Privacy() {
   const sections = [
     {
       title: "Introduction",
-      content: `At Edumantus, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mental health consultation services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.`
+      content: `At Edmantus, we take your privacy seriously. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you use our website and mental health consultation services. Please read this privacy policy carefully. If you do not agree with the terms of this privacy policy, please do not access the site.`
     },
     {
       title: "Information We Collect",
@@ -95,9 +95,9 @@ When your data is no longer required, it will be securely deleted or anonymized.
     {
       title: "Contact Us",
       content: `If you have any questions about this Privacy Policy, please contact us at:
-• Email: privacy@Edumantus.in
-• Phone: 1800-123-4567
-• Address: Mindful Tower, Bandra West, Mumbai - 400050`
+• Email: Info@edmantus.com
+• Phone: +91-9267910906
+• Address: Mantu Crafts (OPC) Pvt. Ltd., B1/A5, First Floor, Mohan Cooperative Industrial Area, New Delhi - 110044`
     }
   ];
 
@@ -172,7 +172,7 @@ When your data is no longer required, it will be securely deleted or anonymized.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:privacy@Edumantus.in"
+                  href="mailto:Info@edmantus.com"
                   className="bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300"
                 >
                   Email Privacy Team

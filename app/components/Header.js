@@ -49,14 +49,14 @@ export default function Header() {
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/l1.png"
-                alt="Edumantus Logo"
+                alt="Edmantus Logo"
                 width={30}
                 height={40}
                 className=""
               />
               <Image
                 src="/l2.png"
-                alt="Edumantus Logo"
+                alt="Edmantus Logo"
                 width={120}
                 height={160}
                 className="mt-4"

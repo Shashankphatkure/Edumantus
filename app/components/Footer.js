@@ -82,7 +82,7 @@ export default function Footer() {
             <Link href="/" className="flex items-center space-x-2">
               <Image
                 src="/logo.png"
-                alt="Edumantus Logo"
+                alt="Edmantus Logo"
                 width={40}
                 height={40}
                 className=""
@@ -169,7 +169,7 @@ export default function Footer() {
         <div className="mt-12 pt-8 border-t border-gray-200">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-gray-500 text-sm">
-              © {new Date().getFullYear()} Edumantus. All rights reserved.
+              © {new Date().getFullYear()} Edmantus. All rights reserved.
             </p>
             <div className="mt-4 md:mt-0 flex space-x-6">
               <Link

@@ -313,7 +313,7 @@ export default function Home() {
           <div className="container mx-auto px-4 sm:px-6">
             <div className="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
               <h2 className="text-3xl sm:text-4xl font-bold mb-4 sm:mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600">
-                Why Choose Edumantus?
+                Why Choose Edmantus?
               </h2>
               <p className="text-gray-600 text-lg">
                 Leading the way in online career counselling with our unique advantages

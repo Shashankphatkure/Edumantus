@@ -8,19 +8,19 @@ export default function Press() {
   const pressReleases = [
     {
       date: "March 15, 2024",
-      title: "Edumantus Launches Revolutionary Online Mental Health Platform",
+      title: "Edmantus Launches Revolutionary Online Mental Health Platform",
       description: "Platform brings professional mental health care to millions of Indians through innovative technology.",
       link: "#"
     },
     {
       date: "February 28, 2024",
-      title: "Edumantus Raises $10M Series A Funding",
+      title: "Edmantus Raises $10M Series A Funding",
       description: "Investment to expand mental health services across India and enhance technology platform.",
       link: "#"
     },
     {
       date: "January 10, 2024",
-      title: "Edumantus Partners with Leading Insurance Providers",
+      title: "Edmantus Partners with Leading Insurance Providers",
       description: "Partnership makes mental health care more accessible and affordable for millions.",
       link: "#"
     }
@@ -30,21 +30,21 @@ export default function Press() {
     {
       source: "The Economic Times",
       date: "March 16, 2024",
-      title: "Edumantus: Revolutionizing Mental Health Care in India",
+      title: "Edmantus: Revolutionizing Mental Health Care in India",
       image: "https://picsum.photos/seed/news1/800/600",
       link: "#"
     },
     {
       source: "YourStory",
       date: "March 1, 2024",
-      title: "How Edumantus is Making Mental Health Care Accessible",
+      title: "How Edmantus is Making Mental Health Care Accessible",
       image: "https://picsum.photos/seed/news2/800/600",
       link: "#"
     },
     {
       source: "Inc42",
       date: "February 29, 2024",
-      title: "Edumantus's Series A Funding to Boost Mental Health Tech",
+      title: "Edmantus's Series A Funding to Boost Mental Health Tech",
       image: "https://picsum.photos/seed/news3/800/600",
       link: "#"
     }
@@ -82,11 +82,11 @@ export default function Press() {
                 Press & Media Center
               </h1>
               <p className="text-xl text-blue-100 mb-8">
-                Latest news, press releases, and media resources from Edumantus
+                Latest news, press releases, and media resources from Edmantus
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <a
-                  href="mailto:press@Edumantus.in"
+                  href="mailto:Info@edmantus.com"
                   className="bg-white text-blue-600 px-8 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
                 >
                   Media Inquiries
@@ -164,7 +164,7 @@ export default function Press() {
               </p>
               <div className="space-y-4">
                 <p className="text-blue-100">
-                  <strong>Media Relations:</strong> press@Edumantus.in
+                  <strong>Media Relations:</strong> Info@edmantus.com
                 </p>
                 <p className="text-blue-100">
                   <strong>Phone:</strong> +91 22 1234 5678
