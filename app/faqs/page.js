@@ -12,55 +12,113 @@ export default function FAQs() {
       category: "General Questions",
       questions: [
         {
-          q: "What is online mental health consultation?",
-          a: "Online mental health consultation is a secure, confidential way to connect with licensed mental health professionals through video calls, voice calls, or chat. It provides the same quality of care as in-person sessions but with added convenience and accessibility."
+          q: "What is online career counselling?",
+          a: "Online career counselling is a secure, confidential way to connect with licensed career counsellors through video calls, voice calls, or chat. It provides the same quality of guidance as in-person sessions but with added convenience and accessibility."
         },
         {
-          q: "Is online therapy as effective as in-person therapy?",
-          a: "Yes, research shows that online therapy can be just as effective as in-person therapy for many mental health conditions. It offers the same level of professional care while providing additional benefits like convenience, accessibility, and comfort of receiving care from your own space."
+          q: "Is online counselling as effective as in-person counselling?",
+          a: "Yes, research shows that online counselling can be just as effective as in-person counselling. It offers the same level of professional guidance while providing additional benefits like convenience, accessibility, and comfort of receiving care from your own space."
         },
         {
-          q: "How do I know if I need therapy?",
-          a: "Consider seeking therapy if you're experiencing persistent feelings of sadness, anxiety, stress, or if you're dealing with relationship issues, work-related stress, or any other emotional challenges that affect your daily life. There's no wrong time to seek support for your mental well-being."
+          q: "When should I seek career counselling?",
+          a: "Consider seeking career counselling if you're facing career-related decisions, feeling stuck in your current role, planning a career transition, or need guidance in your professional development. It's beneficial at any stage of your career journey."
         }
       ]
     },
     {
-      category: "Consultation Process",
+      category: "Student Services",
       questions: [
         {
-          q: "How do I book a consultation?",
-          a: "Booking a consultation is simple: Choose your preferred therapist, select an available time slot, make the payment, and you'll receive a confirmation with session details. You can book through our website or mobile app."
+          q: "When should I start the admission process?",
+          a: "It's recommended to start at least 6-8 months before application deadlines to ensure thorough preparation."
         },
         {
-          q: "What happens in the first session?",
-          a: "The first session is typically an assessment where your therapist will get to know you, understand your concerns, discuss your goals, and develop a treatment plan. It's also an opportunity for you to ask questions and ensure you feel comfortable with the therapist."
+          q: "Do you help with scholarship applications?",
+          a: "Yes, we provide guidance on scholarship opportunities and assist with scholarship applications."
         },
         {
-          q: "How long are the sessions?",
-          a: "Standard sessions are 50-60 minutes long. However, the duration may vary based on the type of therapy and your specific needs. Some specialized sessions or initial consultations might be longer."
+          q: "What documents do I need for college applications?",
+          a: "Required documents typically include academic transcripts, standardized test scores, letters of recommendation, and personal statements."
+        },
+        {
+          q: "How do you help with college selection?",
+          a: "We analyze your academic profile, interests, and career goals to recommend colleges that best match your requirements."
         }
       ]
     },
     {
-      category: "Privacy & Security",
+      category: "Professional Development",
       questions: [
         {
-          q: "Is my information confidential?",
-          a: "Yes, we maintain strict confidentiality of all client information. Our platform uses end-to-end encryption for video sessions, and all data is stored securely following international privacy standards and HIPAA guidelines."
+          q: "How do you help with resume writing?",
+          a: "We provide comprehensive resume writing services including content optimization, formatting, and ATS compatibility."
         },
         {
-          q: "Who has access to my therapy records?",
-          a: "Only your assigned therapist has access to your therapy records. Our system maintains strict access controls, and information is only shared with your explicit consent or if required by law (in cases of immediate danger to self or others)."
+          q: "What types of interview preparation do you offer?",
+          a: "We offer mock interviews, feedback sessions, and coaching for various interview types including behavioral and technical interviews."
+        },
+        {
+          q: "How can you help with personal branding?",
+          a: "We help develop your professional image through LinkedIn optimization, networking strategies, and online presence enhancement."
+        },
+        {
+          q: "What communication skills do you focus on?",
+          a: "We cover presentation skills, workplace communication, negotiation techniques, and public speaking."
         }
       ]
     },
     {
-      category: "Payments & Cancellation",
+      category: "Career Transition",
+      questions: [
+        {
+          q: "How do you help with career transitions?",
+          a: "We provide comprehensive support including skills assessment, market analysis, and strategic planning to ensure smooth career transitions."
+        },
+        {
+          q: "What if I'm returning after a career break?",
+          a: "We offer specialized guidance for professionals returning to work, including skill updates, confidence building, and market re-entry strategies."
+        },
+        {
+          q: "Do you provide industry-specific guidance?",
+          a: "Yes, our counselors have extensive knowledge of various industries and provide targeted advice based on your sector of interest."
+        },
+        {
+          q: "How long does the counselling process take?",
+          a: "The duration varies based on your goals, typically ranging from 2-3 months for comprehensive career development support."
+        }
+      ]
+    },
+    {
+      category: "Assessment & Testing",
+      questions: [
+        {
+          q: "What types of tests are included in psychometric assessment?",
+          a: "Our assessment battery includes career aptitude, personality, interest inventory, and work style assessments."
+        },
+        {
+          q: "How long does the assessment take?",
+          a: "The complete assessment takes approximately 90 minutes, followed by a consultation session."
+        },
+        {
+          q: "Are the tests scientifically validated?",
+          a: "Yes, all our assessments are internationally recognized and scientifically validated tools."
+        },
+        {
+          q: "What do I get after the assessment?",
+          a: "You receive a comprehensive report, personalized career recommendations, and a one-on-one consultation session."
+        }
+      ]
+    },
+    {
+      category: "Payments & Insurance",
       questions: [
         {
           q: "What are your payment options?",
           a: "We accept various payment methods including credit/debit cards, UPI, net banking, and popular digital wallets. All payments are processed securely through our platform."
+        },
+        {
+          q: "Do you accept insurance?",
+          a: "Yes, we work with major insurance providers including Star Health, HDFC ERGO, Bajaj Allianz, ICICI Lombard, Max Bupa, and Aditya Birla Health to make counselling accessible and affordable."
         },
         {
           q: "What is your cancellation policy?",
@@ -85,7 +143,7 @@ export default function FAQs() {
                 Frequently Asked Questions
               </h1>
               <p className="text-xl text-blue-100 mb-8">
-                Find answers to common questions about our mental health consultation services.
+                Find answers to common questions about our career counselling services
               </p>
             </div>
           </div>
@@ -97,7 +155,7 @@ export default function FAQs() {
             <div className="max-w-4xl mx-auto">
               {faqs.map((category, categoryIndex) => (
                 <div key={category.category} className="mb-12">
-                  <h2 className="text-2xl font-bold mb-6">{category.category}</h2>
+                  <h2 className="text-2xl font-bold mb-6 text-gray-900">{category.category}</h2>
                   <div className="space-y-4">
                     {category.questions.map((faq, questionIndex) => {
                       const index = `${categoryIndex}-${questionIndex}`;

@@ -92,8 +92,7 @@ export default function Footer() {
               
             </Link>
             <p className="mt-4 text-gray-600 leading-relaxed">
-              Empowering individuals through professional mental health care and guidance.
-              Your journey to mental wellness starts here.
+            Connect with India's top career counselling for personalized consultation and guidance, all from the comfort of your home.
             </p>
             <div className="mt-6 flex space-x-6">
               {navigation.social.map((item) => (
