@@ -167,7 +167,7 @@ export default function Press() {
                   <strong>Media Relations:</strong> Info@edmantus.com
                 </p>
                 <p className="text-blue-100">
-                  <strong>Phone:</strong> +91 22 1234 5678
+                  <strong>Phone:</strong> +91-9267910906
                 </p>
                 <p className="text-blue-100">
                   <strong>Working Hours:</strong> Monday to Friday, 9:00 AM - 6:00 PM IST
