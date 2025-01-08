@@ -2,6 +2,7 @@
 'use client';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import { useEffect, useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function Experts() {
     const [experts, setExperts] = useState([]);
@@ -22,6 +23,7 @@ export default function Experts() {
     const supabase = createClientComponentClient();
     const [isEditing, setIsEditing] = useState(false);
     const [editingExpertId, setEditingExpertId] = useState(null);
+    const [imageFile, setImageFile] = useState(null);
 
     useEffect(() => {
         fetchExperts();
@@ -44,12 +46,40 @@ export default function Experts() {
         }
     };
 
+    const uploadImage = async (file) => {
+        try {
+            const fileExt = file.name.split('.').pop();
+            const fileName = `${uuidv4()}.${fileExt}`;
+            const { data, error } = await supabase.storage
+                .from('expert-images')
+                .upload(fileName, file);
+
+            if (error) throw error;
+
+            const { data: { publicUrl } } = supabase.storage
+                .from('expert-images')
+                .getPublicUrl(fileName);
+
+            return publicUrl;
+        } catch (error) {
+            console.error('Error uploading image:', error);
+            throw error;
+        }
+    };
+
     const handleAddExpert = async () => {
         try {
+            let imageUrl = newExpert.image;
+            
+            if (imageFile) {
+                imageUrl = await uploadImage(imageFile);
+            }
+
             const { data, error } = await supabase
                 .from('experts')
                 .insert([{
                     ...newExpert,
+                    image: imageUrl,
                     specialties: newExpert.specialties.split(',').map(s => s.trim()),
                     languages: newExpert.languages.split(',').map(l => l.trim()),
                     availability: {}
@@ -60,6 +90,7 @@ export default function Experts() {
 
             setExperts([data[0], ...experts]);
             setShowModal(false);
+            setImageFile(null);
             setNewExpert({
                 name: '',
                 role: '',
@@ -125,10 +156,17 @@ export default function Experts() {
 
     const handleEditExpert = async () => {
         try {
+            let imageUrl = newExpert.image;
+            
+            if (imageFile) {
+                imageUrl = await uploadImage(imageFile);
+            }
+
             const { data, error } = await supabase
                 .from('experts')
                 .update({
                     ...newExpert,
+                    image: imageUrl,
                     specialties: typeof newExpert.specialties === 'string' 
                         ? newExpert.specialties.split(',').map(s => s.trim())
                         : newExpert.specialties,
@@ -219,13 +257,33 @@ export default function Experts() {
                                 <option value="Addiction Specialist">Addiction Specialist</option>
                                 <option value="Stress Management Expert">Stress Management Expert</option>
                             </select>
-                            <input
-                                type="text"
-                                placeholder="Image URL"
-                                className="w-full p-2 border rounded"
-                                value={newExpert.image}
-                                onChange={(e) => setNewExpert({...newExpert, image: e.target.value})}
-                            />
+                            <div className="space-y-2">
+                                <label className="block text-sm font-medium text-gray-700">
+                                    Expert Image
+                                </label>
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    onChange={(e) => {
+                                        const file = e.target.files[0];
+                                        setImageFile(file);
+                                        setNewExpert({
+                                            ...newExpert,
+                                            image: file ? URL.createObjectURL(file) : ''
+                                        });
+                                    }}
+                                    className="w-full p-2 border rounded"
+                                />
+                                {newExpert.image && (
+                                    <div className="mt-2">
+                                        <img
+                                            src={newExpert.image}
+                                            alt="Preview"
+                                            className="h-20 w-20 object-cover rounded"
+                                        />
+                                    </div>
+                                )}
+                            </div>
                             <input
                                 type="text"
                                 placeholder="Specialties (comma-separated)"
