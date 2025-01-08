@@ -10,10 +10,12 @@ export default function Footer() {
       { name: 'Press', href: '/press' },
     ],
     services: [
-      { name: 'Online Consultation', href: '/services/online-consultation' },
-      { name: 'Counseling', href: '/services/counseling' },
-      { name: 'Therapy', href: '/services/therapy' },
-      { name: 'Psychiatry', href: '/services/psychiatry' },
+      { name: 'Pathfinders', href: '/services/pathfinders' },
+      { name: 'Trailblazers', href: '/services/trailblazers' },
+      { name: 'Thrive Zone', href: '/services/thrive-zone' },
+      { name: 'Psychometric Assessment', href: '/services/psychometric-assessment' },
+      { name: 'Admission Assistance', href: '/services/admission-assistance' },
+      { name: 'Professional Development', href: '/services/professional-development' },
     ],
     support: [
       { name: 'Contact Us', href: '/contact' },
