@@ -20,13 +20,15 @@ export async function POST(request) {
       customer_phone: requestData.userPhone,
       payment_page_client_id: process.env.HDFC_MERCHANT_ID,
       action: 'paymentPage',
-      return_url_params: [
+      webhook_url: `${process.env.NEXT_PUBLIC_APP_URL}/api/payment-webhook`,
+      webhook_params: [
         'order_id',
         'payment_status',
         'merchant_transaction_id',
         'payment_instrument',
         'transaction_date',
-        'hash'
+        'hash',
+        'metadata'
       ],
       description: requestData.description,
       first_name: requestData.firstName,
@@ -41,7 +43,8 @@ export async function POST(request) {
         ]
       },
       metadata: {
-        expiryInMins: '60'
+        expiryInMins: '60',
+        ...requestData.metadata
       },
       source_object: 'PAYMENT_LINK'
     };
