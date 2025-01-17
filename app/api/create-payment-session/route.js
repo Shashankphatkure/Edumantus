@@ -18,9 +18,16 @@ export async function POST(request) {
       customer_id: requestData.userId,
       customer_email: requestData.userEmail,
       customer_phone: requestData.userPhone,
-      payment_page_client_id: 'hdfcmaster',
+      payment_page_client_id: process.env.HDFC_MERCHANT_ID,
       action: 'paymentPage',
-      return_url: `${process.env.NEXT_PUBLIC_APP_URL}/payment-callback`,
+      return_url_params: [
+        'order_id',
+        'payment_status',
+        'merchant_transaction_id',
+        'payment_instrument',
+        'transaction_date',
+        'hash'
+      ],
       description: requestData.description,
       first_name: requestData.firstName,
       last_name: requestData.lastName,
@@ -46,7 +53,7 @@ export async function POST(request) {
       method: 'POST',
       headers: {
         'Authorization': `Basic ${apiKeyBase64}`,
-        'x-merchantid': 'SG1798',
+        'x-merchantid': process.env.HDFC_MERCHANT_ID,
         'x-customerid': requestData.userId,
         'Content-Type': 'application/json'
       },

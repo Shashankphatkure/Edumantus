@@ -4,6 +4,43 @@ import { useEffect, useState } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import { createClientComponentClient } from "@supabase/auth-helpers-nextjs";
 import Link from 'next/link';
+import crypto from 'crypto';
+
+// HMAC verification function
+const verifyHMAC = (params, responseKey) => {
+  try {
+    const receivedHash = params.get('hash');
+    if (!receivedHash) return false;
+
+    // Remove hash from params before calculating
+    const allParams = Object.fromEntries(params.entries());
+    delete allParams.hash;
+
+    // Sort parameters alphabetically
+    const sortedParams = Object.keys(allParams)
+      .sort()
+      .reduce((acc, key) => {
+        acc[key] = allParams[key];
+        return acc;
+      }, {});
+
+    // Create string of key=value pairs
+    const paramString = Object.entries(sortedParams)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+
+    // Calculate HMAC
+    const calculatedHash = crypto
+      .createHmac('sha256', responseKey)
+      .update(paramString)
+      .digest('hex');
+
+    return receivedHash === calculatedHash;
+  } catch (error) {
+    console.error('HMAC verification error:', error);
+    return false;
+  }
+};
 
 export default function PaymentCallback() {
   const searchParams = useSearchParams();
@@ -15,29 +52,42 @@ export default function PaymentCallback() {
   useEffect(() => {
     const updateBookingStatus = async () => {
       try {
-        // Safely get parameters from searchParams
-        const paymentStatus = searchParams.get('status')?.toUpperCase();
-        const orderId = searchParams.get('order_id');
-        const transactionId = searchParams.get('transaction_id');
+        // Verify HMAC first
+        const isValid = verifyHMAC(searchParams, process.env.NEXT_PUBLIC_HDFC_RESPONSE_KEY);
+        if (!isValid) {
+          setStatus('error');
+          setError('Invalid payment response signature');
+          return;
+        }
+
+        // Get parameters from response
+        const paymentStatus = searchParams.get('payment_status')?.toUpperCase() || '';
+        const orderId = searchParams.get('order_id') || '';
+        const transactionId = searchParams.get('merchant_transaction_id') || '';
+        const paymentMode = searchParams.get('payment_instrument') || '';
+        const paymentTime = searchParams.get('transaction_date') || null;
 
         // Log for debugging
-        console.log('Payment Parameters:', {
+        console.log('HDFC Payment Response:', {
           status: paymentStatus,
           orderId,
-          transactionId
+          transactionId,
+          paymentMode,
+          paymentTime,
+          allParams: Object.fromEntries(searchParams.entries())
         });
 
         if (!orderId) {
           setStatus('error');
-          setError('Payment reference not found');
+          setError('Invalid payment response: Missing order ID');
           return;
         }
 
-        // Extract booking ID from order ID
+        // Extract booking ID from order ID (FORMAT: ORDER_<bookingId>_<timestamp>)
         const bookingId = orderId.split('_')[1];
         if (!bookingId) {
           setStatus('error');
-          setError('Invalid payment reference');
+          setError('Invalid order ID format');
           return;
         }
 
@@ -49,35 +99,44 @@ export default function PaymentCallback() {
           .single();
 
         if (fetchError || !booking) {
+          console.error('Booking fetch error:', fetchError);
           setStatus('error');
           setError('Booking not found');
           return;
         }
 
-        if (paymentStatus === 'SUCCESS') {
+        // Handle payment status
+        if (paymentStatus === 'SUCCESS' || paymentStatus === 'CAPTURED') {
           const { error: updateError } = await supabase
             .from('bookings')
             .update({
               payment_status: 'completed',
               status: 'confirmed',
               transaction_id: transactionId,
+              payment_mode: paymentMode || null,
+              payment_time: paymentTime ? new Date(paymentTime).toISOString() : null,
               updated_at: new Date().toISOString()
             })
             .eq('id', bookingId);
 
-          if (updateError) throw updateError;
+          if (updateError) {
+            throw updateError;
+          }
 
           setStatus('success');
           setTimeout(() => {
             router.push('/dashboard');
           }, 3000);
         } else {
+          // Handle failed payment
           await supabase
             .from('bookings')
             .update({
               payment_status: 'failed',
               status: 'cancelled',
               transaction_id: transactionId,
+              payment_mode: paymentMode || null,
+              payment_time: paymentTime ? new Date(paymentTime).toISOString() : null,
               updated_at: new Date().toISOString()
             })
             .eq('id', bookingId);
@@ -91,11 +150,13 @@ export default function PaymentCallback() {
       }
     };
 
-    // Only run if we have search params
-    if (searchParams && searchParams.get('status')) {
+    if (searchParams && searchParams.toString()) {
       updateBookingStatus();
+    } else {
+      setStatus('error');
+      setError('No payment response received');
     }
-  }, [searchParams, router]);
+  }, [searchParams, router, supabase]);
 
   const renderContent = () => {
     switch (status) {
