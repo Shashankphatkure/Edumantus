@@ -69,23 +69,8 @@ function BookConsultationContent() {
         return;
       }
 
-      // Create booking record with initial pending status
-      const { data: booking, error } = await supabase
-        .from('bookings')
-        .insert([{
-          user_id: user.id,
-          expert_id: selectedExpert.id,
-          booking_date: selectedDate,
-          booking_time: selectedTime,
-          status: 'pending',
-          amount: selectedExpert.price,
-          payment_status: 'pending',
-          notes: `Consultation with ${selectedExpert.name}`
-        }])
-        .select()
-        .single();
-
-      if (error) throw error;
+      // Generate order ID without creating booking first
+      const tempOrderId = `ORDER_${Date.now()}_${user.id}`;
 
       // Call our backend API to create payment session
       const response = await fetch('/api/create-payment-session', {
@@ -94,14 +79,21 @@ function BookConsultationContent() {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          orderId: `ORDER_${booking.id}_${Date.now()}`,
+          orderId: tempOrderId,
           amount: `${selectedExpert.price}.0`,
           userId: user.id,
           userEmail: user.email,
           userPhone: user.user_metadata?.phone || '',
           description: `Consultation with ${selectedExpert.name}`,
           firstName: user.user_metadata?.full_name?.split(' ')[0] || '',
-          lastName: user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || ''
+          lastName: user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
+          // Add booking details to metadata for use after payment
+          metadata: {
+            expertId: selectedExpert.id,
+            bookingDate: selectedDate,
+            bookingTime: selectedTime,
+            expertName: selectedExpert.name
+          }
         })
       });
 
@@ -112,10 +104,8 @@ function BookConsultationContent() {
       }
 
       if (responseData.payment_links?.web) {
-        // Redirect to payment page
         window.location.href = responseData.payment_links.web;
       } else if (responseData.sdk_payload?.payload?.clientAuthToken) {
-        // Handle SDK payload if provided
         window.location.href = `${process.env.NEXT_PUBLIC_APP_URL}/payment-page?token=${responseData.sdk_payload.payload.clientAuthToken}`;
       } else {
         console.error('Unexpected gateway response:', responseData);
@@ -123,8 +113,8 @@ function BookConsultationContent() {
       }
       
     } catch (error) {
-      console.error('Error creating booking:', error);
-      setError(error.message || 'Failed to create booking. Please try again.');
+      console.error('Error initiating payment:', error);
+      setError(error.message || 'Failed to initiate payment. Please try again.');
     } finally {
       setIsLoading(false);
     }
