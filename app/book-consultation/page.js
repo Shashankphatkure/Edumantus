@@ -15,6 +15,7 @@ function BookConsultationContent() {
   const [experts, setExperts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const supabase = createClientComponentClient();
 
@@ -54,22 +55,22 @@ function BookConsultationContent() {
   };
 
   const handleBooking = async () => {
+    setIsLoading(true);
     try {
       const { data: { user } } = await supabase.auth.getUser();
       
       if (!user) {
-        // Store booking details in session storage
         sessionStorage.setItem('pendingBooking', JSON.stringify({
           expertId: selectedExpert.id,
           date: selectedDate,
           time: selectedTime
         }));
-        // Redirect to login
         window.location.href = '/login?redirect=/book-consultation';
         return;
       }
 
-      const { data, error } = await supabase
+      // Create booking record with initial pending status
+      const { data: booking, error } = await supabase
         .from('bookings')
         .insert([{
           user_id: user.id,
@@ -85,10 +86,47 @@ function BookConsultationContent() {
         .single();
 
       if (error) throw error;
-      setStep(4);
+
+      // Call our backend API to create payment session
+      const response = await fetch('/api/create-payment-session', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          orderId: `ORDER_${booking.id}_${Date.now()}`,
+          amount: `${selectedExpert.price}.0`,
+          userId: user.id,
+          userEmail: user.email,
+          userPhone: user.user_metadata?.phone || '',
+          description: `Consultation with ${selectedExpert.name}`,
+          firstName: user.user_metadata?.full_name?.split(' ')[0] || '',
+          lastName: user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || ''
+        })
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        throw new Error(responseData.details || 'Failed to create payment session');
+      }
+
+      if (responseData.payment_links?.web) {
+        // Redirect to payment page
+        window.location.href = responseData.payment_links.web;
+      } else if (responseData.sdk_payload?.payload?.clientAuthToken) {
+        // Handle SDK payload if provided
+        window.location.href = `${process.env.NEXT_PUBLIC_APP_URL}/payment-page?token=${responseData.sdk_payload.payload.clientAuthToken}`;
+      } else {
+        console.error('Unexpected gateway response:', responseData);
+        throw new Error('Invalid response from payment gateway');
+      }
+      
     } catch (error) {
       console.error('Error creating booking:', error);
-      setError('Failed to create booking. Please try again.');
+      setError(error.message || 'Failed to create booking. Please try again.');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -327,9 +365,12 @@ function BookConsultationContent() {
               <div className="pt-6 border-t space-y-4">
                 <button
                   onClick={handleBooking}
-                  className="w-full bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300"
+                  disabled={isLoading}
+                  className={`w-full bg-blue-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-blue-700 transition-all duration-300 ${
+                    isLoading ? 'disabled:opacity-50 disabled:cursor-not-allowed' : ''
+                  }`}
                 >
-                  Confirm & Pay
+                  {isLoading ? 'Processing...' : 'Confirm & Pay'}
                 </button>
                 <button
                   onClick={() => setStep(2)}
