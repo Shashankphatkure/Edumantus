@@ -28,12 +28,40 @@ async function getLatestBooking() {
     .limit(1)
     .single();
 
-  if (error) {
+  if (error || !booking) {
     console.error('Error fetching booking:', error);
     return null;
   }
 
-  return booking;
+  // Verify payment status with HDFC Bank
+  try {
+    // Get the base URL from environment variables, fallback to localhost
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
+    
+    const response = await fetch(`${baseUrl}/api/verify-payment-status`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        orderId: booking.transaction_id,
+        clientAuthToken: booking.client_auth_token
+      }),
+    });
+
+    const paymentStatus = await response.json();
+    
+    // Only return booking if payment status is verified
+    if (paymentStatus.status === 'CHARGED' || paymentStatus.status === 'SUCCESS') {
+      return booking;
+    }
+    
+    console.error('Payment verification failed:', paymentStatus);
+    return null;
+  } catch (error) {
+    console.error('Error verifying payment:', error);
+    return null;
+  }
 }
 
 export default async function PaymentSuccessPage() {
