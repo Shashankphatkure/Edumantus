@@ -180,7 +180,10 @@ function BookConsultationContent() {
                     className={`bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer ${
                       selectedExpert?.id === expert.id ? "ring-2 ring-blue-600" : ""
                     }`}
-                    onClick={() => setSelectedExpert(expert)}
+                    onClick={() => {
+                      setSelectedExpert(expert);
+                      setStep(2);
+                    }}
                   >
                     <div className="relative h-64">
                       <Image
