@@ -13,14 +13,6 @@ export default function Login() {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
-  const getRedirectUrl = () => {
-    if (typeof window !== 'undefined') {
-      const params = new URLSearchParams(window.location.search);
-      return params.get('redirect') || '/dashboard';
-    }
-    return '/dashboard';
-  };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
     setIsLoading(true);
@@ -37,11 +29,11 @@ export default function Login() {
 
       // 2. Get user data
       if (authData.user) {
-        // Modified redirect logic
+        // Temporary solution: Check if email is admin email
         if (authData.user.email === 'shashankphatkure@gmail.com') {
           router.push('/admin');
         } else {
-          router.push(getRedirectUrl());
+          router.push('/dashboard');
         }
       }
     } catch (error) {
