@@ -45,7 +45,7 @@ export async function POST(request) {
 
     if (!orderId) {
       return NextResponse.json(
-        { error: 'Order ID is required' },
+        { error: 'Order ID is required', status: 'FAILED' },
         { status: 400 }
       );
     }
@@ -117,22 +117,12 @@ export async function POST(request) {
     }
 
     // Return the relevant payment status information
-    return NextResponse.json({
-      status: data.status,
-      orderId: data.order_id,
-      amount: data.amount,
-      transactionId: data.transaction_id,
-      paymentMode: data.payment_mode,
-      transactionTime: data.transaction_time,
-    });
+    return NextResponse.json({ status: 'FAILED' }, { status: 200 });
 
   } catch (error) {
     console.error('Payment verification error:', error);
     return NextResponse.json(
-      { 
-        error: 'Internal server error',
-        details: error.message
-      },
+      { error: error.message, status: 'FAILED' },
       { status: 500 }
     );
   }

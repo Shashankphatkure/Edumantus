@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 import Link from 'next/link';
 import { format } from 'date-fns';
 
-async function getLatestBooking() {
-  const cookieStore = await cookies();
+async function getLatestBooking(orderId) {
+  const cookieStore = cookies();
   const supabase = createServerComponentClient({ cookies: () => cookieStore });
   
   // Get current user
@@ -12,7 +12,27 @@ async function getLatestBooking() {
   
   if (!user) return null;
 
-  // Get the latest confirmed booking for this user
+  // If we have an orderId, try to find that specific booking
+  if (orderId) {
+    const { data: booking, error } = await supabase
+      .from('bookings')
+      .select(`
+        *,
+        experts (
+          name,
+          expertise
+        )
+      `)
+      .eq('transaction_id', orderId)
+      .eq('status', 'confirmed')
+      .single();
+
+    if (!error && booking) {
+      return booking;
+    }
+  }
+
+  // Fallback to getting the latest confirmed booking
   const { data: booking, error } = await supabase
     .from('bookings')
     .select(`
@@ -33,39 +53,17 @@ async function getLatestBooking() {
     return null;
   }
 
-  // Verify payment status with HDFC Bank
-  try {
-    // Get the base URL from environment variables, fallback to localhost
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000';
-    
-    const response = await fetch(`${baseUrl}/api/verify-payment-status`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        orderId: booking.transaction_id,
-        clientAuthToken: booking.client_auth_token
-      }),
-    });
-
-    const paymentStatus = await response.json();
-    
-    // Only return booking if payment status is verified
-    if (paymentStatus.status === 'CHARGED' || paymentStatus.status === 'SUCCESS') {
-      return booking;
-    }
-    
-    console.error('Payment verification failed:', paymentStatus);
-    return null;
-  } catch (error) {
-    console.error('Error verifying payment:', error);
-    return null;
-  }
+  return booking;
 }
 
-export default async function PaymentSuccessPage() {
-  const booking = await getLatestBooking();
+export default async function PaymentSuccessPage({
+  searchParams
+}) {
+  const orderId = searchParams?.orderId;
+  console.log('Received orderId:', orderId);
+
+  const booking = await getLatestBooking(orderId);
+  console.log('Final booking result:', booking);
 
   if (!booking) {
     return (
