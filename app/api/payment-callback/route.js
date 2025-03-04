@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import crypto from 'crypto';
+
+// Same hash function as in create-payment-session
+function generatePaymentHash(bookingId, amount, userId) {
+  const secret = process.env.PAYMENT_HASH_SECRET || 'your-secret-key-change-this';
+  const dataToHash = `${bookingId}:${amount}:${userId}:${secret}`;
+  return crypto.createHash('sha256').update(dataToHash).digest('hex');
+}
 
 export async function POST(request) {
   try {
@@ -41,10 +49,11 @@ export async function POST(request) {
     }
 
     const bookingId = orderParts[3];
+    const userId = orderParts[2];
     console.log('Looking for booking ID:', bookingId);
 
     try {
-      // Find and update the booking
+      // Find the booking
       const { data: existingBooking, error: fetchError } = await supabase
         .from('bookings')
         .select('*')
@@ -61,8 +70,70 @@ export async function POST(request) {
         console.error('No pending booking found with ID:', bookingId);
         throw new Error('No pending booking found');
       }
+      
+      // IMPORTANT: Validate payment amount from callback against original amount in database
+      const callbackAmount = parseFloat(paymentData.amount);
+      const originalAmount = existingBooking.amount;
+      
+      // First validation: Direct comparison of amounts
+      if (callbackAmount !== originalAmount) {
+        console.error('Amount mismatch detected!', {
+          original: originalAmount,
+          received: callbackAmount,
+          booking: existingBooking.id,
+          order: orderId
+        });
+        
+        // Update booking with fraud attempt note
+        await supabase
+          .from('bookings')
+          .update({
+            payment_status: 'fraud_attempt',
+            notes: `SECURITY ALERT: Payment amount mismatch. Expected: ${originalAmount}, Received: ${callbackAmount}`
+          })
+          .eq('id', bookingId);
+        
+        // Redirect to error page with fraud parameter
+        const errorUrl = new URL('/payment/error', baseUrl);
+        errorUrl.searchParams.set('reason', 'amount_mismatch');
+        return NextResponse.redirect(errorUrl.toString(), {
+          status: 303
+        });
+      }
+      
+      // Second validation: Hash verification for extra security
+      const receivedHash = paymentData.metadata?.amountHash;
+      const storedHash = existingBooking.amount_hash;
+      const calculatedHash = generatePaymentHash(bookingId, callbackAmount, userId);
+      
+      // If we have stored or received hash, verify it
+      if ((storedHash || receivedHash) && 
+          !(storedHash === calculatedHash || receivedHash === calculatedHash)) {
+        console.error('Hash verification failed!', {
+          storedHash,
+          receivedHash,
+          calculatedHash,
+          booking: existingBooking.id
+        });
+        
+        // Update booking with fraud attempt note
+        await supabase
+          .from('bookings')
+          .update({
+            payment_status: 'fraud_attempt',
+            notes: `SECURITY ALERT: Payment hash verification failed.`
+          })
+          .eq('id', bookingId);
+        
+        // Redirect to error page with fraud parameter
+        const errorUrl = new URL('/payment/error', baseUrl);
+        errorUrl.searchParams.set('reason', 'hash_mismatch');
+        return NextResponse.redirect(errorUrl.toString(), {
+          status: 303
+        });
+      }
 
-      // Update the booking
+      // Update the booking only if all validations pass
       const { data: booking, error: updateError } = await supabase
         .from('bookings')
         .update({
@@ -71,7 +142,7 @@ export async function POST(request) {
           transaction_id: orderId,
           payment_mode: 'online',
           payment_time: new Date().toISOString(),
-          notes: `Payment completed with status: ${paymentData.status}`
+          notes: `Payment completed with status: ${paymentData.status}. Amount validated successfully.`
         })
         .eq('id', bookingId)
         .select()

@@ -1,6 +1,14 @@
 import { NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+import crypto from 'crypto';
+
+// Function to create a secure hash of the payment details
+function generatePaymentHash(bookingId, amount, userId) {
+  const secret = process.env.PAYMENT_HASH_SECRET || 'your-secret-key-change-this';
+  const dataToHash = `${bookingId}:${amount}:${userId}:${secret}`;
+  return crypto.createHash('sha256').update(dataToHash).digest('hex');
+}
 
 export async function POST(request) {
   try {
@@ -58,6 +66,15 @@ export async function POST(request) {
       throw bookingError;
     }
 
+    // Generate a secure hash of the payment details to prevent tampering
+    const amountHash = generatePaymentHash(booking.id, amount, user.id);
+
+    // Update the booking with the hash
+    await supabase
+      .from('bookings')
+      .update({ amount_hash: amountHash })
+      .eq('id', booking.id);
+
     // Create payment request with booking reference
     const paymentRequest = {
       order_id: `ORDER_${Date.now()}_${user.id}_${booking.id}`,
@@ -93,6 +110,7 @@ export async function POST(request) {
       },
       metadata: {
         bookingId: booking.id,
+        amountHash: amountHash, // Include hash in metadata for extra verification
         ...requestData.metadata
       },
       source_object: 'PAYMENT_LINK'
