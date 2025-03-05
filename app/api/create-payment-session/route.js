@@ -1,14 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import crypto from 'crypto';
-
-// Function to create a secure hash of the payment details
-function generatePaymentHash(bookingId, amount, userId) {
-  const secret = process.env.PAYMENT_HASH_SECRET || 'your-secret-key-change-this';
-  const dataToHash = `${bookingId}:${amount}:${userId}:${secret}`;
-  return crypto.createHash('sha256').update(dataToHash).digest('hex');
-}
 
 export async function POST(request) {
   try {
@@ -31,15 +23,43 @@ export async function POST(request) {
     const expertId = requestData.metadata?.expertId;
     const bookingDate = requestData.metadata?.bookingDate;
     const bookingTime = requestData.metadata?.bookingTime;
-    const amount = requestData.amount;
+    const clientProvidedAmount = requestData.amount;
 
     // Validate required fields
-    if (!expertId || !bookingDate || !bookingTime || !amount) {
+    if (!expertId || !bookingDate || !bookingTime || !clientProvidedAmount) {
       throw new Error('Missing required fields: expertId, bookingDate, bookingTime, or amount');
     }
 
     // Convert expertId to number if it's a string
     const expert_id = typeof expertId === 'string' ? parseInt(expertId, 10) : expertId;
+    
+    // SECURITY FIX: Fetch the expert's actual price from the database to prevent amount tampering
+    const { data: expertData, error: expertError } = await supabase
+      .from('experts')
+      .select('price')
+      .eq('id', expert_id)
+      .single();
+    
+    if (expertError || !expertData) {
+      console.error('Expert data fetch error:', expertError);
+      throw new Error('Failed to verify expert price');
+    }
+    
+    // Validate that the amount matches the expert's price in the database
+    const actualPrice = expertData.price.toString();
+    const normalizedClientAmount = parseFloat(clientProvidedAmount).toFixed(1);
+    const normalizedActualPrice = parseFloat(actualPrice).toFixed(1);
+    
+    if (normalizedClientAmount !== normalizedActualPrice) {
+      console.error('Amount tampering detected', {
+        providedAmount: clientProvidedAmount,
+        actualPrice: actualPrice
+      });
+      throw new Error('Invalid payment amount');
+    }
+    
+    // Use the verified price from the database for all further operations
+    const verifiedAmount = actualPrice;
     
     // Create a pending booking first
     const bookingData = {
@@ -49,7 +69,7 @@ export async function POST(request) {
       booking_time: bookingTime,
       status: 'pending',
       payment_status: 'pending',
-      amount: parseFloat(amount),
+      amount: parseFloat(verifiedAmount),
       notes: 'Booking initiated'
     };
 
@@ -66,19 +86,10 @@ export async function POST(request) {
       throw bookingError;
     }
 
-    // Generate a secure hash of the payment details to prevent tampering
-    const amountHash = generatePaymentHash(booking.id, amount, user.id);
-
-    // Update the booking with the hash
-    await supabase
-      .from('bookings')
-      .update({ amount_hash: amountHash })
-      .eq('id', booking.id);
-
     // Create payment request with booking reference
     const paymentRequest = {
       order_id: `ORDER_${Date.now()}_${user.id}_${booking.id}`,
-      amount: amount.toString(),
+      amount: verifiedAmount.toString(),
       currency: 'INR',
       customer_id: user.id,
       customer_email: requestData.userEmail || user.email,
@@ -110,7 +121,7 @@ export async function POST(request) {
       },
       metadata: {
         bookingId: booking.id,
-        amountHash: amountHash, // Include hash in metadata for extra verification
+        verifiedAmount: verifiedAmount, // Store the verified amount in metadata
         ...requestData.metadata
       },
       source_object: 'PAYMENT_LINK'

@@ -1,16 +1,24 @@
 import Link from 'next/link';
 
 export default function PaymentErrorPage({ searchParams }) {
-  // Check if this is a fraud/security related error
-  const reason = searchParams?.reason;
-  const isSecurityError = reason === 'amount_mismatch';
+  // Check if there's a specific error reason
+  const reason = searchParams?.reason || '';
+  
+  // Customize error message based on reason
+  let errorTitle = "Something Went Wrong";
+  let errorMessage = "An error occurred while processing your payment. Please contact support if this persists.";
+  
+  if (reason === 'amount_mismatch') {
+    errorTitle = "Payment Validation Failed";
+    errorMessage = "We detected an inconsistency in the payment amount. This transaction has been cancelled for security reasons. If you believe this is an error, please contact our support team.";
+  }
   
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="max-w-md w-full bg-white shadow-lg rounded-lg p-8 text-center">
         <div className="mb-4">
           <svg
-            className={`mx-auto h-12 w-12 ${isSecurityError ? 'text-red-500' : 'text-yellow-500'}`}
+            className="mx-auto h-12 w-12 text-yellow-500"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
@@ -23,43 +31,24 @@ export default function PaymentErrorPage({ searchParams }) {
             />
           </svg>
         </div>
-        <h2 className="text-2xl font-semibold text-gray-800 mb-4">
-          {isSecurityError ? 'Security Alert' : 'Payment Error'}
+        <h2 className="text-2xl font-bold mb-4 text-gray-800">
+          {errorTitle}
         </h2>
-        <p className="text-gray-600 mb-6">
-          {isSecurityError ? (
-            <>
-              We've detected a potential security issue with this transaction. 
-              For your protection, the payment process has been terminated.
-              This incident has been logged and our security team has been notified.
-            </>
-          ) : (
-            <>
-              There was an error processing your payment. 
-              Your payment has not been completed, and you have not been charged.
-            </>
-          )}
+        <p className="text-gray-600 mb-8">
+          {errorMessage}
         </p>
-        <div className="flex flex-col space-y-3">
+        <div className="space-y-4">
           <Link
-            href="/dashboard"
-            className="bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition-colors"
+            href="/book-consultation"
+            className="block bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
           >
-            Return to Dashboard
+            Try Again
           </Link>
-          {!isSecurityError && (
-            <Link
-              href="/book-consultation"
-              className="border border-blue-600 text-blue-600 py-2 px-4 rounded hover:bg-blue-50 transition-colors"
-            >
-              Try Again
-            </Link>
-          )}
           <Link
             href="/support"
-            className="text-blue-600 hover:underline"
+            className="block text-blue-600 hover:text-blue-700 transition-colors"
           >
-            Need help? Contact support
+            Contact Support
           </Link>
         </div>
       </div>

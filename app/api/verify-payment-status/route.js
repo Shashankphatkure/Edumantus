@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
-import { cookies } from 'next/headers';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 function prettyPrintResponse(response) {
   const parsedBody = JSON.parse(response.body);
@@ -43,6 +43,8 @@ function prettyPrintResponse(response) {
 
 export async function POST(request) {
   try {
+    const cookieStore = await cookies();
+    const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
     const { orderId } = await request.json();
 
     if (!orderId) {
@@ -51,8 +53,8 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-
-    // Parse the order_id to get the booking ID
+    
+    // Extract booking ID from order ID
     const orderParts = orderId.split('_');
     if (orderParts.length < 4) {
       return NextResponse.json(
@@ -60,28 +62,23 @@ export async function POST(request) {
         { status: 400 }
       );
     }
-    const bookingId = orderParts[3];
-
-    // Get booking details from database to check original amount
-    const cookieStore = cookies();
-    const supabase = createRouteHandlerClient({ cookies: () => cookieStore });
     
+    const bookingId = orderParts[3];
+    
+    // Fetch booking details from database to verify amount
     const { data: booking, error: bookingError } = await supabase
       .from('bookings')
-      .select('*')
+      .select('*, experts(price)')
       .eq('id', bookingId)
       .single();
-
+      
     if (bookingError || !booking) {
-      console.error('Error fetching booking details:', bookingError);
+      console.error('Error fetching booking:', bookingError);
       return NextResponse.json(
         { error: 'Booking not found', status: 'FAILED' },
         { status: 404 }
       );
     }
-
-    // Store the original amount from the database for validation
-    const originalAmount = booking.amount;
 
     // Create Basic Auth token
     const apiKey = process.env.HDFC_API_KEY;
@@ -148,36 +145,55 @@ export async function POST(request) {
         { status: 500 }
       );
     }
-
-    // Validate the payment amount against the original amount
-    const paymentAmount = parseFloat(data.amount);
     
-    if (paymentAmount !== originalAmount) {
-      console.error('Amount mismatch detected!', { 
-        original: originalAmount, 
-        received: paymentAmount 
+    // SECURITY FIX: Verify the payment amount matches the stored amount
+    const receivedAmount = data.amount ? parseFloat(data.amount) : null;
+    const storedAmount = booking.amount;
+    const expertPrice = booking.experts?.price;
+    
+    // Log verification details
+    console.log('Payment amount verification:', {
+      receivedAmount,
+      storedAmount,
+      expertPrice,
+      match: receivedAmount === storedAmount && storedAmount === expertPrice
+    });
+    
+    // If amount doesn't match, reject the payment
+    if (receivedAmount !== null && 
+        (Math.abs(receivedAmount - storedAmount) > 0.01 || Math.abs(storedAmount - expertPrice) > 0.01)) {
+      console.error('Payment amount mismatch detected:', {
+        receivedAmount,
+        storedAmount,
+        expertPrice
       });
       
-      return NextResponse.json(
-        { 
-          error: 'Payment amount mismatch', 
-          status: 'FAILED',
-          details: {
-            originalAmount,
-            receivedAmount: paymentAmount,
-            orderId
-          }
-        },
-        { status: 400 }
-      );
+      // Update booking to mark potential fraud
+      await supabase
+        .from('bookings')
+        .update({
+          payment_status: 'rejected',
+          status: 'cancelled',
+          notes: `Payment rejected due to amount mismatch. Expected: ${storedAmount}, Received: ${receivedAmount}`
+        })
+        .eq('id', bookingId);
+        
+      return NextResponse.json({ 
+        error: 'Payment amount mismatch', 
+        status: 'FAILED',
+        details: {
+          receivedAmount,
+          storedAmount,
+          expertPrice
+        }
+      }, { status: 400 });
     }
 
-    // Return the payment status information with validation result
+    // Return the relevant payment status information with verified amount
     return NextResponse.json({ 
-      status: data.status,
-      amount: data.amount,
-      isAmountValid: paymentAmount === originalAmount,
-      orderId: data.order_id
+      status: data.status || 'FAILED',
+      verifiedAmount: storedAmount,
+      paymentVerified: true
     }, { status: 200 });
 
   } catch (error) {

@@ -69,6 +69,39 @@ function BookConsultationContent() {
         return;
       }
 
+      // SECURITY FIX: Fetch the latest expert data to ensure we have the current price
+      const { data: latestExpertData, error: expertError } = await supabase
+        .from('experts')
+        .select('id, name, price')
+        .eq('id', selectedExpert.id)
+        .single();
+        
+      if (expertError || !latestExpertData) {
+        throw new Error('Failed to verify expert information');
+      }
+      
+      // Check if the price has changed since page load
+      if (latestExpertData.price !== selectedExpert.price) {
+        console.log('Expert price has changed:', {
+          oldPrice: selectedExpert.price,
+          newPrice: latestExpertData.price
+        });
+        
+        // Update the local state with the latest price
+        setSelectedExpert({
+          ...selectedExpert,
+          price: latestExpertData.price
+        });
+        
+        // Show a notification to the user about the price change
+        if (confirm(`The consultation price has been updated to ₹${latestExpertData.price}. Do you want to continue?`)) {
+          // Continue with the updated price
+        } else {
+          setIsLoading(false);
+          return;
+        }
+      }
+
       // Generate order ID without creating booking first
       const tempOrderId = `ORDER_${Date.now()}_${user.id}`;
 
@@ -80,19 +113,19 @@ function BookConsultationContent() {
         },
         body: JSON.stringify({
           orderId: tempOrderId,
-          amount: `${selectedExpert.price}.0`,
+          amount: `${latestExpertData.price}.0`,
           userId: user.id,
           userEmail: user.email,
           userPhone: user.user_metadata?.phone || '',
-          description: `Consultation with ${selectedExpert.name}`,
+          description: `Consultation with ${latestExpertData.name}`,
           firstName: user.user_metadata?.full_name?.split(' ')[0] || '',
           lastName: user.user_metadata?.full_name?.split(' ').slice(1).join(' ') || '',
           // Add booking details to metadata for use after payment
           metadata: {
-            expertId: selectedExpert.id,
+            expertId: latestExpertData.id,
             bookingDate: selectedDate,
             bookingTime: selectedTime,
-            expertName: selectedExpert.name
+            expertName: latestExpertData.name
           }
         })
       });

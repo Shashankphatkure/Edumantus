@@ -1,14 +1,6 @@
 import { NextResponse } from 'next/server';
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import crypto from 'crypto';
-
-// Same hash function as in create-payment-session
-function generatePaymentHash(bookingId, amount, userId) {
-  const secret = process.env.PAYMENT_HASH_SECRET || 'your-secret-key-change-this';
-  const dataToHash = `${bookingId}:${amount}:${userId}:${secret}`;
-  return crypto.createHash('sha256').update(dataToHash).digest('hex');
-}
 
 export async function POST(request) {
   try {
@@ -49,14 +41,13 @@ export async function POST(request) {
     }
 
     const bookingId = orderParts[3];
-    const userId = orderParts[2];
     console.log('Looking for booking ID:', bookingId);
 
     try {
-      // Find the booking
+      // Find and update the booking
       const { data: existingBooking, error: fetchError } = await supabase
         .from('bookings')
-        .select('*')
+        .select('*, experts(price)')
         .eq('id', bookingId)
         .eq('payment_status', 'pending')
         .single();
@@ -71,69 +62,47 @@ export async function POST(request) {
         throw new Error('No pending booking found');
       }
       
-      // IMPORTANT: Validate payment amount from callback against original amount in database
-      const callbackAmount = parseFloat(paymentData.amount);
-      const originalAmount = existingBooking.amount;
+      // SECURITY FIX: Verify the payment amount matches the stored amount
+      const receivedAmount = paymentData.amount ? parseFloat(paymentData.amount) : null;
+      const storedAmount = existingBooking.amount;
+      const expertPrice = existingBooking.experts?.price;
       
-      // First validation: Direct comparison of amounts
-      if (callbackAmount !== originalAmount) {
-        console.error('Amount mismatch detected!', {
-          original: originalAmount,
-          received: callbackAmount,
-          booking: existingBooking.id,
-          order: orderId
+      // Log verification details
+      console.log('Payment amount verification:', {
+        receivedAmount,
+        storedAmount,
+        expertPrice,
+        match: receivedAmount === storedAmount && storedAmount === expertPrice
+      });
+      
+      // If amount is provided in callback and doesn't match, reject the payment
+      if (receivedAmount !== null && 
+          (Math.abs(receivedAmount - storedAmount) > 0.01 || Math.abs(storedAmount - expertPrice) > 0.01)) {
+        console.error('Payment amount mismatch detected:', {
+          receivedAmount,
+          storedAmount,
+          expertPrice
         });
         
-        // Update booking with fraud attempt note
+        // Update booking to mark potential fraud
         await supabase
           .from('bookings')
           .update({
-            payment_status: 'fraud_attempt',
-            notes: `SECURITY ALERT: Payment amount mismatch. Expected: ${originalAmount}, Received: ${callbackAmount}`
+            payment_status: 'rejected',
+            status: 'cancelled',
+            notes: `Payment rejected due to amount mismatch. Expected: ${storedAmount}, Received: ${receivedAmount}`
           })
           .eq('id', bookingId);
-        
-        // Redirect to error page with fraud parameter
+          
+        // Redirect to error page
         const errorUrl = new URL('/payment/error', baseUrl);
         errorUrl.searchParams.set('reason', 'amount_mismatch');
         return NextResponse.redirect(errorUrl.toString(), {
           status: 303
         });
       }
-      
-      // Second validation: Hash verification for extra security
-      const receivedHash = paymentData.metadata?.amountHash;
-      const storedHash = existingBooking.amount_hash;
-      const calculatedHash = generatePaymentHash(bookingId, callbackAmount, userId);
-      
-      // If we have stored or received hash, verify it
-      if ((storedHash || receivedHash) && 
-          !(storedHash === calculatedHash || receivedHash === calculatedHash)) {
-        console.error('Hash verification failed!', {
-          storedHash,
-          receivedHash,
-          calculatedHash,
-          booking: existingBooking.id
-        });
-        
-        // Update booking with fraud attempt note
-        await supabase
-          .from('bookings')
-          .update({
-            payment_status: 'fraud_attempt',
-            notes: `SECURITY ALERT: Payment hash verification failed.`
-          })
-          .eq('id', bookingId);
-        
-        // Redirect to error page with fraud parameter
-        const errorUrl = new URL('/payment/error', baseUrl);
-        errorUrl.searchParams.set('reason', 'hash_mismatch');
-        return NextResponse.redirect(errorUrl.toString(), {
-          status: 303
-        });
-      }
 
-      // Update the booking only if all validations pass
+      // Update the booking
       const { data: booking, error: updateError } = await supabase
         .from('bookings')
         .update({
@@ -142,7 +111,7 @@ export async function POST(request) {
           transaction_id: orderId,
           payment_mode: 'online',
           payment_time: new Date().toISOString(),
-          notes: `Payment completed with status: ${paymentData.status}. Amount validated successfully.`
+          notes: `Payment completed with status: ${paymentData.status}`
         })
         .eq('id', bookingId)
         .select()
