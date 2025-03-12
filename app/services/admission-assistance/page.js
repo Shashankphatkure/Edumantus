@@ -26,11 +26,11 @@ export default function AdmissionAssistance() {
       },
       {
         name: "Document Preparation",
-        description: "Professional assistance in preparing and reviewing application documents, essays, and portfolios."
+        description: "Expert assistance in preparing and reviewing application documents, essays, and portfolios to strengthen your college admission journey."
       },
       {
         name: "Interview Coaching",
-        description: "Personalized coaching for college interviews, including mock interviews and feedback."
+        description: "Personalized coaching for college admission interviews, complete with mock sessions and insightful feedback to help you excel."
       }
     ],
     approach: [
