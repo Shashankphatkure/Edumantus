@@ -103,29 +103,7 @@ export default function ThriveZone() {
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
-          <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">Ready to Advance Your Career?</h2>
-            <p className="text-xl text-blue-100 mb-8">
-              Take the first step towards your professional growth today.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link
-                href="/book-consultation"
-                className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
-              >
-                Book Your Consultation
-              </Link>
-              <Link
-                href="/contact"
-                className="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
-              >
-                Contact Us
-              </Link>
-            </div>
-          </div>
-        </section>
+        
 
         {/* Key Benefits */}
         <section className="py-20">
@@ -197,6 +175,31 @@ export default function ThriveZone() {
             </div>
           </div>
         </section>
+
+{/* CTA Section */}
+<section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
+          <div className="container mx-auto px-6 text-center">
+            <h2 className="text-3xl font-bold mb-8">Ready to Advance Your Career?</h2>
+            <p className="text-xl text-blue-100 mb-8">
+              Take the first step towards your professional growth today.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/book-consultation"
+                className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
+              >
+                Book Your Consultation
+              </Link>
+              <Link
+                href="/contact"
+                className="border-2 border-white px-8 py-4 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </section>
+
       </div>
     </PageTransition>
   );
