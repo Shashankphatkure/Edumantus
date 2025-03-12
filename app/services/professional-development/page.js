@@ -26,11 +26,11 @@ export default function ProfessionalDevelopment() {
       },
       {
         name: "Personal Branding",
-        description: "Strategic personal brand development to enhance your professional presence and visibility."
+        description: "Strategic personal branding services to elevate your professional presence and boost your career visibility."
       },
       {
         name: "Leadership Skills",
-        description: "Advanced leadership training for better team management, decision-making, and organizational effectiveness."
+        description: "Leadership development training to strengthen workplace interactions, decision-making, and presentation skills."
       }
     ],
     approach: [
