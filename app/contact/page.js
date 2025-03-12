@@ -39,8 +39,7 @@ export default function Contact() {
       city: 'Delhi',
       address: 'Mantu Crafts (OPC) Pvt. Ltd., B1/A5, First Floor, Mohan Cooperative Industrial Area, New Delhi - 110044',
       phone: '+91-9267910906',
-      email: 'Info@edmantus.com',
-      image: 'https://picsum.photos/seed/delhi/800/600'
+      email: 'Info@edmantus.com'
     }
   ];
 
@@ -69,7 +68,7 @@ export default function Contact() {
                 icon: '📞',
                 title: 'Call Us',
                 content: '+91-9267910906',
-                description: 'Available 24/7 for emergency support'
+                description: 'Available 24/7 for career counselling and support'
               },
               {
                 icon: '✉️',
@@ -180,7 +179,7 @@ export default function Contact() {
       {/* Office Locations */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-6">
-          <h2 className="text-3xl font-bold mb-12 text-center">Our Offices</h2>
+          <h2 className="text-3xl font-bold mb-12 text-center">Office Address</h2>
           <div className="grid md:grid-cols-3 gap-8">
             {locations.map((location) => (
               <div
@@ -189,8 +188,8 @@ export default function Contact() {
               >
                 <div className="relative h-48">
                   <Image
-                    src={location.image}
-                    alt={location.city}
+                    src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1200&q=80"
+                    alt="Edmantus Office"
                     fill
                     className="object-cover"
                   />
