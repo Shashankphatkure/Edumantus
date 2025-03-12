@@ -11,7 +11,7 @@ export default function Services() {
       features: [
         "Stream Selection Guidance (8th-10th)",
         "Career Counseling (11th-12th)",
-        "Psychological Support",
+        "Holistic Student Support Services",
         "Scientific Assessment Tools"
       ],
       price: "₹2,000",
@@ -82,9 +82,9 @@ export default function Services() {
         "Resume Writing",
         "Interview Skills",
         "Personal Branding",
-        "Communication Skills"
+        "Leadership Skills"
       ],
-      price: "₹1,800",
+      price: "₹2,500",
       duration: "60 minutes",
       link: "/services/professional-development"
     }
