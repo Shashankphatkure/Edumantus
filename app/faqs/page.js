@@ -58,12 +58,16 @@ export default function FAQs() {
           a: "We offer mock interviews, feedback sessions, and coaching for various interview types including behavioral and technical interviews."
         },
         {
-          q: "How can you help with personal branding?",
-          a: "We help develop your professional image through LinkedIn optimization, networking strategies, and online presence enhancement."
+          q: "How can you assist with building my personal brand?",
+          a: "We assist in crafting a strong professional identity by optimizing your LinkedIn profile, developing effective networking strategies, and enhancing your overall online presence to ensure you stand out in your industry."
         },
         {
-          q: "What communication skills do you focus on?",
-          a: "We cover presentation skills, workplace communication, negotiation techniques, and public speaking."
+          q: "What is leadership development training?",
+          a: "Leadership development training is a tailored program designed to enhance key leadership skills such as effective communication, decision-making, problem-solving, and the ability to inspire and lead teams. This training helps professionals grow their leadership capabilities to thrive in managerial or leadership roles."
+        },
+        {
+          q: "What makes this leadership development training unique?",
+          a: "This training is personalized to meet your specific professional goals, focusing not only on traditional leadership qualities but also on developing emotional intelligence, fostering collaboration, and enhancing your overall workplace presence. We use a mix of coaching, feedback, and hands-on practice to ensure lasting development."
         }
       ]
     },
