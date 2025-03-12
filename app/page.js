@@ -49,7 +49,7 @@ export default function Home() {
     },
     {
       title: "Professional Development",
-      description: "Comprehensive services for career enhancement including resume writing and interview preparation.",
+      description: "Complete career enhancement services for working professionals, including resume optimization and interview coaching.",
       image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773",
       link: "/services/professional-development"
     }
