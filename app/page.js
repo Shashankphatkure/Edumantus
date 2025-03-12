@@ -265,7 +265,7 @@ export default function Home() {
                 Our Specialties
               </h2>
               <p className="text-gray-600 text-lg">
-                Expert guidance for every aspect of your mental well-being
+                Expert Guidance for Every Step of Your Career Journey
               </p>
             </div>
             

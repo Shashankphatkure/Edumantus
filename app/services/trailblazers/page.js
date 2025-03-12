@@ -176,9 +176,9 @@ export default function Trailblazers() {
         {/* CTA Section */}
         <section className="py-20 bg-gradient-to-r from-blue-600 to-indigo-600 text-white">
           <div className="container mx-auto px-6 text-center">
-            <h2 className="text-3xl font-bold mb-8">Ready to Support Your Child's Growth?</h2>
+            <h2 className="text-3xl font-bold mb-8">Empower Your Future Today!</h2>
             <p className="text-xl text-blue-100 mb-8">
-              Take the first step towards your child's well-being today.
+              Take charge of your well-being and success—start your journey now.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
