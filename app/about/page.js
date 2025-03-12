@@ -36,25 +36,25 @@ export default function About() {
     {
       name: 'Dr. Teena Hassija',
       role: 'Founder and Senior Career Expert',
-      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2Faf51a3fb-f59c-41f0-bf2d-d34799474534.jpg&w=1920&q=75',
+      image: '/teena.webp',
       description: 'Leading our team with expertise in career counseling and professional development.'
     },
     {
       name: 'Pradeep C Ghai',
       role: 'Advisor and Senior Career Expert',
-      image: 'https://picsum.photos/seed/pradeep/400/400',
+      image: '/me.jpg',
       description: 'Bringing extensive experience in career guidance and strategic planning.'
     },
     {
       name: 'Dhanraj Prajapati',
       role: 'Advisor and Senior Career Expert',
-      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2F164aadfe-c22c-40a7-8248-60437fad9721.jpg&w=1920&q=75',
+      image: '/dhanraj.webp',
       description: 'Expert in academic counseling and professional development.'
     },
     {
       name: 'Dr. Bindu Agarwal',
       role: 'Advisor and Senior Career Expert',
-      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2F98cc8f38-db2d-4923-9a9b-b9499698bdfa.JPG&w=1920&q=75',
+      image: '/bindu.webp',
       description: 'Specialized in career transitions and professional growth strategies.'
     }
   ];
