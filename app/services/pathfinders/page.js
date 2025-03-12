@@ -10,7 +10,7 @@ export default function Pathfinders() {
     benefits: [
       "Stream Selection Guidance (8th-10th)",
       "Career Counseling (11th-12th)",
-      "Psychological Support",
+      "Holistic Student Support Services",
       "Scientific Assessment Tools",
       "Personalized Action Plans",
       "Parent Consultation Sessions"
@@ -25,7 +25,7 @@ export default function Pathfinders() {
         description: "Comprehensive career guidance for 11th-12th students, helping them explore and identify suitable career options based on their interests and aptitude."
       },
       {
-        name: "Psychological Support",
+        name: "Holistic Student Support Services",
         description: "Professional counseling to help students manage academic stress, anxiety, and other emotional challenges."
       },
       {

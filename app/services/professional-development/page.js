@@ -11,7 +11,7 @@ export default function ProfessionalDevelopment() {
       "Resume Writing",
       "Interview Skills",
       "Personal Branding",
-      "Communication Skills",
+      "Leadership Skills",
       "Career Strategy",
       "Professional Growth"
     ],
@@ -29,8 +29,8 @@ export default function ProfessionalDevelopment() {
         description: "Strategic personal brand development to enhance your professional presence and visibility."
       },
       {
-        name: "Communication Skills",
-        description: "Advanced communication training for better workplace interactions and presentations."
+        name: "Leadership Skills",
+        description: "Advanced leadership training for better team management, decision-making, and organizational effectiveness."
       }
     ],
     approach: [
@@ -65,8 +65,8 @@ export default function ProfessionalDevelopment() {
         answer: "We help develop your professional image through LinkedIn optimization, networking strategies, and online presence enhancement."
       },
       {
-        question: "What communication skills do you focus on?",
-        answer: "We cover presentation skills, workplace communication, negotiation techniques, and public speaking."
+        question: "What leadership skills do you focus on?",
+        answer: "We cover team management, strategic decision-making, conflict resolution, and effective delegation techniques."
       }
     ]
   };
