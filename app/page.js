@@ -374,7 +374,7 @@ export default function Home() {
                 How It Works
               </h2>
               <p className="text-gray-600 text-lg">
-                Simple steps to start your healing journey
+                Simple steps to begin your career transformation journey
               </p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
@@ -396,7 +396,7 @@ export default function Home() {
                 },
                 {
                   step: 'Start Consultation',
-                  description: 'Begin your journey to better mental health',
+                  description: 'Begin your journey to a fulfilling career with expert guidance and support',
                   icon: '🎯'
                 }
               ].map((item, index) => (
@@ -422,7 +422,7 @@ export default function Home() {
                 Career Development Resources
               </h2>
               <p className="text-gray-600 text-lg">
-                Free resources to help you understand and improve your career prospects
+                Access free resources to gain insights and enhance your career opportunities
               </p>
             </div>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
