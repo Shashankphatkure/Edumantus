@@ -96,7 +96,7 @@ export default function AdmissionAssistance() {
                   href="/book-consultation"
                   className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300 inline-block"
                 >
-                  Book Assessment
+                  Book Consultation
                 </Link>
               </div>
             </div>
@@ -186,7 +186,7 @@ export default function AdmissionAssistance() {
                 href="/book-consultation"
                 className="bg-white text-blue-600 px-8 py-4 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
               >
-                Book Your Assessment
+                Book Your Consultation
               </Link>
               <Link
                 href="/contact"
