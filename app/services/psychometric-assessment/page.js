@@ -53,8 +53,8 @@ export default function PsychometricAssessment() {
     ],
     faqs: [
       {
-        question: "What types of tests are included?",
-        answer: "Our assessment battery includes career aptitude, personality, interest inventory, and work style assessments."
+        question: "What types of assessments are included?",
+        answer: "Our comprehensive assessment toolkit includes career aptitude tests, personality evaluations, interest inventories, and work style assessments to help you gain deeper insights into your strengths and career preferences."
       },
       {
         question: "How long does the assessment take?",
