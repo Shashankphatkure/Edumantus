@@ -222,27 +222,27 @@ export default function Home() {
                 },
                 {
                   title: 'Complete Privacy',
-                  description: 'Confidential sessions in your personal space with end-to-end encryption.',
+                  description: 'Confidential sessions in the comfort of your personal space, secured with end-to-end encryption.',
                   icon: '🔒'
                 },
                 {
-                  title: 'Affordable Care',
-                  description: 'Cost-effective solutions with flexible payment options and insurance coverage.',
+                  title: 'Affordable Solution',
+                  description: 'Affordable career counseling services with flexible payment options, offering the best solutions tailored to your needs.',
                   icon: '💰'
                 },
                 {
-                  title: 'Choice of Experts',
-                  description: 'Select from a wide range of qualified therapists based on your specific needs.',
+                  title: 'Choice of Expert',
+                  description: 'Choose the perfect mentor from a diverse pool of qualified career experts, tailored to your specific goals and needs.',
                   icon: '👥'
                 },
                 {
                   title: 'Flexible Scheduling',
-                  description: 'Book sessions at times that suit your schedule, including evenings and weekends.',
+                  description: 'Schedule sessions at your convenience, with options available for evenings and weekends.',
                   icon: '📅'
                 },
                 {
-                  title: 'Consistent Support',
-                  description: 'Regular follow-ups and 24/7 chat support for continuous care.',
+                  title: 'Continuous Guidance',
+                  description: '24/7 chat support to ensure personalized and ongoing career guidance.',
                   icon: '🤝'
                 }
               ].map((benefit) => (
