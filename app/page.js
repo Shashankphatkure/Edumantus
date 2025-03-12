@@ -728,8 +728,8 @@ export default function Home() {
             <div className="max-w-3xl mx-auto">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 sm:mb-8">Ready to Start Your Journey?</h2>
               <p className="text-lg sm:text-xl text-blue-100 mb-8 sm:mb-12 leading-relaxed">
-                Take the first step towards better career prospects today. 
-                Our experts are here to support you every step of the way.
+                Start your journey towards improved career prospects today. 
+                Our experts are here to provide guidance and support at every step.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
