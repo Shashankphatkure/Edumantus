@@ -73,7 +73,7 @@ export default function OurExperts() {
               Meet Our Career Guidance Experts
             </h1>
             <p className="text-xl text-blue-100 mb-8">
-              Connect with India's top career guidance specialists, each offering years of experience and personalized advice to help you achieve your professional aspirations.
+              Connect with India's leading career guidance experts, bringing years of experience and personalized insights to help you navigate your career path and achieve your professional goals.
             </p>
           </div>
         </div>
@@ -135,20 +135,14 @@ export default function OurExperts() {
                     <div>
                       <p className="text-gray-600 mb-2">Languages</p>
                       <div className="flex flex-wrap gap-2">
-                        {expert.languages.map((language) => (
-                          <span
-                            key={language}
-                            className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm"
-                          >
-                            {language}
-                          </span>
-                        ))}
+                        <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">Hindi</span>
+                        <span className="px-3 py-1 bg-gray-50 text-gray-600 rounded-full text-sm">English</span>
                       </div>
                     </div>
                     <div className="flex items-center justify-between pt-4 border-t">
                       <div>
                         <p className="text-gray-600">Consultation Fee</p>
-                        <p className="text-xl font-bold text-blue-600">{expert.price}</p>
+                        <p className="text-xl font-bold text-blue-600">₹{expert.price}</p>
                       </div>
                       <Link
                         href={`/book-consultation?expert=${expert.id}`}

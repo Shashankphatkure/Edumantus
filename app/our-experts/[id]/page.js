@@ -126,42 +126,22 @@ export default function ExpertProfile() {
               </div>
 
               <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h2 className="text-2xl font-bold mb-4">Expertise</h2>
-                <ul className="space-y-2">
-                  {expert.expertise.map((item) => (
-                    <li key={item} className="flex items-center gap-2">
-                      <span className="text-blue-600">•</span>
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h2 className="text-2xl font-bold mb-4">Publications</h2>
-                <ul className="space-y-2">
-                  {expert.publications?.map((publication) => (
-                    <li key={publication} className="flex items-center gap-2">
-                      <span className="text-blue-600">📚</span>
-                      <span>{publication}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              {expert.awards && (
-                <div className="bg-white rounded-2xl p-6 shadow-lg">
-                  <h2 className="text-2xl font-bold mb-4">Awards & Recognition</h2>
-                  <ul className="space-y-2">
-                    {expert.awards.map((award) => (
-                      <li key={award} className="flex items-center gap-2">
-                        <span className="text-blue-600">🏆</span>
-                        <span>{award}</span>
-                      </li>
-                    ))}
-                  </ul>
+                <h2 className="text-2xl font-bold mb-4">Education</h2>
+                <div className="space-y-4">
+                  <div>
+                    <p className="text-gray-600 mb-1">Graduation:</p>
+                    <p className="font-medium">{expert.graduation || 'Information not available'}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600 mb-1">Post Graduation:</p>
+                    <p className="font-medium">{expert.post_graduation || 'Information not available'}</p>
+                  </div>
+                  <div>
+                    <p className="text-gray-600 mb-1">Others:</p>
+                    <p className="font-medium">{expert.other_education || 'Information not available'}</p>
+                  </div>
                 </div>
-              )}
+              </div>
             </div>
 
             {/* Sidebar */}
@@ -181,29 +161,10 @@ export default function ExpertProfile() {
                   <div>
                     <p className="text-gray-600">Languages</p>
                     <div className="flex flex-wrap gap-2 mt-1">
-                      {expert.languages.map((language) => (
-                        <span
-                          key={language}
-                          className="px-3 py-1 bg-gray-100 rounded-full text-sm"
-                        >
-                          {language}
-                        </span>
-                      ))}
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">Hindi</span>
+                      <span className="px-3 py-1 bg-gray-100 rounded-full text-sm">English</span>
                     </div>
                   </div>
-                </div>
-              </div>
-
-              {/* Availability */}
-              <div className="bg-white rounded-2xl p-6 shadow-lg">
-                <h3 className="text-xl font-bold mb-4">Availability</h3>
-                <div className="space-y-2">
-                  {Object.entries(expert.availability).map(([day, time]) => (
-                    <div key={day} className="flex justify-between">
-                      <span className="capitalize">{day}</span>
-                      <span className="text-gray-600">{time}</span>
-                    </div>
-                  ))}
                 </div>
               </div>
 
@@ -221,12 +182,6 @@ export default function ExpertProfile() {
                   >
                     Book Appointment
                   </Link>
-                  <button
-                    onClick={() => window.open(`tel:+1234567890`)}
-                    className="block w-full border-2 border-blue-600 text-blue-600 text-center px-6 py-3 rounded-xl font-semibold hover:bg-blue-50 transition-all duration-300"
-                  >
-                    Call Now
-                  </button>
                 </div>
               </div>
             </div>
