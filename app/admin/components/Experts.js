@@ -13,6 +13,9 @@ export default function Experts() {
         specialties: [],
         experience: '',
         education: '',
+        graduation: '',
+        post_graduation: '',
+        other_education: '',
         languages: [],
         price: 0,
         about: '',
@@ -98,6 +101,9 @@ export default function Experts() {
                 specialties: [],
                 experience: '',
                 education: '',
+                graduation: '',
+                post_graduation: '',
+                other_education: '',
                 languages: [],
                 price: 0,
                 about: '',
@@ -192,6 +198,9 @@ export default function Experts() {
                 specialties: [],
                 experience: '',
                 education: '',
+                graduation: '',
+                post_graduation: '',
+                other_education: '',
                 languages: [],
                 price: 0,
                 about: '',
@@ -307,6 +316,27 @@ export default function Experts() {
                             />
                             <input
                                 type="text"
+                                placeholder="Graduation"
+                                className="w-full p-2 border rounded"
+                                value={newExpert.graduation}
+                                onChange={(e) => setNewExpert({...newExpert, graduation: e.target.value})}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Post Graduation"
+                                className="w-full p-2 border rounded"
+                                value={newExpert.post_graduation}
+                                onChange={(e) => setNewExpert({...newExpert, post_graduation: e.target.value})}
+                            />
+                            <input
+                                type="text"
+                                placeholder="Other Education"
+                                className="w-full p-2 border rounded"
+                                value={newExpert.other_education}
+                                onChange={(e) => setNewExpert({...newExpert, other_education: e.target.value})}
+                            />
+                            <input
+                                type="text"
                                 placeholder="Languages (comma-separated)"
                                 className="w-full p-2 border rounded"
                                 value={newExpert.languages}
@@ -341,6 +371,9 @@ export default function Experts() {
                                         specialties: [],
                                         experience: '',
                                         education: '',
+                                        graduation: '',
+                                        post_graduation: '',
+                                        other_education: '',
                                         languages: [],
                                         price: 0,
                                         about: '',
