@@ -11,87 +11,74 @@ export default function Pricing() {
     students: [
       {
         name: 'Basic Package',
-        price: '₹1,999',
+        price: '₹2,499',
         features: [
-          'Single counseling session (1 hour)',
-          'Basic career assessment or stream selection',
-          'Summary report with recommendations'
+          'One Counseling session',
+          'Career Test',
+          'Summary Report with Career Recommendations'
         ]
       },
       {
         name: 'Standard Package',
-        price: '₹4,999',
+        price: '₹7,499',
         highlight: true,
         features: [
-          'Multiple sessions (3)',
-          'Psychometric testing and detailed analysis',
-          'Stream/career selection & career planning',
-          'Follow-up for 3–6 months'
+          'Two Counselling Sessions',
+          'One Parent Counselling Session',
+          'Career Test',
+          'Detailed Test Report with Career Recommendations',
+          'Admission Guidance for max three UG/PG Programs',
+          'Strategic Career Planning',
+          'Extended Career Consultation (3 Months)'
         ]
       },
       {
         name: 'Premium Package',
         price: '₹19,999',
         features: [
-          'Psychometric testing and detailed analysis',
-          'Stream/career selection & career planning',
-          'Comprehensive counseling and mentorship',
-          'Follow-up for 12 months (Min 10 sessions)',
-          'Assistance with college selection and applications'
+          'Six Counselling Sessions',
+          'Two Parent Counselling Session',
+          'Career Test with Career Recommendations',
+          'Strategic Career Planning',
+          'Admission Support for three UG/PG Programs',
+          'Extended Career Consultation (6 Months)'
         ]
       }
     ],
     admission: [
       {
         name: 'Basic Package',
-        price: '₹2,999',
+        price: '₹4,999',
         features: [
           'One Course in Indian Colleges/universities',
-          'Validity (Till Admission Max up to 2 months)'
+          'Validity (Till Admission)'
         ]
       },
       {
         name: 'Exclusive Package',
-        price: '₹7,499',
+        price: '₹8,499',
         features: [
           '2-3 Courses in Indian Colleges/universities',
-          'Validity (Till Admission Max up to 6 months)'
+          'Validity (Till Admission)'
         ]
       }
     ],
     professionals: [
       {
-        name: 'Consultation',
-        price: '₹1,200',
-        description: 'Per Executive / Per Session'
+        name: 'Personality Test',
+        price: '₹2,499',
+        description: 'Personality Test & Recommendation Report'
       },
       {
-        name: 'Personality Development',
-        price: '₹2,500',
-        description: 'Per Executive / Per Session'
+        name: 'Corporate Readiness Test',
+        price: '₹2,499',
+        description: 'Corporate Readiness Test & Recommendation Report'
       },
       {
-        name: 'Leadership Coaching & Mentoring',
-        price: '₹3,000',
-        description: 'Per Executive / Per Session'
+        name: 'Combo Package',
+        price: '₹3,999',
+        description: 'Get Both for Just ₹3,999! (Save ₹999)'
       }
-    ]
-  };
-
-  const payPerServices = {
-    students: [
-      { name: 'Psychometric test (Detailed Report)', price: '₹3,000' },
-      { name: 'Resume Building', price: '₹1,000' },
-      { name: 'Interview Preparation (per session)', price: '₹1,000' },
-      { name: 'Personality Development Session', price: '₹1,500' },
-      { name: 'Personalized (Special) Counselling session', price: '₹1,500' }
-    ],
-    professionals: [
-      { name: 'Skill/Leadership Test (Detailed Report)', price: '₹4,000' },
-      { name: 'Resume Building', price: '₹3,000' },
-      { name: 'Interview Preparation (per session)', price: '₹2,000' },
-      { name: 'Personality Development Session', price: '₹2,500' },
-      { name: 'Leadership Development Session', price: '₹3,000' }
     ]
   };
 
@@ -134,19 +121,7 @@ export default function Pricing() {
               <>
                 {/* Career Consultation */}
                 <div className="text-center mb-12">
-                  <h2 className="text-3xl font-bold mb-4">Student Pricing</h2>
-                  <div className="bg-white rounded-lg shadow-lg p-8 mb-8 transform hover:scale-105 transition-transform duration-300">
-                    <div className="flex flex-col items-center">
-                      <span className="text-blue-600 text-sm font-semibold uppercase tracking-wide mb-2">Basic Package</span>
-                      <h3 className="text-2xl font-bold mb-2">Career Consultation</h3>
-                      <div className="flex items-baseline mt-2 mb-4">
-                        <span className="text-4xl font-extrabold text-blue-600">₹800</span>
-                        <span className="text-gray-500 ml-2">/session</span>
-                      </div>
-                      <p className="text-gray-600 text-sm">All taxes included</p>
-                      <p className="text-gray-600 text-sm">One-on-one guidance</p>
-                    </div>
-                  </div>
+                  <h2 className="text-3xl font-bold mb-4">Career Consultation</h2>
                 </div>
 
                 {/* Main Packages */}
@@ -191,109 +166,27 @@ export default function Pricing() {
                     ))}
                   </div>
                 </div>
-
-                {/* Pay-Per-Service Options */}
-                <div className="mb-16">
-                  <h2 className="text-3xl font-bold mb-8 text-center">Pay-Per-Service Options</h2>
-                  <div className="bg-white rounded-lg shadow-lg p-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {payPerServices.students.map((service, index) => (
-                        <div key={index} className="flex justify-between items-center p-4 border-b">
-                          <span>{service.name}</span>
-                          <span className="font-semibold">{service.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Free Initial Offerings */}
-                <div className="bg-blue-50 rounded-lg p-6 mb-2">
-                  <h2 className="text-2xl font-bold mb-4 text-center">Free Initial Offerings</h2>
-                  <div className="space-y-4">
-                    <p className="flex items-center">
-                      <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      Free Introductory Session: 30 minutes for career counseling
-                    </p>
-                    <p className="flex items-center">
-                      <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                      </svg>
-                      Free Career Assessment Test: Test Absolutely free on sign-up and a summary report
-                    </p>
-                    <p className="text-sm text-gray-600 mt-4">
-                      *This offer is valid only for first-time sign-ups and cannot be combined with any other offers.
-                    </p>
-                  </div>
-                </div>
               </>
             )}
 
             {billingCycle === 'professionals' && (
               <>
+                {/* Professional Services Heading */}
+                <div className="text-center mb-12">
+                  <h2 className="text-3xl font-bold mb-4">Personality Test/Corporate Readiness Test</h2>
+                </div>
+                
                 {/* Professional Services */}
                 <div className="grid md:grid-cols-3 gap-8 mb-16">
                   {categories.professionals.map((service, index) => (
                     <div key={index} className="bg-white rounded-lg shadow-lg p-6">
                       <h3 className="text-xl font-semibold mb-4">{service.name}</h3>
                       <p className="text-3xl font-bold text-blue-600 mb-2">{service.price}</p>
-                      <p className="text-gray-600 mb-6">{service.description}</p>
-                      
-                      {/* Common Benefits */}
-                      <div className="space-y-3">
-                        <h4 className="font-semibold">All Plans Include:</h4>
-                        <ul className="space-y-2">
-                          <li className="flex items-center">
-                            <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Focused 60-Minute Sessions
-                          </li>
-                          <li className="flex items-center">
-                            <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Personalized Guidance
-                          </li>
-                          <li className="flex items-center">
-                            <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Professional Insights
-                          </li>
-                          <li className="flex items-center">
-                            <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Practical Strategies & Tips
-                          </li>
-                          <li className="flex items-center">
-                            <svg className="w-5 h-5 text-green-500 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
-                            </svg>
-                            Constructive Feedback
-                          </li>
-                        </ul>
-                      </div>
+                      <p className="text-gray-600 mb-6">
+                        {index !== 2 ? '✅ ' : ''}{service.description}
+                      </p>
                     </div>
                   ))}
-                </div>
-
-                {/* Professional Pay-Per-Service Options */}
-                <div className="mb-2">
-                  <h2 className="text-3xl font-bold mb-8 text-center">Pay-Per-Service Options</h2>
-                  <div className="bg-white rounded-lg shadow-lg p-6">
-                    <div className="grid md:grid-cols-2 gap-4">
-                      {payPerServices.professionals.map((service, index) => (
-                        <div key={index} className="flex justify-between items-center p-4 border-b">
-                          <span>{service.name}</span>
-                          <span className="font-semibold">{service.price}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
                 </div>
               </>
             )}
