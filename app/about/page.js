@@ -34,22 +34,28 @@ export default function About() {
 
   const team = [
     {
-      name: 'Dr. Rajesh Kumar',
-      role: 'Founder & Chief Psychiatrist',
-      image: 'https://picsum.photos/seed/founder/400/400',
-      description: '20+ years of experience in mental health care. Pioneer in online therapy in India.'
+      name: 'Dr. Teena Hassija',
+      role: 'Founder and Senior Career Expert',
+      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2Faf51a3fb-f59c-41f0-bf2d-d34799474534.jpg&w=1920&q=75',
+      description: 'Leading our team with expertise in career counseling and professional development.'
     },
     {
-      name: 'Dr. Priya Sharma',
-      role: 'Clinical Director',
-      image: 'https://picsum.photos/seed/director/400/400',
-      description: 'Specialist in cognitive behavioral therapy with 15+ years of experience.'
+      name: 'Pradeep C Ghai',
+      role: 'Advisor and Senior Career Expert',
+      image: 'https://picsum.photos/seed/pradeep/400/400',
+      description: 'Bringing extensive experience in career guidance and strategic planning.'
     },
     {
-      name: 'Dr. Amit Patel',
-      role: 'Head of Research',
-      image: 'https://picsum.photos/seed/research/400/400',
-      description: 'Leading research in mental health treatments and therapy effectiveness.'
+      name: 'Dhanraj Prajapati',
+      role: 'Advisor and Senior Career Expert',
+      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2F164aadfe-c22c-40a7-8248-60437fad9721.jpg&w=1920&q=75',
+      description: 'Expert in academic counseling and professional development.'
+    },
+    {
+      name: 'Dr. Bindu Agarwal',
+      role: 'Advisor and Senior Career Expert',
+      image: 'https://edmantus.com/_next/image?url=https%3A%2F%2Flhwhkbeylzxtrllzcpmh.supabase.co%2Fstorage%2Fv1%2Fobject%2Fpublic%2Fexpert-images%2F98cc8f38-db2d-4923-9a9b-b9499698bdfa.JPG&w=1920&q=75',
+      description: 'Specialized in career transitions and professional growth strategies.'
     }
   ];
 
@@ -108,13 +114,10 @@ export default function About() {
             <h2 className="text-3xl font-bold mb-6 text-center">About Us</h2>
             <div className="prose prose-lg mx-auto text-gray-600">
               <p className="mb-4">
-                For over 20 years, we have been dedicated to guiding students, graduates, and professionals in their career journeys. Our team is composed of experts from diverse fields, including Psychology, Career Assessment and Profiling, Career Planning and Strategy, Academic Counseling, Study Abroad and Scholarship Counseling, and many more specialized areas.
+                For over 20 years, we've been guiding students, graduates, and professionals toward fulfilling careers. Our expert team specializes in Career Counseling, Academic and Study Abroad Guidance, Career Assessments, and Strategic Career Planning—helping you make the right choices at every stage.
               </p>
               <p className="mb-4">
-                We are deeply passionate about helping you build a fulfilling career, leveraging both our expertise and the science of career management. Our commitment lies in supporting your short-term achievements and long-term aspirations.
-              </p>
-              <p>
-                By helping you choose the right subjects and career paths, we aim to ensure your happiness and professional success. Our approach focuses on holistic career development and coaching, addressing every aspect of your journey rather than offering fragmented solutions.
+                Whether you're selecting subjects, exploring career options, navigating job transitions, or making a comeback after a career break, we provide personalized support tailored to your goals. From students to seasoned professionals, we focus on holistic career growth, ensuring both short-term wins and long-term success.
               </p>
             </div>
           </div>
@@ -210,8 +213,7 @@ export default function About() {
               Join Us in Our Mission
             </h2>
             <p className="text-xl text-blue-100 mb-8">
-              Be part of our journey to transform mental health care in India.
-              Start your wellness journey today.
+              Be part of our journey to empower careers and shape brighter futures. Start your career growth journey today!
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -224,7 +226,7 @@ export default function About() {
                 href="/careers"
                 className="border-2 border-white text-white px-8 py-3 rounded-xl font-semibold hover:bg-white/10 transition-all duration-300"
               >
-                Join Our Team
+                Help us make career guidance accessible to millions
               </Link>
             </div>
           </div>
